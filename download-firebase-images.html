@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Скачать изображения из Firebase</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover {
+            background: #5568d3;
+        }
+        button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+        #status {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            min-height: 100px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .progress {
+            font-weight: bold;
+            color: #667eea;
+        }
+        .success {
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📥 Скачивание изображений из Firebase Storage</h1>
+        <p>Проект: <strong>Alex-Livraison</strong></p>
+        
+        <button id="downloadBtn" onclick="downloadAllImages()">Скачать ВСЕ изображения</button>
+        <button id="downloadProductsBtn" onclick="downloadFolder('products')">Только продукты</button>
+        <button id="downloadShopsBtn" onclick="downloadFolder('shops')">Только магазины</button>
+        
+        <div id="status">
+            <p>Нажмите кнопку выше, чтобы начать скачивание.</p>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getStorage, ref, listAll, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js';
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAWagPwv5Skh_EHfdcnFTYeG-xltRM7yPc",
+            authDomain: "alex-livraison.firebaseapp.com",
+            projectId: "alex-livraison",
+            storageBucket: "alex-livraison.firebasestorage.app",
+            messagingSenderId: "937475497279",
+            appId: "1:937475497279:web:62dc9eba8e77a5113ec78a"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const storage = getStorage(app);
+
+        let downloadedCount = 0;
+        let totalCount = 0;
+
+        function updateStatus(message, type = '') {
+            const statusDiv = document.getElementById('status');
+            const p = document.createElement('p');
+            p.textContent = message;
+            if (type) p.className = type;
+            statusDiv.appendChild(p);
+            statusDiv.scrollTop = statusDiv.scrollHeight;
+        }
+
+        function disableButtons(disabled) {
+            document.getElementById('downloadBtn').disabled = disabled;
+            document.getElementById('downloadProductsBtn').disabled = disabled;
+            document.getElementById('downloadShopsBtn').disabled = disabled;
+        }
+
+        async function downloadFile(url, filename) {
+            try {
+                const response = await fetch(url);
+                const blob = await response.blob();
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = filename;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(link.href);
+                
+                downloadedCount++;
+                updateStatus(`✓ Скачано (${downloadedCount}/${totalCount}): ${filename}`, 'success');
+                await new Promise(resolve => setTimeout(resolve, 500));
+            } catch (error) {
+                updateStatus(`✗ Ошибка при скачивании ${filename}: ${error.message}`, 'error');
+            }
+        }
+
+        async function getFilesFromFolder(folderPath) {
+            const folderRef = ref(storage, folderPath);
+            const result = await listAll(folderRef);
+            let files = [];
+            
+            for (const itemRef of result.items) {
+                const url = await getDownloadURL(itemRef);
+                files.push({name: itemRef.name, path: itemRef.fullPath, url: url});
+            }
+            
+            for (const prefixRef of result.prefixes) {
+                const subFiles = await getFilesFromFolder(prefixRef.fullPath);
+                files = files.concat(subFiles);
+            }
+            return files;
+        }
+
+        window.downloadFolder = async function(folderName) {
+            document.getElementById('status').innerHTML = '';
+            updateStatus(`🔍 Поиск изображений в папке "${folderName}"...`, 'progress');
+            disableButtons(true);
+            downloadedCount = 0;
+            
+            try {
+                const files = await getFilesFromFolder(folderName);
+                totalCount = files.length;
+                
+                if (files.length === 0) {
+                    updateStatus(`⚠️ В папке "${folderName}" не найдено файлов.`, 'error');
+                    disableButtons(false);
+                    return;
+                }
+                
+                updateStatus(`📦 Найдено файлов: ${files.length}`, 'progress');
+                updateStatus(`⏳ Начинаю скачивание...`, 'progress');
+                
+                for (const file of files) {
+                    await downloadFile(file.url, `${folderName}_${file.name}`);
+                }
+                
+                updateStatus(`\n🎉 Готово! Скачано ${downloadedCount} из ${totalCount} файлов.`, 'success');
+            } catch (error) {
+                updateStatus(`❌ Ошибка: ${error.message}`, 'error');
+            } finally {
+                disableButtons(false);
+            }
+        };
+
+        window.downloadAllImages = async function() {
+            document.getElementById('status').innerHTML = '';
+            updateStatus('🔍 Поиск всех изображений...', 'progress');
+            disableButtons(true);
+            downloadedCount = 0;
+            let allFiles = [];
+            
+            try {
+                updateStatus('📂 Сканирование products...', 'progress');
+                const productsFiles = await getFilesFromFolder('products');
+                allFiles = allFiles.concat(productsFiles.map(f => ({...f, folder: 'products'})));
+                
+                updateStatus('📂 Сканирование shops...', 'progress');
+                const shopsFiles = await getFilesFromFolder('shops');
+                allFiles = allFiles.concat(shopsFiles.map(f => ({...f, folder: 'shops'})));
+                
+                totalCount = allFiles.length;
+                
+                if (allFiles.length === 0) {
+                    updateStatus('⚠️ Файлов не найдено.', 'error');
+                    disableButtons(false);
+                    return;
+                }
+                
+                updateStatus(`📦 Найдено: ${allFiles.length}`, 'progress');
+                updateStatus('⏳ Скачивание...', 'progress');
+                
+                for (const file of allFiles) {
+                    await downloadFile(file.url, `${file.folder}_${file.name}`);
+                }
+                
+                updateStatus(`\n🎉 Готово! Скачано ${downloadedCount}/${totalCount}`, 'success');
+            } catch (error) {
+                updateStatus(`❌ Ошибка: ${error.message}`, 'error');
+            } finally {
+                disableButtons(false);
+            }
+        };
+    </script>
+</body>
+</html>
