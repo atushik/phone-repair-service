@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="Service professionnel de réparation de téléphones. Écran, batterie, eau, audio. Réparation rapide 30-60 min. Garantie 6 mois. Prix transparents.">
+    <meta name="description" content="Service professionnel de réparation de téléphones. Écran, batterie, eau, audio. Réparation rapide 30-60 min. Garantie 6 mois. Prix transparents.">
     <meta name="keywords" content="réparation téléphone, réparation écran, changement batterie, réparation iPhone, réparation Samsung, MOURAD">
     <meta name="author" content="MOURAD - Service de Réparation">
     <meta property="og:title" content="Service de Réparation de Téléphones - MOURAD">
-    <meta property="og:description" content="Réparation rapide et professionnelle de téléphones. Garantie 6 mois. Appelez +33 7 48 32 39 21">
+    <meta property="og:description" content="Réparation rapide et professionnelle de téléphones. Garantie 6 mois. Appelez 07 48 32 39 21">
     <title>Service de Réparation de Téléphones - MOURAD</title>
     <style>
         * {
@@ -38,27 +38,27 @@
             font-size: 3.5rem;
             margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            animation: fadeInDown 1s ease-out;
         }
 
         .hero p {
             font-size: 1.5rem;
-            margin-bottom: 30px;
-            animation: fadeInUp 1s ease-out 0.3s both;
+            margin-bottom: 40px;
+            opacity: 0.95;
         }
 
         .contact-btn {
-            display: inline-block;
             background: white;
             color: #667eea;
-            padding: 15px 40px;
-            text-decoration: none;
+            padding: 18px 45px;
+            font-size: 1.3rem;
+            border: none;
             border-radius: 50px;
-            font-size: 1.2rem;
-            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
             transition: all 0.3s ease;
+            font-weight: bold;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            animation: fadeInUp 1s ease-out 0.6s both;
         }
 
         .contact-btn:hover {
@@ -100,7 +100,6 @@
             transform: translateY(-10px);
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
-
         .service-icon {
             font-size: 3rem;
             margin-bottom: 20px;
@@ -147,55 +146,13 @@
             transform: scale(1.05);
         }
 
-        .phone-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #fff;
-            text-decoration: none;
-        }
-
         footer {
-            background: #2d3748;
+            background: #333;
             color: white;
             text-align: center;
             padding: 30px 20px;
         }
 
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .hero p {
-                font-size: 1.2rem;
-            }
-            .phone-number {
-                font-size: 1.5rem;
-            }
-        }
-        
-        /* New Sections Styles */
         .why-us, .pricing, .booking, .faq { padding: 80px 20px; text-align: center; }
         .why-us { background: #f8f9fa; }
         .why-grid, .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 1200px; margin: 40px auto; }
@@ -215,11 +172,9 @@
         .faq-item { background: white; padding: 25px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); }
         .faq-item h3 { color: #667eea; margin-bottom: 10px; }
         
-        /* WhatsApp Button */
         .whatsapp-btn { position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; text-decoration: none; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 1000; transition: transform 0.3s; }
         .whatsapp-btn:hover { transform: scale(1.1); }
         
-        /* Back to Top Button */
         .back-to-top { position: fixed; bottom: 100px; right: 30px; background: #667eea; color: white; width: 50px; height: 50px; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); z-index: 1000; transition: all 0.3s; }
         .back-to-top:hover { background: #764ba2; transform: scale(1.1); }
         .back-to-top.show { display: flex; }
@@ -228,14 +183,14 @@
             .why-grid, .price-grid { grid-template-columns: 1fr; }
             .whatsapp-btn, .back-to-top { width: 50px; height: 50px; font-size: 1.5rem; }
             .back-to-top { bottom: 80px; }
-        
+        }
     </style>
 </head>
 <body>
     <section class="hero">
         <h1>🔧 Service de Réparation de Téléphones</h1>
         <p>Expert en réparation rapide et professionnelle</p>
-        <a href="tel:+33748323921" class="contact-btn">Appelez Maintenant</a>
+        <a href="tel:0748323921" class="contact-btn">Appelez Maintenant</a>
     </section>
 
     <section class="services">
@@ -251,104 +206,10 @@
                 <h3>Changement de Batterie</h3>
                 <p>Batteries de qualité pour prolonger la vie de votre téléphone</p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">💧</div>
-                <h3>Réparation Dégâts des Eaux</h3>
-                <p>Traitement professionnel des dommages causés par l'eau</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">🔊</div>
-                <h3>Problèmes Audio</h3>
-                <p>Réparation haut-parleurs, microphones et écouteurs</p>
-            </div>
-            <div class="service-card">
-                                <div class="service-icon">📸</div>
-                <h3>Réparation Caméra</h3>
-                <p>Réparation ou remplacement de caméras avant et arrière</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">⚡</div>
-                <h3>Problèmes de Charge</h3>
-                <p>Réparation ports de charge et connecteurs</p>
-            </div>
-                            <div class="service-card">
-                <div class="service-icon">✨</div>
-                <h3>Nettoyage de Téléphone</h3>
-                <p>Nettoyage complet des haut-parleurs, ports de charge et de l'extérieur</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="contact-section">
-        <h2>Contactez-Nous</h2>
-        <div class="contact-info">
-            <div class="contact-item">
-                <span>👤</span>
-                <strong>MOURAD</strong>
-            </div>
-            <div class="contact-item">
-                <span>📞</span>
-                <a href="tel:+33748323921" class="phone-number">+33 7 48 32 39 21</a>
-            </div>
-        </div>
-    </section>
-
-        <!-- Section Pourquoi Nous -->
-    <section class="why-us">
-        <h2>🌟 Pourquoi Nous Choisir?</h2>
-        <div class="why-grid">
-            <div class="why-card">
-                <div class="why-icon">⚡</div>
-                <h3>Réparation Rapide</h3>
-                <p>La plupart des réparations en 30-60 minutes</p>
-            </div>
-            <div class="why-card">
-                <div class="why-icon">✔️</div>
-                <h3>Garantie 6 Mois</h3>
-                <p>Toutes nos réparations sont garanties</p>
-            </div>
-            <div class="why-card">
-                <div class="why-icon">🔧</div>
-                <h3>Pièces d'Origine</h3>
-                <p>Nous utilisons uniquement des pièces de qualité</p>
-            </div>
-            <div class="why-card">
-                <div class="why-icon">💰</div>
-                <h3>Prix Justes</h3>
-                <p>Tarifs transparents et compétitifs</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Tarifs -->
-    <section class="pricing">
-        <h2>💳 Nos Tarifs</h2>
-        <div class="price-grid">
-            <div class="price-card">
-                <h3>📱 Écran</h3>
-                <p class="price">Dès 49€</p>
-                <p>Selon le modèle</p>
-            </div>
-            <div class="price-card">
-                <h3>🔋 Batterie</h3>
-                <p class="price">Dès 39€</p>
-                <p>Installation incluse</p>
-            </div>
-            <div class="price-card">
-                <h3>💧 Dégâts des Eaux</h3>
-                <p class="price">Dès 59€</p>
-                <p>Diagnostic gratuit</p>
-            </div>
-            <div class="price-card">
-                <h3>✨ Nettoyage</h3>
-                <p class="price">19€</p>
-                <p>Nettoyage complet</p>
-            </div>
         </div>
         <p class="price-note">⚠️ Les tarifs peuvent varier selon le modèle et l'état du téléphone</p>
     </section>
 
-    <!-- Section Réservation -->
     <section class="booking">
         <h2>📅 Réserver un Rendez-Vous</h2>
         <form class="booking-form" id="bookingForm">
@@ -369,7 +230,6 @@
         </form>
     </section>
 
-    <!-- Section FAQ -->
     <section class="faq">
         <h2>❓ Questions Fréquentes</h2>
         <div class="faq-container">
@@ -392,7 +252,6 @@
         </div>
     </section>
 
-        <!-- Section Avis Clients -->
     <section class="reviews" style="padding: 80px 20px; background: #f8f9fa; text-align: center;">
         <h2 style="font-size: 2.5rem; margin-bottom: 50px; color: #667eea;">⭐ Avis de Nos Clients</h2>
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
@@ -414,38 +273,34 @@
         </div>
     </section>
 
-    <!-- Section Marques -->
     <section class="brands" style="padding: 60px 20px; text-align: center; background: white;">
         <h2 style="font-size: 2rem; margin-bottom: 40px; color: #333;">📱 Nous Réparons Toutes Les Marques</h2>
         <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 40px; max-width: 1000px; margin: 0 auto;">
-            <div style="font-size: 4rem; opacity: 0.7; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'"></div>
+            <div style="font-size: 3rem; font-weight: bold; color: #000000; opacity: 0.7; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">iPhone</div>
             <div style="font-size: 3rem; font-weight: bold; color: #1428a0; opacity: 0.7; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">SAMSUNG</div>
             <div style="font-size: 3rem; font-weight: bold; color: #e60012; opacity: 0.7; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">HUAWEI</div>
             <div style="font-size: 3rem; font-weight: bold; color: #ff6900; opacity: 0.7; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">XIAOMI</div>
             <div style="font-size: 3rem; font-weight: bold; color: #00a862; opacity: 0.7; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">OPPO</div>
         </div>
     </section>
-
-    <!-- Section Horaires + Carte -->
     <section class="location" style="padding: 80px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
         <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px;">
             <div style="text-align: center;">
                 <h2 style="font-size: 2.5rem; margin-bottom: 30px;">⏰ Horaires d'Ouverture</h2>
                 <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; backdrop-filter: blur(10px);">
-                    <p style="font-size: 1.3rem; margin: 15px 0;"><strong>Lundi - Vendredi:</strong> 9:00 - 19:00</p>
-                    <p style="font-size: 1.3rem; margin: 15px 0;"><strong>Samedi:</strong> 10:00 - 18:00</p>
+                    <p style="font-size: 1.3rem; margin: 15px 0;"><strong>Lundi - Samedi:</strong> 9h-20h</p>
                     <p style="font-size: 1.3rem; margin: 15px 0;"><strong>Dimanche:</strong> Fermé</p>
                     <div style="margin-top: 25px; padding: 15px; background: #4caf50; border-radius: 10px; font-size: 1.2rem; font-weight: bold;">
-                        🔴 OUVERT MAINTENANT
+                        🟢 OUVERT MAINTENANT
                     </div>
                 </div>
             </div>
             <div>
                 <h2 style="font-size: 2.5rem; margin-bottom: 30px; text-align: center;">📍 Notre Adresse</h2>
                 <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; backdrop-filter: blur(10px);">
-                    <p style="font-size: 1.3rem; margin-bottom: 20px;"><strong>🏢 Adresse:</strong><br>123 Rue de la Réparation<br>75001 Paris, France</p>
-                    <p style="font-size: 1.3rem; margin-bottom: 20px;"><strong>📞 Téléphone:</strong><br><a href="tel:+33748323921" style="color: white; text-decoration: underline;">+33 7 48 32 39 21</a></p>
-                    <p style="font-size: 1.3rem;"><strong>📧 Email:</strong><br>contact@mourad-repair.fr</p>
+                    <p style="font-size: 1.3rem; margin-bottom: 20px;"><strong>🏢 Adresse:</strong><br>123 Rue de la Réparation<br>83000 Toulon, France</p>
+                    <p style="font-size: 1.3rem; margin-bottom: 20px;"><strong>📞 Téléphone:</strong><br><a href="tel:0748323921" style="color: white; text-decoration: underline;">07 48 32 39 21</a></p>
+                    <p style="font-size: 1.3rem;"><strong>📧 Email:</strong><br>lyabendehbi@gmail.com</p>
                 </div>
                 <div style="margin-top: 30px; height: 300px; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2624.9914406081493!2d2.3412!3d48.8566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDjCsDUxJzI0LjAiTiAywrAyMCcyOC4zIkU!5e0!3m2!1sfr!2sfr!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
@@ -454,30 +309,26 @@
         </div>
     </section>
 
-
     <footer>
-                <div style="text-align: center; padding: 20px 0;">
+        <div style="text-align: center; padding: 20px 0;">
             <div style="margin-bottom: 20px;">
                 <a href="https://instagram.com" style="display: inline-block; margin: 0 15px; font-size: 2.5rem; color: #E4405F; text-decoration: none; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">📸</a>
                 <a href="https://facebook.com" style="display: inline-block; margin: 0 15px; font-size: 2.5rem; color: #1877F2; text-decoration: none; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">👍</a>
-                <a href="https://wa.me/33748323921" style="display: inline-block; margin: 0 15px; font-size: 2.5rem; color: #25D366; text-decoration: none; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">	💬</a>
+                <a href="https://wa.me/0748323921" style="display: inline-block; margin: 0 15px; font-size: 2.5rem; color: #25D366; text-decoration: none; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">💬</a>
             </div>
             <p>&copy; 2025 Service de Réparation de Téléphones - MOURAD. Tous droits réservés.</p>
         </div>
     </footer>
 
-        <!-- WhatsApp Button -->
-    <a href="https://wa.me/33748323921?text=Bonjour%2C%20je%20souhaite%20réparer%20mon%20téléphone" class="whatsapp-btn" target="_blank" aria-label="Contacter via WhatsApp">
+    <a href="https://wa.me/0748323921?text=Bonjour%2C%20je%20souhaite%20réparer%20mon%20téléphone" class="whatsapp-btn" target="_blank" aria-label="Contacter via WhatsApp">
         💬
     </a>
 
-    <!-- Back to Top Button -->
     <div class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
         ↑
     </div>
 
     <script>
-        // Back to Top Button Logic
         window.addEventListener('scroll', function() {
             const backToTop = document.getElementById('backToTop');
             if (window.scrollY > 300) {
@@ -487,7 +338,6 @@
             }
         });
 
-        // Form Submission Handler
         document.getElementById('bookingForm').addEventListener('submit', function(e) {
             e.preventDefault();
             alert('✅ Votre demande a été envoyée! Nous vous contacterons bientôt.');
