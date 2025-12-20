@@ -26,7 +26,7 @@
             font-size: 16px;
             border-radius: 5px;
             cursor: pointer;
-            margin: 10px 5px;
+            width: 100%;
         }
         button:hover {
             background: #5568d3;
@@ -38,178 +38,197 @@
         #status {
             margin-top: 20px;
             padding: 15px;
-            background: #f0f0f0;
             border-radius: 5px;
-            min-height: 100px;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-        .progress {
-            font-weight: bold;
-            color: #667eea;
+            display: none;
         }
         .success {
-            color: green;
+            background: #d4edda;
+            color: #155724;
         }
         .error {
-            color: red;
+            background: #f8d7da;
+            color: #721c24;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        #progress {
+            margin-top: 20px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: #667eea;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        #images-list {
+            margin-top: 20px;
+            max-height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        .image-item {
+            padding: 5px;
+            margin: 2px 0;
+            background: #f8f9fa;
+            border-radius: 3px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>📥 Скачивание изображений из Firebase Storage</h1>
-        <p>Проект: <strong>Alex-Livraison</strong></p>
+        <h1>Скачать все изображения из Firebase Storage</h1>
+        <p>Нажмите кнопку ниже, чтобы скачать все изображения из Firebase Storage в виде ZIP архива.</p>
         
-        <button id="downloadBtn" onclick="downloadAllImages()">Скачать ВСЕ изображения</button>
-        <button id="downloadProductsBtn" onclick="downloadFolder('products')">Только продукты</button>
-        <button id="downloadShopsBtn" onclick="downloadFolder('shops')">Только магазины</button>
+        <button id="downloadBtn" onclick="downloadAllImages()">Скачать все изображения</button>
         
-        <div id="status">
-            <p>Нажмите кнопку выше, чтобы начать скачивание.</p>
+        <div id="progress" style="display:none;">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <p id="progressText">Подготовка...</p>
         </div>
+        
+        <div id="status"></div>
+        <div id="images-list"></div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
         import { getStorage, ref, listAll, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js';
 
         const firebaseConfig = {
-            apiKey: "AIzaSyAWagPwv5Skh_EHfdcnFTYeG-xltRM7yPc",
+            apiKey: "AIzaSyCMDf-5J50rW35qWAxKh-_MNHZxYQbfnjU",
             authDomain: "alex-livraison.firebaseapp.com",
             projectId: "alex-livraison",
             storageBucket: "alex-livraison.firebasestorage.app",
-            messagingSenderId: "937475497279",
-            appId: "1:937475497279:web:62dc9eba8e77a5113ec78a"
+            messagingSenderId: "297737660424",
+            appId: "1:297737660424:web:12697be5ca58ac73f84b43"
         };
 
         const app = initializeApp(firebaseConfig);
         const storage = getStorage(app);
 
-        let downloadedCount = 0;
-        let totalCount = 0;
-
-        function updateStatus(message, type = '') {
-            const statusDiv = document.getElementById('status');
-            const p = document.createElement('p');
-            p.textContent = message;
-            if (type) p.className = type;
-            statusDiv.appendChild(p);
-            statusDiv.scrollTop = statusDiv.scrollHeight;
-        }
-
-        function disableButtons(disabled) {
-            document.getElementById('downloadBtn').disabled = disabled;
-            document.getElementById('downloadProductsBtn').disabled = disabled;
-            document.getElementById('downloadShopsBtn').disabled = disabled;
-        }
-
-        async function downloadFile(url, filename) {
-            try {
-                const response = await fetch(url);
-                const blob = await response.blob();
-                const link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                link.download = filename;
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
-                URL.revokeObjectURL(link.href);
-                
-                downloadedCount++;
-                updateStatus(`✓ Скачано (${downloadedCount}/${totalCount}): ${filename}`, 'success');
-                await new Promise(resolve => setTimeout(resolve, 500));
-            } catch (error) {
-                updateStatus(`✗ Ошибка при скачивании ${filename}: ${error.message}`, 'error');
-            }
-        }
-
-        async function getFilesFromFolder(folderPath) {
-            const folderRef = ref(storage, folderPath);
-            const result = await listAll(folderRef);
-            let files = [];
-            
-            for (const itemRef of result.items) {
-                const url = await getDownloadURL(itemRef);
-                files.push({name: itemRef.name, path: itemRef.fullPath, url: url});
-            }
-            
-            for (const prefixRef of result.prefixes) {
-                const subFiles = await getFilesFromFolder(prefixRef.fullPath);
-                files = files.concat(subFiles);
-            }
-            return files;
-        }
-
-        window.downloadFolder = async function(folderName) {
-            document.getElementById('status').innerHTML = '';
-            updateStatus(`🔍 Поиск изображений в папке "${folderName}"...`, 'progress');
-            disableButtons(true);
-            downloadedCount = 0;
-            
-            try {
-                const files = await getFilesFromFolder(folderName);
-                totalCount = files.length;
-                
-                if (files.length === 0) {
-                    updateStatus(`⚠️ В папке "${folderName}" не найдено файлов.`, 'error');
-                    disableButtons(false);
-                    return;
-                }
-                
-                updateStatus(`📦 Найдено файлов: ${files.length}`, 'progress');
-                updateStatus(`⏳ Начинаю скачивание...`, 'progress');
-                
-                for (const file of files) {
-                    await downloadFile(file.url, `${folderName}_${file.name}`);
-                }
-                
-                updateStatus(`\n🎉 Готово! Скачано ${downloadedCount} из ${totalCount} файлов.`, 'success');
-            } catch (error) {
-                updateStatus(`❌ Ошибка: ${error.message}`, 'error');
-            } finally {
-                disableButtons(false);
-            }
-        };
-
         window.downloadAllImages = async function() {
-            document.getElementById('status').innerHTML = '';
-            updateStatus('🔍 Поиск всех изображений...', 'progress');
-            disableButtons(true);
-            downloadedCount = 0;
-            let allFiles = [];
+            const btn = document.getElementById('downloadBtn');
+            const statusDiv = document.getElementById('status');
+            const progressDiv = document.getElementById('progress');
+            const progressFill = document.getElementById('progressFill');
+            const progressText = document.getElementById('progressText');
+            const imagesList = document.getElementById('images-list');
+            
+            btn.disabled = true;
+            statusDiv.style.display = 'none';
+            progressDiv.style.display = 'block';
+            imagesList.innerHTML = '';
             
             try {
-                updateStatus('📂 Сканирование products...', 'progress');
-                const productsFiles = await getFilesFromFolder('products');
-                allFiles = allFiles.concat(productsFiles.map(f => ({...f, folder: 'products'})));
+                // Получаем список всех файлов
+                statusDiv.style.display = 'block';
+                statusDiv.className = 'info';
+                statusDiv.textContent = 'Получение списка изображений...';
                 
-                updateStatus('📂 Сканирование shops...', 'progress');
-                const shopsFiles = await getFilesFromFolder('shops');
-                allFiles = allFiles.concat(shopsFiles.map(f => ({...f, folder: 'shops'})));
+                const storageRef = ref(storage);
+                const allFolders = [];
                 
-                totalCount = allFiles.length;
-                
-                if (allFiles.length === 0) {
-                    updateStatus('⚠️ Файлов не найдено.', 'error');
-                    disableButtons(false);
-                    return;
+                // Рекурсивная функция для получения всех файлов
+                async function getAllFiles(folderRef) {
+                    const result = await listAll(folderRef);
+                    
+                    for (const itemRef of result.items) {
+                        allFolders.push(itemRef);
+                    }
+                    
+                    for (const folderRef of result.prefixes) {
+                        await getAllFiles(folderRef);
+                    }
                 }
                 
-                updateStatus(`📦 Найдено: ${allFiles.length}`, 'progress');
-                updateStatus('⏳ Скачивание...', 'progress');
+                await getAllFiles(storageRef);
                 
-                for (const file of allFiles) {
-                    await downloadFile(file.url, `${file.folder}_${file.name}`);
+                // Фильтруем только изображения
+                const imageFiles = allFolders.filter(fileRef => {
+                    const name = fileRef.name.toLowerCase();
+                    return name.endsWith('.jpg') || name.endsWith('.jpeg') || 
+                           name.endsWith('.png') || name.endsWith('.gif') || 
+                           name.endsWith('.webp');
+                });
+                
+                if (imageFiles.length === 0) {
+                    throw new Error('Изображения не найдены');
                 }
                 
-                updateStatus(`\n🎉 Готово! Скачано ${downloadedCount}/${totalCount}`, 'success');
+                statusDiv.textContent = `Найдено изображений: ${imageFiles.length}. Начинаем загрузку...`;
+                
+                // Создаем ZIP архив
+                const zip = new JSZip();
+                let loaded = 0;
+                
+                for (const fileRef of imageFiles) {
+                    try {
+                        progressText.textContent = `Загрузка ${loaded + 1} из ${imageFiles.length}: ${fileRef.name}`;
+                        progressFill.style.width = ((loaded / imageFiles.length) * 100) + '%';
+                        
+                        // Добавляем в список
+                        const item = document.createElement('div');
+                        item.className = 'image-item';
+                        item.textContent = `✓ ${fileRef.fullPath}`;
+                        imagesList.appendChild(item);
+                        
+                        const url = await getDownloadURL(fileRef);
+                        const response = await fetch(url);
+                        const blob = await response.blob();
+                        
+                        // Используем полный путь для сохранения структуры папок
+                        zip.file(fileRef.fullPath, blob);
+                        
+                        loaded++;
+                    } catch (error) {
+                        console.error(`Ошибка загрузки ${fileRef.name}:`, error);
+                    }
+                }
+                
+                progressText.textContent = 'Создание ZIP архива...';
+                progressFill.style.width = '100%';
+                
+                // Генерируем ZIP файл
+                const zipBlob = await zip.generateAsync({
+                    type: 'blob',
+                    compression: 'DEFLATE',
+                    compressionOptions: { level: 6 }
+                });
+                
+                // Скачиваем файл
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(zipBlob);
+                link.download = 'firebase-images-' + new Date().getTime() + '.zip';
+                link.click();
+                
+                statusDiv.className = 'success';
+                statusDiv.textContent = `Успешно! Загружено ${loaded} изображений.`;
+                progressDiv.style.display = 'none';
+                
             } catch (error) {
-                updateStatus(`❌ Ошибка: ${error.message}`, 'error');
+                console.error('Ошибка:', error);
+                statusDiv.style.display = 'block';
+                statusDiv.className = 'error';
+                statusDiv.textContent = 'Ошибка: ' + error.message;
+                progressDiv.style.display = 'none';
             } finally {
-                disableButtons(false);
+                btn.disabled = false;
             }
-        };
+        }
     </script>
 </body>
 </html>
