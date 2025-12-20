@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Service professionnel de réparation de téléphones. Écran, batterie, eau, audio. Réparation rapide 30-60 min. Garantie 6 mois. Prix transparents.">
+    <meta name="keywords" content="réparation téléphone, réparation écran, changement batterie, réparation iPhone, réparation Samsung, MOURAD">
+    <meta name="author" content="MOURAD - Service de Réparation">
+    <meta property="og:title" content="Service de Réparation de Téléphones - MOURAD">
+    <meta property="og:description" content="Réparation rapide et professionnelle de téléphones. Garantie 6 mois. Appelez +33 7 48 32 39 21">
     <title>Service de Réparation de Téléphones - MOURAD</title>
     <style>
         * {
@@ -189,6 +194,41 @@
                 font-size: 1.5rem;
             }
         }
+        
+        /* New Sections Styles */
+        .why-us, .pricing, .booking, .faq { padding: 80px 20px; text-align: center; }
+        .why-us { background: #f8f9fa; }
+        .why-grid, .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 1200px; margin: 40px auto; }
+        .why-card, .price-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .why-card:hover, .price-card:hover { transform: translateY(-10px); }
+        .why-icon { font-size: 3rem; margin-bottom: 20px; }
+        .pricing { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .price { font-size: 2.5rem; font-weight: bold; color: #667eea; margin: 15px 0; }
+        .pricing .price-card { color: #333; }
+        .price-note { margin-top: 30px; font-size: 0.9rem; opacity: 0.9; }
+        .booking { background: #f8f9fa; }
+        .booking-form { max-width: 600px; margin: 30px auto; display: flex; flex-direction: column; gap: 15px; }
+        .booking-form input, .booking-form select, .booking-form textarea { padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem; }
+        .submit-btn { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 15px; border: none; border-radius: 10px; font-size: 1.1rem; cursor: pointer; transition: transform 0.3s; }
+        .submit-btn:hover { transform: scale(1.05); }
+        .faq-container { max-width: 800px; margin: 30px auto; text-align: left; }
+        .faq-item { background: white; padding: 25px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); }
+        .faq-item h3 { color: #667eea; margin-bottom: 10px; }
+        
+        /* WhatsApp Button */
+        .whatsapp-btn { position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; text-decoration: none; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 1000; transition: transform 0.3s; }
+        .whatsapp-btn:hover { transform: scale(1.1); }
+        
+        /* Back to Top Button */
+        .back-to-top { position: fixed; bottom: 100px; right: 30px; background: #667eea; color: white; width: 50px; height: 50px; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); z-index: 1000; transition: all 0.3s; }
+        .back-to-top:hover { background: #764ba2; transform: scale(1.1); }
+        .back-to-top.show { display: flex; }
+        
+        @media (max-width: 768px) {
+            .why-grid, .price-grid { grid-template-columns: 1fr; }
+            .whatsapp-btn, .back-to-top { width: 50px; height: 50px; font-size: 1.5rem; }
+            .back-to-top { bottom: 80px; }
+        
     </style>
 </head>
 <body>
@@ -253,8 +293,137 @@
         </div>
     </section>
 
+        <!-- Section Pourquoi Nous -->
+    <section class="why-us">
+        <h2>🌟 Pourquoi Nous Choisir?</h2>
+        <div class="why-grid">
+            <div class="why-card">
+                <div class="why-icon">⚡</div>
+                <h3>Réparation Rapide</h3>
+                <p>La plupart des réparations en 30-60 minutes</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">✔️</div>
+                <h3>Garantie 6 Mois</h3>
+                <p>Toutes nos réparations sont garanties</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">🔧</div>
+                <h3>Pièces d'Origine</h3>
+                <p>Nous utilisons uniquement des pièces de qualité</p>
+            </div>
+            <div class="why-card">
+                <div class="why-icon">💰</div>
+                <h3>Prix Justes</h3>
+                <p>Tarifs transparents et compétitifs</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Tarifs -->
+    <section class="pricing">
+        <h2>💳 Nos Tarifs</h2>
+        <div class="price-grid">
+            <div class="price-card">
+                <h3>📱 Écran</h3>
+                <p class="price">Dès 49€</p>
+                <p>Selon le modèle</p>
+            </div>
+            <div class="price-card">
+                <h3>🔋 Batterie</h3>
+                <p class="price">Dès 39€</p>
+                <p>Installation incluse</p>
+            </div>
+            <div class="price-card">
+                <h3>💧 Dégâts des Eaux</h3>
+                <p class="price">Dès 59€</p>
+                <p>Diagnostic gratuit</p>
+            </div>
+            <div class="price-card">
+                <h3>✨ Nettoyage</h3>
+                <p class="price">19€</p>
+                <p>Nettoyage complet</p>
+            </div>
+        </div>
+        <p class="price-note">⚠️ Les tarifs peuvent varier selon le modèle et l'état du téléphone</p>
+    </section>
+
+    <!-- Section Réservation -->
+    <section class="booking">
+        <h2>📅 Réserver un Rendez-Vous</h2>
+        <form class="booking-form" id="bookingForm">
+            <input type="text" placeholder="Votre Nom" required>
+            <input type="tel" placeholder="Votre Téléphone" required>
+            <select required>
+                <option value="">Type de Réparation</option>
+                <option>📱 Réparation d'Écran</option>
+                <option>🔋 Changement de Batterie</option>
+                <option>💧 Dégâts des Eaux</option>
+                <option>🔊 Problèmes Audio</option>
+                <option>📸 Réparation Caméra</option>
+                <option>⚡ Problèmes de Charge</option>
+                <option>✨ Nettoyage</option>
+            </select>
+            <textarea placeholder="Description du problème" rows="3"></textarea>
+            <button type="submit" class="submit-btn">Envoyer la Demande</button>
+        </form>
+    </section>
+
+    <!-- Section FAQ -->
+    <section class="faq">
+        <h2>❓ Questions Fréquentes</h2>
+        <div class="faq-container">
+            <div class="faq-item">
+                <h3>🕰️ Combien de temps prend une réparation?</h3>
+                <p>La plupart des réparations (comme le remplacement d'écran ou de batterie) sont effectuées en 30 à 60 minutes.</p>
+            </div>
+            <div class="faq-item">
+                <h3>✔️ Quelle est la garantie?</h3>
+                <p>Nous offrons une garantie de 6 mois sur toutes nos réparations et pièces remplacées.</p>
+            </div>
+            <div class="faq-item">
+                <h3>💳 Quels moyens de paiement acceptez-vous?</h3>
+                <p>Nous acceptons les espèces, cartes bancaires et paiements mobiles.</p>
+            </div>
+            <div class="faq-item">
+                <h3>📱 Travaillez-vous sur toutes les marques?</h3>
+                <p>Oui! Nous réparons Apple, Samsung, Huawei, Xiaomi, et toutes les marques principales.</p>
+            </div>
+        </div>
+    </section>
+
+
     <footer>
         <p>&copy; 2025 Service de Réparation de Téléphones - MOURAD. Tous droits réservés.</p>
     </footer>
+
+        <!-- WhatsApp Button -->
+    <a href="https://wa.me/33748323921?text=Bonjour%2C%20je%20souhaite%20réparer%20mon%20téléphone" class="whatsapp-btn" target="_blank" aria-label="Contacter via WhatsApp">
+        💬
+    </a>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        ↑
+    </div>
+
+    <script>
+        // Back to Top Button Logic
+        window.addEventListener('scroll', function() {
+            const backToTop = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                backToTop.classList.add('show');
+            } else {
+                backToTop.classList.remove('show');
+            }
+        });
+
+        // Form Submission Handler
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('✅ Votre demande a été envoyée! Nous vous contacterons bientôt.');
+            this.reset();
+        });
+    </script>
 </body>
 </html>
