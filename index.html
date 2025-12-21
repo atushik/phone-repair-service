@@ -214,10 +214,10 @@
         <h2>📅 Réserver un Rendez-Vous</h2>
         <form class="booking-form" id="bookingForm">
             <input type="text" placeholder="Votre Nom" required>
-            <input type="tel" placeholder="Votre Téléphone" required>
-            <select required>
+            <input type="tel" placeholder="Votre Téléphone"  name="phone" id="customerPhone"required>
+            <select required name="service" id="serviceType">
                 <option value="">Type de Réparation</option>
-                <option>📱 Réparation d'Écran</option>
+                <option>📱 Réparation d'Écran name="name" id="customerName"</option>
                 <option>🔋 Changement de Batterie</option>
                 <option>💧 Dégâts des Eaux</option>
                 <option>🔊 Problèmes Audio</option>
@@ -225,7 +225,7 @@
                 <option>⚡ Problèmes de Charge</option>
                 <option>✨ Nettoyage</option>
             </select>
-            <textarea placeholder="Description du problème" rows="3"></textarea>
+            <textarea placeholder="Description du prob name="description" id="problemDescription"lème" rows="3"></textarea>
             <button type="submit" class="submit-btn">Envoyer la Demande</button>
         </form>
     </section>
@@ -338,10 +338,47 @@
         });
 
         document.getElementById('bookingForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('✅ Votre demande a été envoyée! Nous vous contacterons bientôt.');
-            this.reset();
-        });
+        e.preventDefault();
+        
+        // Récupérer les données du formulaire
+        const name = document.getElementById('customerName').value;
+        const phone = document.getElementById('customerPhone').value;
+        const service = document.getElementById('serviceType').value;
+        const description = document.getElementById('problemDescription').value;
+        
+        // Créer le message pour WhatsApp
+        const whatsappMessage = `🔧 Nouvelle Demande de Réparation\n\n` +
+            `👤 Nom: ${name}\n` +
+            `📞 Téléphone: ${phone}\n` +
+            `🛠️ Service: ${service}\n` +
+            `📝 Description: ${description}\n\n` +
+            `Date: ${new Date().toLocaleString('fr-FR')}`;
+        
+        // Créer le message pour l'email
+        const emailSubject = encodeURIComponent('Nouvelle demande de réparation');
+        const emailBody = encodeURIComponent(
+            `Nouvelle Demande de Réparation\n\n` +
+            `Nom: ${name}\n` +
+            `Téléphone: ${phone}\n` +
+            `Service: ${service}\n` +
+            `Description: ${description}\n\n` +
+            `Date: ${new Date().toLocaleString('fr-FR')}`
+        );
+        
+        // Ouvrir WhatsApp dans un nouvel onglet
+        const whatsappURL = `https://wa.me/33784390172?text=${encodeURIComponent(whatsappMessage)}`;
+        window.open(whatsappURL, '_blank');
+        
+        // Ouvrir le client email dans un nouvel onglet
+        const emailURL = `mailto:lyabendehbi@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+        window.open(emailURL, '_blank');
+        
+        // Afficher un message de confirmation
+        alert('✅ Votre demande a été préparée!\n\n📱 WhatsApp et Email vont s\'ouvrir pour envoyer votre demande.\n\nNous vous contacterons bientôt!');
+        
+        // Réinitialiser le formulaire
+        this.reset();
+    });
     </script>
 </body>
 </html>
