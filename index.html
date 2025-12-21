@@ -262,7 +262,6 @@
             color: #ffc107;
             font-size: 1.5em;
             margin-bottom: 15px;
-            animation: star-pulse 2s ease-in-out infinite;
         }
 
         .review-card p {
@@ -306,17 +305,16 @@
             padding: 15px 30px;
             background: #f8f9fa;
             border-radius: 10px;
-            animation: brand-float 3s ease-in-out infinite;
             transition: all 0.3s ease;
             cursor: pointer;
         }
 
-        .brand-item:nth-child(1) { animation-delay: 0s; }
-        .brand-item:nth-child(2) { animation-delay: 0.3s; }
-        .brand-item:nth-child(3) { animation-delay: 0.6s; }
-        .brand-item:nth-child(4) { animation-delay: 0.9s; }
-        .brand-item:nth-child(5) { animation-delay: 1.2s; }
-        .brand-item:nth-child(6) { animation-delay: 1.5s; }
+        .brand-item:nth-child(1) { animation: brand-float 3s ease-in-out infinite; animation-delay: 0s; }
+        .brand-item:nth-child(2) { animation: brand-float 3s ease-in-out infinite; animation-delay: 0.3s; }
+        .brand-item:nth-child(3) { animation: brand-float 3s ease-in-out infinite; animation-delay: 0.6s; }
+        .brand-item:nth-child(4) { animation: brand-float 3s ease-in-out infinite; animation-delay: 0.9s; }
+        .brand-item:nth-child(5) { animation: brand-float 3s ease-in-out infinite; animation-delay: 1.2s; }
+        .brand-item:nth-child(6) { animation: brand-float 3s ease-in-out infinite; animation-delay: 1.5s; }
 
         .hours-section {
             background: white;
@@ -344,7 +342,6 @@
             color: #4CAF50;
             font-weight: bold;
             margin-top: 20px;
-            animation: blink-open 2s ease-in-out infinite;
         }
 
         .address-section {
@@ -380,12 +377,7 @@
             text-decoration: none;
             transition: transform 0.3s ease;
             display: inline-block;
-            animation: social-float 2s ease-in-out infinite;
         }
-
-        .social-links a:nth-child(1) { animation-delay: 0s; }
-        .social-links a:nth-child(2) { animation-delay: 0.3s; }
-        .social-links a:nth-child(3) { animation-delay: 0.6s; }
 
         .social-links a:hover {
             transform: scale(1.3) rotate(10deg);
@@ -404,13 +396,6 @@
             color: #2c3e50;
             margin-bottom: 30px;
             text-align: center;
-        }
-
-        .map-section h2::before {
-            content: '📍';
-            display: inline-block;
-            margin-right: 10px;
-            animation: pin-drop 2s ease-in-out infinite;
         }
 
         .map-container {
@@ -466,8 +451,6 @@
         .whatsapp-icon {
             font-size: 1.5em;
             margin-right: 15px;
-            animation: whatsapp-bounce 1.5s ease-in-out infinite;
-            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
         }
 
         .whatsapp-text {
@@ -513,11 +496,6 @@
             50% { box-shadow: 0 5px 25px rgba(102, 126, 234, 0.6); }
         }
 
-        @keyframes star-pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
         @keyframes brand-float {
             0%, 100% { transform: translateY(0px) scale(1); }
             50% { transform: translateY(-8px) scale(1.05); }
@@ -526,21 +504,6 @@
         .brand-item:hover {
             transform: scale(1.2) rotate(5deg);
             color: #667eea;
-        }
-
-        @keyframes blink-open {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.7; }
-        }
-
-        @keyframes social-float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-5px); }
-        }
-
-        @keyframes pin-drop {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
         }
 
         @keyframes whatsapp-pulse {
@@ -554,15 +517,175 @@
             }
         }
 
-        @keyframes whatsapp-bounce {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            25% { transform: rotate(-10deg) scale(1.1); }
-            75% { transform: rotate(10deg) scale(1.1); }
-        }
-
         @keyframes icon-pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.15); }
+        }
+
+        @keyframes emoji-bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        @keyframes emoji-rotate {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-15deg); }
+            75% { transform: rotate(15deg); }
+        }
+
+        @keyframes emoji-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @keyframes emoji-shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        @keyframes emoji-spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes emoji-float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+        }
+
+        @keyframes emoji-swing {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            50% { transform: rotate(0deg); }
+            75% { transform: rotate(-10deg); }
+        }
+
+        @keyframes emoji-zoom {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.3); opacity: 0.8; }
+        }
+
+        header h1::before {
+            content: '🔧 ';
+            display: inline-block;
+            animation: emoji-rotate 3s ease-in-out infinite;
+        }
+
+        .cta-button::before {
+            content: '📞 ';
+            display: inline-block;
+            animation: emoji-shake 1.5s ease-in-out infinite;
+        }
+
+        .service-card:nth-child(1) h3::before { content: '📱 '; display: inline-block; animation: emoji-bounce 2s ease-in-out infinite; }
+        .service-card:nth-child(2) h3::before { content: '🔋 '; display: inline-block; animation: emoji-pulse 2s ease-in-out infinite; }
+        .service-card:nth-child(3) h3::before { content: '💧 '; display: inline-block; animation: emoji-float 2.5s ease-in-out infinite; }
+        .service-card:nth-child(4) h3::before { content: '🔊 '; display: inline-block; animation: emoji-swing 2s ease-in-out infinite; }
+        .service-card:nth-child(5) h3::before { content: '📸 '; display: inline-block; animation: emoji-rotate 3s ease-in-out infinite; }
+        .service-card:nth-child(6) h3::before { content: '⚡ '; display: inline-block; animation: emoji-pulse 1.8s ease-in-out infinite; }
+
+        .warning::before {
+            content: '⚠️ ';
+            display: inline-block;
+            animation: emoji-zoom 2s ease-in-out infinite;
+        }
+
+        .form-section h2::before {
+            content: '📅 ';
+            display: inline-block;
+            animation: emoji-float 2s ease-in-out infinite;
+        }
+
+        .faq-section h2::before {
+            content: '❓ ';
+            display: inline-block;
+            animation: emoji-swing 2s ease-in-out infinite;
+        }
+
+        .faq-item:nth-child(2) h3::before { content: '🕰️ '; display: inline-block; animation: emoji-spin 3s linear infinite; }
+        .faq-item:nth-child(3) h3::before { content: '✔️ '; display: inline-block; animation: emoji-pulse 2s ease-in-out infinite; }
+        .faq-item:nth-child(4) h3::before { content: '💳 '; display: inline-block; animation: emoji-bounce 2s ease-in-out infinite; }
+        .faq-item:nth-child(5) h3::before { content: '📱 '; display: inline-block; animation: emoji-rotate 2.5s ease-in-out infinite; }
+
+        .reviews-section h2::before {
+            content: '⭐ ';
+            display: inline-block;
+            animation: emoji-zoom 1.5s ease-in-out infinite;
+        }
+
+        .review-card .stars {
+            animation: star-twinkle 2s ease-in-out infinite;
+        }
+
+        @keyframes star-twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.7; transform: scale(1.15); }
+        }
+
+        .brands-section h2::before {
+            content: '📱 ';
+            display: inline-block;
+            animation: emoji-spin 4s linear infinite;
+        }
+
+        .brand-item:nth-child(1)::before { content: '📱 '; display: inline-block; animation: emoji-bounce 2s ease-in-out infinite; }
+        .brand-item:nth-child(2)::before { content: '📱 '; display: inline-block; animation: emoji-pulse 2.2s ease-in-out infinite; }
+        .brand-item:nth-child(3)::before { content: '📲 '; display: inline-block; animation: emoji-float 2.5s ease-in-out infinite; }
+        .brand-item:nth-child(4)::before { content: '📳 '; display: inline-block; animation: emoji-swing 2.3s ease-in-out infinite; }
+        .brand-item:nth-child(5)::before { content: '📴 '; display: inline-block; animation: emoji-rotate 3s ease-in-out infinite; }
+        .brand-item:nth-child(6)::before { content: '📵 '; display: inline-block; animation: emoji-zoom 2s ease-in-out infinite; }
+
+        .hours-section h2::before {
+            content: '⏰ ';
+            display: inline-block;
+            animation: emoji-swing 2s ease-in-out infinite;
+        }
+
+        .status-open::before {
+            content: '🟢 ';
+            display: inline-block;
+            animation: emoji-pulse 1.5s ease-in-out infinite;
+        }
+
+        .address-section h2::before {
+            content: '📍 ';
+            display: inline-block;
+            animation: emoji-bounce 2s ease-in-out infinite;
+        }
+
+        .social-links a:nth-child(1) {
+            animation: social-float 2s ease-in-out infinite;
+        }
+
+        .social-links a:nth-child(2) {
+            animation: social-float 2.3s ease-in-out infinite;
+        }
+
+        .social-links a:nth-child(3) {
+            animation: social-float 2.6s ease-in-out infinite;
+        }
+
+        @keyframes social-float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(5deg); }
+        }
+
+        .map-section h2::before {
+            content: '📍 ';
+            display: inline-block;
+            animation: emoji-bounce 2s ease-in-out infinite;
+        }
+
+        .whatsapp-icon {
+            animation: whatsapp-bounce 1.5s ease-in-out infinite;
+        }
+
+        @keyframes whatsapp-bounce {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            25% { transform: rotate(-15deg) scale(1.15); }
+            50% { transform: rotate(0deg) scale(1); }
+            75% { transform: rotate(15deg) scale(1.15); }
         }
 
         @media (max-width: 768px) {
@@ -702,7 +825,7 @@
 <body>
     <div class="container">
         <header>
-            <h1>🔧 Service de Réparation de Téléphones</h1>
+            <h1>Service de Réparation de Téléphones</h1>
             <p>Expert en réparation rapide et professionnelle - MOURAD</p>
             <a href="tel:+33784390172" class="cta-button">Appelez Maintenant</a>
         </header>
@@ -710,42 +833,40 @@
         <section class="services">
             <div class="service-card">
                 <i class="fas fa-mobile-alt"></i>
-                <h3>📱 Réparation d'Écran</h3>
+                <h3>Réparation d'Écran</h3>
                 <p>Remplacement rapide d'écrans cassés ou endommagés avec des pièces de qualité</p>
             </div>
             <div class="service-card">
                 <i class="fas fa-battery-full"></i>
-                <h3>🔋 Changement de Batterie</h3>
+                <h3>Changement de Batterie</h3>
                 <p>Batteries de qualité pour prolonger la vie de votre téléphone</p>
             </div>
             <div class="service-card">
                 <i class="fas fa-tint"></i>
-                <h3>💧 Dégâts des Eaux</h3>
+                <h3>Dégâts des Eaux</h3>
                 <p>Traitement spécialisé pour les téléphones endommagés par l'eau</p>
             </div>
             <div class="service-card">
                 <i class="fas fa-volume-up"></i>
-                <h3>🔊 Problèmes Audio</h3>
+                <h3>Problèmes Audio</h3>
                 <p>Réparation de haut-parleurs et microphones</p>
             </div>
             <div class="service-card">
                 <i class="fas fa-camera"></i>
-                <h3>📸 Réparation Caméra</h3>
+                <h3>Réparation Caméra</h3>
                 <p>Remplacement et réparation de caméras avant et arrière</p>
             </div>
             <div class="service-card">
                 <i class="fas fa-bolt"></i>
-                <h3>⚡ Problèmes de Charge</h3>
+                <h3>Problèmes de Charge</h3>
                 <p>Réparation du port de charge et connecteurs</p>
             </div>
         </section>
 
-        <div class="warning">
-            ⚠️ Les tarifs peuvent varier selon le modèle et l'état du téléphone
-        </div>
+        <div class="warning">Les tarifs peuvent varier selon le modèle et l'état du téléphone</div>
 
         <section class="form-section">
-            <h2>📅 Réserver un Rendez-Vous</h2>
+            <h2>Réserver un Rendez-Vous</h2>
             <form>
                 <input type="text" placeholder="Votre Nom" required aria-label="Votre Nom">
                 <input type="tel" placeholder="Votre Téléphone" required aria-label="Votre Téléphone">
@@ -765,27 +886,27 @@
         </section>
 
         <section class="faq-section">
-            <h2>❓ Questions Fréquentes</h2>
+            <h2>Questions Fréquentes</h2>
             <div class="faq-item">
-                <h3>🕰️ Combien de temps prend une réparation?</h3>
+                <h3>Combien de temps prend une réparation?</h3>
                 <p>La plupart des réparations (comme le remplacement d'écran ou de batterie) sont effectuées en 30 à 60 minutes.</p>
             </div>
             <div class="faq-item">
-                <h3>✔️ Quelle est la garantie?</h3>
+                <h3>Quelle est la garantie?</h3>
                 <p>Nous offrons une garantie de 6 mois sur toutes nos réparations et pièces remplacées.</p>
             </div>
             <div class="faq-item">
-                <h3>💳 Quels moyens de paiement acceptez-vous?</h3>
+                <h3>Quels moyens de paiement acceptez-vous?</h3>
                 <p>Nous acceptons les espèces, cartes bancaires et paiements mobiles.</p>
             </div>
             <div class="faq-item">
-                <h3>📱 Travaillez-vous sur toutes les marques?</h3>
+                <h3>Travaillez-vous sur toutes les marques?</h3>
                 <p>Oui! Nous réparons Apple, Samsung, Huawei, Xiaomi, et toutes les marques principales.</p>
             </div>
         </section>
 
         <section class="reviews-section">
-            <h2>⭐ Avis de Nos Clients</h2>
+            <h2>Avis de Nos Clients</h2>
             <div class="reviews-grid">
                 <div class="review-card">
                     <div class="stars">⭐⭐⭐⭐⭐</div>
@@ -812,26 +933,26 @@
         </div>
 
         <section class="brands-section">
-            <h2>📱 Nous Réparons Toutes Les Marques</h2>
+            <h2>Nous Réparons Toutes Les Marques</h2>
             <div class="brands-grid">
-                <div class="brand-item">📱 Apple iPhone</div>
-                <div class="brand-item">📱 Samsung</div>
-                <div class="brand-item">📲 Huawei</div>
-                <div class="brand-item">📳 Xiaomi</div>
-                <div class="brand-item">📴 Oppo</div>
-                <div class="brand-item">📵 OnePlus</div>
+                <div class="brand-item">Apple iPhone</div>
+                <div class="brand-item">Samsung</div>
+                <div class="brand-item">Huawei</div>
+                <div class="brand-item">Xiaomi</div>
+                <div class="brand-item">Oppo</div>
+                <div class="brand-item">OnePlus</div>
             </div>
         </section>
 
         <section class="hours-section">
-            <h2>⏰ Horaires d'Ouverture</h2>
+            <h2>Horaires d'Ouverture</h2>
             <p><strong>Lundi - Samedi:</strong> 9h00 - 20h00</p>
             <p><strong>Dimanche:</strong> Fermé</p>
             <p class="status-open">OUVERT MAINTENANT</p>
         </section>
 
         <section class="address-section">
-            <h2>📍 Notre Adresse</h2>
+            <h2>Notre Adresse</h2>
             <p><strong>🏢 Adresse:</strong><br>123 Rue de la Réparation<br>83000 Toulon, France</p>
             <p><strong>📞 Téléphone:</strong> <a href="tel:+33784390172">07 84 39 01 72</a></p>
             <p><strong>📧 Email:</strong> <a href="mailto:lyabendehbi@gmail.com">lyabendehbi@gmail.com</a></p>
