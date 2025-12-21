@@ -3,12 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Service de Réparation de Téléphones - MOURAD</title>
+    <meta name="description" content="Service professionnel de réparation de téléphones. Écran, batterie, eau, audio. Réparation rapide 30-60 min. Garantie 6 mois. Prix transparents.">
+    <meta name="keywords" content="réparation téléphone, réparation écran, changement batterie, réparation iPhone, réparation Samsung, MOURAD">
+    <meta name="author" content="MOURAD - Service de Réparation">
+    <title>Service de Réparation de Téléphones - MOURAD | Toulon</title>
     
-    <!-- PWA Манифест -->
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#4CAF50">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Repair Toulon">
+    <link rel="apple-touch-icon" href="/logo.jpg">
+    <link rel="icon" type="image/jpeg" href="/logo.jpg">
     
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').then(reg => {
+                    console.log('Service Worker registered');
+                }).catch(err => {
+                    console.log('Service Worker registration failed');
+                });
+            });
+        }
+    </script>
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -95,6 +114,7 @@
             font-size: 3em;
             color: #667eea;
             margin-bottom: 15px;
+            animation: icon-pulse 2s ease-in-out infinite;
         }
 
         .service-card h3 {
@@ -272,6 +292,8 @@
             padding: 15px 30px;
             background: #f8f9fa;
             border-radius: 10px;
+            animation: brand-float 3s ease-in-out infinite;
+            transition: all 0.3s ease;
         }
 
         .hours-section {
@@ -358,55 +380,6 @@
             display: inline-block;
         }
 
-        /* PWA КНОПКА СТИЛИ */
-        .install-btn {
-            display: none;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24, #f0932b);
-            background-size: 400% 400%;
-            animation: rainbow 3s ease infinite, pulse 2s infinite;
-            border: none;
-            border-radius: 50px;
-            padding: 20px 40px;
-            font-size: 20px;
-            font-weight: bold;
-            color: white;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            margin: 40px auto;
-            max-width: 90%;
-        }
-
-        .install-btn::before {
-            content: '📱';
-            font-size: 28px;
-            margin-right: 12px;
-            animation: bounce 1s infinite;
-        }
-
-        @keyframes rainbow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-
-        .install-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
-        }
-
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2em;
@@ -420,16 +393,149 @@
                 flex-direction: column;
             }
         }
-    </style>
-
-    <!-- Service Worker регистрация -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js');
-            });
+    
+    <style>
+        .pwa-install-container {
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            margin: 50px 0;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-radius: 20px;
         }
-    </script>
+        
+        .install-btn-pwa {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(90deg, #ff0844, #ffb199, #ffe066, #66ff99, #66d9ff, #b366ff, #ff66d9, #ff0844);
+            background-size: 400% 400%;
+            animation: rainbow-wave 8s ease infinite, pulse-btn 2.5s ease-in-out infinite;
+            border: none;
+            border-radius: 60px;
+            padding: 25px 50px;
+            font-size: 22px;
+            font-weight: 900;
+            color: #ffffff;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 30px rgba(255, 255, 255, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.2);
+            text-decoration: none;
+            text-align: center;
+            letter-spacing: 2px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .install-btn-pwa::before {
+            content: '📱';
+            font-size: 38px;
+            margin-right: 18px;
+            animation: phone-bounce 1.5s infinite ease-in-out;
+            filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.9));
+        }
+        
+        .install-btn-pwa::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(45deg);
+            animation: shine-effect 3s infinite;
+        }
+        
+        .install-btn-pwa:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 50px rgba(255, 255, 255, 0.5), inset 0 0 30px rgba(255, 255, 255, 0.3);
+        }
+        
+        .install-btn-pwa:active {
+            transform: scale(0.98) translateY(0);
+        }
+        
+        @keyframes rainbow-wave {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 50% 75%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 50% 25%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes pulse-btn {
+            0% { 
+                transform: scale(1); 
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(255, 255, 255, 0.8); 
+            }
+            50% { 
+                transform: scale(1.06); 
+                box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 0 0 0 20px rgba(255, 255, 255, 0); 
+            }
+            100% { 
+                transform: scale(1); 
+                box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), 0 0 0 0 rgba(255, 255, 255, 0); 
+            }
+        }
+        
+        @keyframes phone-bounce {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            25% { transform: translateY(-15px) rotate(-12deg) scale(1.1); }
+            50% { transform: translateY(0) rotate(0deg) scale(1); }
+            75% { transform: translateY(-10px) rotate(12deg) scale(1.1); }
+        }
+        
+        @keyframes shine-effect {
+            0% { left: -50%; }
+            50%, 100% { left: 150%; }
+        }
+        
+        .brand-item {
+            animation: brand-float 3s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+        
+        .brand-item:nth-child(1) { animation-delay: 0s; }
+        .brand-item:nth-child(2) { animation-delay: 0.3s; }
+        .brand-item:nth-child(3) { animation-delay: 0.6s; }
+        .brand-item:nth-child(4) { animation-delay: 0.9s; }
+        .brand-item:nth-child(5) { animation-delay: 1.2s; }
+        .brand-item:nth-child(6) { animation-delay: 1.5s; }
+        
+        @keyframes brand-float {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-8px) scale(1.05); }
+        }
+        
+        .brand-item:hover {
+            transform: scale(1.2) rotate(5deg);
+            color: #667eea;
+        }
+        
+        .service-card i {
+            animation: icon-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes icon-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        @media (max-width: 768px) {
+            .install-btn-pwa {
+                font-size: 18px;
+                padding: 20px 40px;
+            }
+            .install-btn-pwa::before {
+                font-size: 32px;
+                margin-right: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -537,15 +643,16 @@
             </div>
         </section>
 
-        <!-- КНОПКА PWA УСТАНОВКИ -->
-        <button id="installBtn" class="install-btn" style="display:none;">
-            СКАЧИВАТЬ НАШУ ПРИЛОЖЕНИЕ НА Android ТЕЛЕФОН
-        </button>
+        <div id="pwaInstallContainer" class="pwa-install-container">
+            <button id="installBtn" class="install-btn-pwa">
+                СКАЧИВАТЬ НАШУ ПРИЛОЖЕНИЮ НА Android ТЕЛЕФОН
+            </button>
+        </div>
 
         <section class="brands-section">
             <h2>📱 Nous Réparons Toutes Les Marques</h2>
             <div class="brands-grid">
-                <div class="brand-item">🍎 Apple</div>
+                <div class="brand-item">📱 Apple iPhone</div>
                 <div class="brand-item">📱 Samsung</div>
                 <div class="brand-item">📲 Huawei</div>
                 <div class="brand-item">📳 Xiaomi</div>
@@ -578,26 +685,34 @@
             <a href="https://wa.me/0748323921?text=Bonjour%2C%20je%20souhaite%20r%C3%A9parer%20mon%20t%C3%A9l%C3%A9phone">💬 Contactez-nous sur WhatsApp</a>
         </footer>
     </div>
-
-    <!-- PWA Install Prompt Script -->
+    
     <script>
         let deferredPrompt;
-        
+        const installBtn = document.getElementById('installBtn');
+        const installContainer = document.getElementById('pwaInstallContainer');
+
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            document.getElementById('installBtn').style.display = 'flex';
+            installContainer.style.display = 'flex';
         });
 
-        document.getElementById('installBtn').addEventListener('click', async () => {
+        installBtn.addEventListener('click', async () => {
             if (deferredPrompt) {
                 deferredPrompt.prompt();
                 const { outcome } = await deferredPrompt.userChoice;
+                console.log(`User response: ${outcome}`);
                 if (outcome === 'accepted') {
-                    deferredPrompt = null;
+                    console.log('PWA installed successfully');
                 }
-                document.getElementById('installBtn').style.display = 'none';
+                deferredPrompt = null;
+                installContainer.style.display = 'none';
             }
+        });
+
+        window.addEventListener('appinstalled', () => {
+            console.log('PWA installed');
+            installContainer.style.display = 'none';
         });
     </script>
 </body>
