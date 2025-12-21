@@ -54,6 +54,7 @@
             border-radius: 20px;
             margin-bottom: 30px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: fadeInDown 0.8s ease;
         }
 
         header h1 {
@@ -79,10 +80,11 @@
             font-weight: bold;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: pulse-cta 2s infinite;
         }
 
         .cta-button:hover {
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.05);
             box-shadow: 0 8px 25px rgba(0,0,0,0.3);
         }
 
@@ -100,10 +102,12 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             text-align: center;
             transition: transform 0.3s ease;
+            animation: fadeInUp 0.6s ease;
         }
 
         .service-card:hover {
             transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
         }
 
         .service-card i {
@@ -129,6 +133,7 @@
             margin: 20px 0;
             border-radius: 5px;
             text-align: center;
+            animation: slideInLeft 0.8s ease;
         }
 
         .form-section {
@@ -137,6 +142,7 @@
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             margin: 40px 0;
+            animation: fadeIn 1s ease;
         }
 
         .form-section h2 {
@@ -154,7 +160,7 @@
             border: 2px solid #e0e0e0;
             border-radius: 8px;
             font-size: 1em;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
         }
 
         .form-section input:focus,
@@ -162,6 +168,7 @@
         .form-section textarea:focus {
             outline: none;
             border-color: #667eea;
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
         }
 
         .form-section button {
@@ -179,6 +186,7 @@
 
         .form-section button:hover {
             transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
         }
 
         .faq-section {
@@ -187,6 +195,7 @@
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             margin: 40px 0;
+            animation: fadeIn 1s ease;
         }
 
         .faq-section h2 {
@@ -221,6 +230,7 @@
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             margin: 40px 0;
+            animation: fadeIn 1s ease;
         }
 
         .reviews-section h2 {
@@ -240,12 +250,19 @@
             padding: 25px;
             border-radius: 10px;
             text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
         .review-card .stars {
             color: #ffc107;
             font-size: 1.5em;
             margin-bottom: 15px;
+            animation: star-pulse 2s ease-in-out infinite;
         }
 
         .review-card p {
@@ -265,6 +282,7 @@
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             margin: 40px 0;
+            animation: fadeIn 1s ease;
         }
 
         .brands-section h2 {
@@ -290,7 +308,15 @@
             border-radius: 10px;
             animation: brand-float 3s ease-in-out infinite;
             transition: all 0.3s ease;
+            cursor: pointer;
         }
+
+        .brand-item:nth-child(1) { animation-delay: 0s; }
+        .brand-item:nth-child(2) { animation-delay: 0.3s; }
+        .brand-item:nth-child(3) { animation-delay: 0.6s; }
+        .brand-item:nth-child(4) { animation-delay: 0.9s; }
+        .brand-item:nth-child(5) { animation-delay: 1.2s; }
+        .brand-item:nth-child(6) { animation-delay: 1.5s; }
 
         .hours-section {
             background: white;
@@ -299,6 +325,7 @@
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             margin: 40px 0;
             text-align: center;
+            animation: fadeIn 1s ease;
         }
 
         .hours-section h2 {
@@ -317,6 +344,7 @@
             color: #4CAF50;
             font-weight: bold;
             margin-top: 20px;
+            animation: blink-open 2s ease-in-out infinite;
         }
 
         .address-section {
@@ -325,6 +353,7 @@
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             margin: 40px 0;
+            animation: fadeIn 1s ease;
         }
 
         .address-section h2 {
@@ -351,10 +380,15 @@
             text-decoration: none;
             transition: transform 0.3s ease;
             display: inline-block;
+            animation: social-float 2s ease-in-out infinite;
         }
 
+        .social-links a:nth-child(1) { animation-delay: 0s; }
+        .social-links a:nth-child(2) { animation-delay: 0.3s; }
+        .social-links a:nth-child(3) { animation-delay: 0.6s; }
+
         .social-links a:hover {
-            transform: scale(1.2);
+            transform: scale(1.3) rotate(10deg);
         }
 
         footer {
@@ -363,6 +397,7 @@
             background: rgba(255, 255, 255, 0.95);
             border-radius: 15px;
             margin-top: 40px;
+            animation: fadeIn 1s ease;
         }
 
         footer p {
@@ -374,6 +409,72 @@
             text-decoration: none;
             margin-top: 15px;
             display: inline-block;
+            animation: whatsapp-bounce 2s ease-in-out infinite;
+            transition: transform 0.3s ease;
+        }
+
+        footer a:hover {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes pulse-cta {
+            0%, 100% { box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+            50% { box-shadow: 0 5px 25px rgba(102, 126, 234, 0.6); }
+        }
+
+        @keyframes star-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes brand-float {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-8px) scale(1.05); }
+        }
+
+        .brand-item:hover {
+            transform: scale(1.2) rotate(5deg);
+            color: #667eea;
+        }
+
+        @keyframes blink-open {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes social-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        @keyframes whatsapp-bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes icon-pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.15); }
         }
 
         @media (max-width: 768px) {
@@ -490,37 +591,6 @@
             50%, 100% { left: 150%; }
         }
         
-        .brand-item {
-            animation: brand-float 3s ease-in-out infinite;
-            transition: all 0.3s ease;
-        }
-        
-        .brand-item:nth-child(1) { animation-delay: 0s; }
-        .brand-item:nth-child(2) { animation-delay: 0.3s; }
-        .brand-item:nth-child(3) { animation-delay: 0.6s; }
-        .brand-item:nth-child(4) { animation-delay: 0.9s; }
-        .brand-item:nth-child(5) { animation-delay: 1.2s; }
-        .brand-item:nth-child(6) { animation-delay: 1.5s; }
-        
-        @keyframes brand-float {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-8px) scale(1.05); }
-        }
-        
-        .brand-item:hover {
-            transform: scale(1.2) rotate(5deg);
-            color: #667eea;
-        }
-        
-        .service-card i {
-            animation: icon-pulse 2s ease-in-out infinite;
-        }
-        
-        @keyframes icon-pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-        
         @media (max-width: 768px) {
             .install-btn-pwa {
                 font-size: 18px;
@@ -538,7 +608,7 @@
         <header>
             <h1>🔧 Service de Réparation de Téléphones</h1>
             <p>Expert en réparation rapide et professionnelle - MOURAD</p>
-            <a href="tel:0748323921" class="cta-button">📞 Appelez Maintenant</a>
+            <a href="tel:+33784390172" class="cta-button">Appelez Maintenant</a>
         </header>
 
         <section class="services">
@@ -661,24 +731,24 @@
             <h2>⏰ Horaires d'Ouverture</h2>
             <p><strong>Lundi - Samedi:</strong> 9h00 - 20h00</p>
             <p><strong>Dimanche:</strong> Fermé</p>
-            <p class="status-open">🟢 OUVERT MAINTENANT</p>
+            <p class="status-open">OUVERT MAINTENANT</p>
         </section>
 
         <section class="address-section">
             <h2>📍 Notre Adresse</h2>
             <p><strong>🏢 Adresse:</strong><br>123 Rue de la Réparation<br>83000 Toulon, France</p>
-            <p><strong>📞 Téléphone:</strong> <a href="tel:0748323921">07 48 32 39 21</a></p>
+            <p><strong>📞 Téléphone:</strong> <a href="tel:+33784390172">07 84 39 01 72</a></p>
             <p><strong>📧 Email:</strong> <a href="mailto:lyabendehbi@gmail.com">lyabendehbi@gmail.com</a></p>
             <div class="social-links">
                 <a href="https://instagram.com/" aria-label="Instagram">📸</a>
                 <a href="https://facebook.com/" aria-label="Facebook">👍</a>
-                <a href="https://wa.me/0748323921" aria-label="WhatsApp">💬</a>
+                <a href="https://wa.me/33784390172" aria-label="WhatsApp">💬</a>
             </div>
         </section>
 
         <footer>
             <p>© 2025 Service de Réparation de Téléphones - MOURAD. Tous droits réservés.</p>
-            <a href="https://wa.me/0748323921?text=Bonjour%2C%20je%20souhaite%20r%C3%A9parer%20mon%20t%C3%A9l%C3%A9phone">💬 Contactez-nous sur WhatsApp</a>
+            <a href="https://wa.me/33784390172?text=Bonjour%2C%20je%20souhaite%20r%C3%A9parer%20mon%20t%C3%A9l%C3%A9phone">💬 Contactez-nous sur WhatsApp</a>
         </footer>
     </div>
     
@@ -712,3 +782,4 @@
     </script>
 </body>
 </html>
+ 
