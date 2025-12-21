@@ -1,7 +1,7 @@
 {
-  "name": "Réparation Toulon - Mourad",
+  "name": "Réparation Toulon - Service MOURAD",
   "short_name": "RepairToulon",
-  "description": "Service de réparation rapide de téléphones à Toulon",
+  "description": "Service professionnel de réparation de téléphones à Toulon",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",
@@ -9,14 +9,16 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/icon-192.png",
+      "src": "/logo.jpg",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/jpeg",
+      "purpose": "any maskable"
     },
     {
-      "src": "/icon-512.png",
+      "src": "/logo.jpg",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/jpeg",
+      "purpose": "any maskable"
     }
   ]
 }
