@@ -213,11 +213,11 @@
     <section class="booking">
         <h2>📅 Réserver un Rendez-Vous</h2>
         <form class="booking-form" id="bookingForm">
-            <input type="text" placeholder="Votre Nom" required>
+            <input type="text" placeholder="Votre Nom" name="name" id="customerName" required>
             <input type="tel" placeholder="Votre Téléphone"  name="phone" id="customerPhone"required>
             <select required name="service" id="serviceType">
                 <option value="">Type de Réparation</option>
-                <option>📱 Réparation d'Écran name="name" id="customerName"</option>
+                <option>📱 Réparation d'Écran</option>
                 <option>🔋 Changement de Batterie</option>
                 <option>💧 Dégâts des Eaux</option>
                 <option>🔊 Problèmes Audio</option>
@@ -229,8 +229,6 @@
             <button type="submit" class="submit-btn">Envoyer la Demande</button>
         </form>
     </section>
-
-    <section class="faq">
         <h2>❓ Questions Fréquentes</h2>
         <div class="faq-container">
             <div class="faq-item">
