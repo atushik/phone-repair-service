@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Service professionnel de réparation de téléphones. Écran, batterie, eau, audio. Réparation rapide 30-60 min. Garantie 6 mois. Prix transparents.">
-    <meta name="keywords" content="réparation téléphone, réparation écran, changement batterie, réparation iPhone, réparation Samsung, MOURAD">
-    <meta name="author" content="MOURAD - Service de Réparation">
-    <meta property="og:title" content="Service de Réparation de Téléphones - MOURAD">
-    <meta property="og:description" content="Réparation rapide et professionnelle de téléphones. Garantie 6 mois. Appelez 07 48 32 39 21">
     <title>Service de Réparation de Téléphones - MOURAD</title>
+    
+    <!-- PWA Манифест -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4CAF50">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         * {
             margin: 0;
@@ -20,217 +22,482 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
         }
 
-        .hero {
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 100px 20px;
-            text-align: center;
-            min-height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-
-        .hero p {
-            font-size: 1.5rem;
-            margin-bottom: 40px;
-            opacity: 0.95;
-        }
-
-        .contact-btn {
-            background: white;
-            color: #667eea;
-            padding: 18px 45px;
-            font-size: 1.3rem;
-            border: none;
+            padding: 15px 40px;
             border-radius: 50px;
-            cursor: pointer;
             text-decoration: none;
-            display: inline-block;
-            transition: all 0.3s ease;
+            font-size: 1.2em;
             font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        .contact-btn:hover {
+        .cta-button:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-            background: #f8f9fa;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
         }
 
         .services {
-            padding: 80px 20px;
-            background: #f8f9fa;
-        }
-
-        .services h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            color: #667eea;
-        }
-
-        .service-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
         }
 
         .service-card {
             background: white;
             padding: 30px;
             border-radius: 15px;
-            text-align: center;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            transition: transform 0.3s ease;
         }
 
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 20px;
+
+        .service-card i {
+            font-size: 3em;
+            color: #667eea;
+            margin-bottom: 15px;
         }
 
         .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: #667eea;
+            color: #2c3e50;
+            margin-bottom: 10px;
         }
 
-        .contact-section {
-            padding: 80px 20px;
-            background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
-            color: white;
+        .service-card p {
+            color: #7f8c8d;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 5px;
             text-align: center;
         }
 
-        .contact-section h2 {
-            font-size: 2.5rem;
+        .form-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 40px 0;
+        }
+
+        .form-section h2 {
+            color: #2c3e50;
             margin-bottom: 30px;
+            text-align: center;
         }
 
-        .contact-info {
+        .form-section input,
+        .form-section select,
+        .form-section textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-section input:focus,
+        .form-section select:focus,
+        .form-section textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .form-section button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .form-section button:hover {
+            transform: scale(1.02);
+        }
+
+        .faq-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 40px 0;
+        }
+
+        .faq-section h2 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .faq-item p {
+            color: #7f8c8d;
+            line-height: 1.8;
+        }
+
+        .reviews-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 40px 0;
+        }
+
+        .reviews-section h2 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .review-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .review-card .stars {
+            color: #ffc107;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .review-card p {
+            color: #555;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .review-card small {
+            color: #7f8c8d;
+            font-weight: bold;
+        }
+
+        .brands-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 40px 0;
+        }
+
+        .brands-section h2 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .brands-grid {
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
             align-items: center;
-            gap: 20px;
-            font-size: 1.3rem;
         }
 
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: rgba(255,255,255,0.1);
-            padding: 20px 40px;
-            border-radius: 50px;
-            transition: all 0.3s ease;
+        .brand-item {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #7f8c8d;
+            padding: 15px 30px;
+            background: #f8f9fa;
+            border-radius: 10px;
         }
 
-        .contact-item:hover {
-            background: rgba(255,255,255,0.2);
-            transform: scale(1.05);
+        .hours-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .hours-section h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .hours-section p {
+            font-size: 1.1em;
+            color: #555;
+            margin: 10px 0;
+        }
+
+        .status-open {
+            font-size: 1.5em;
+            color: #4CAF50;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .address-section {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 40px 0;
+        }
+
+        .address-section h2 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .address-section p {
+            font-size: 1.1em;
+            color: #555;
+            margin: 15px 0;
+            text-align: center;
+        }
+
+        .social-links {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            font-size: 2.5em;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.2);
         }
 
         footer {
-            background: #333;
-            color: white;
             text-align: center;
-            padding: 30px 20px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            margin-top: 40px;
         }
 
-        .why-us, .pricing, .booking, .faq { padding: 80px 20px; text-align: center; }
-        .why-us { background: #f8f9fa; }
-        .why-grid, .price-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; max-width: 1200px; margin: 40px auto; }
-        .why-card, .price-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s; }
-        .why-card:hover, .price-card:hover { transform: translateY(-10px); }
-        .why-icon { font-size: 3rem; margin-bottom: 20px; }
-        .pricing { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
-        .price { font-size: 2.5rem; font-weight: bold; color: #667eea; margin: 15px 0; }
-        .pricing .price-card { color: #333; }
-        .price-note { margin-top: 30px; font-size: 0.9rem; opacity: 0.9; }
-        .booking { background: #f8f9fa; }
-        .booking-form { max-width: 600px; margin: 30px auto; display: flex; flex-direction: column; gap: 15px; }
-        .booking-form input, .booking-form select, .booking-form textarea { padding: 15px; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem; }
-        .submit-btn { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 15px; border: none; border-radius: 10px; font-size: 1.1rem; cursor: pointer; transition: transform 0.3s; }
-        .submit-btn:hover { transform: scale(1.05); }
-        .faq-container { max-width: 800px; margin: 30px auto; text-align: left; }
-        .faq-item { background: white; padding: 25px; margin-bottom: 20px; border-radius: 10px; box-shadow: 0 3px 10px rgba(0,0,0,0.1); }
-        .faq-item h3 { color: #667eea; margin-bottom: 10px; }
-        
-        .whatsapp-btn { position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; text-decoration: none; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 1000; transition: transform 0.3s; }
-        .whatsapp-btn:hover { transform: scale(1.1); }
-        
-        .back-to-top { position: fixed; bottom: 100px; right: 30px; background: #667eea; color: white; width: 50px; height: 50px; border-radius: 50%; display: none; align-items: center; justify-content: center; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); z-index: 1000; transition: all 0.3s; }
-        .back-to-top:hover { background: #764ba2; transform: scale(1.1); }
-        .back-to-top.show { display: flex; }
-        
+        footer p {
+            color: #7f8c8d;
+        }
+
+        footer a {
+            font-size: 2em;
+            text-decoration: none;
+            margin-top: 15px;
+            display: inline-block;
+        }
+
+        /* PWA КНОПКА СТИЛИ */
+        .install-btn {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #f9ca24, #f0932b);
+            background-size: 400% 400%;
+            animation: rainbow 3s ease infinite, pulse 2s infinite;
+            border: none;
+            border-radius: 50px;
+            padding: 20px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            margin: 40px auto;
+            max-width: 90%;
+        }
+
+        .install-btn::before {
+            content: '📱';
+            font-size: 28px;
+            margin-right: 12px;
+            animation: bounce 1s infinite;
+        }
+
+        @keyframes rainbow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .install-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
         @media (max-width: 768px) {
-            .why-grid, .price-grid { grid-template-columns: 1fr; }
-            .whatsapp-btn, .back-to-top { width: 50px; height: 50px; font-size: 1.5rem; }
-            .back-to-top { bottom: 80px; }
+            header h1 {
+                font-size: 2em;
+            }
+
+            .services {
+                grid-template-columns: 1fr;
+            }
+
+            .brands-grid {
+                flex-direction: column;
+            }
         }
     </style>
+
+    <!-- Service Worker регистрация -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js');
+            });
+        }
+    </script>
 </head>
 <body>
-    <section class="hero">
-        <h1>🔧 Service de Réparation de Téléphones</h1>
-        <p>Expert en réparation rapide et professionnelle</p>
-        <a href="tel:0748323921" class="contact-btn">Appelez Maintenant</a>
-    </section>
+    <div class="container">
+        <header>
+            <h1>🔧 Service de Réparation de Téléphones</h1>
+            <p>Expert en réparation rapide et professionnelle - MOURAD</p>
+            <a href="tel:0748323921" class="cta-button">📞 Appelez Maintenant</a>
+        </header>
 
-    <section class="services">
-        <h2>Nos Services</h2>
-        <div class="service-grid">
+        <section class="services">
             <div class="service-card">
-                <div class="service-icon">📱</div>
-                <h3>Réparation d'Écran</h3>
-                <p>Remplacement rapide d'écrans cassés ou endommagés</p>
+                <i class="fas fa-mobile-alt"></i>
+                <h3>📱 Réparation d'Écran</h3>
+                <p>Remplacement rapide d'écrans cassés ou endommagés avec des pièces de qualité</p>
             </div>
             <div class="service-card">
-                <div class="service-icon">🔋</div>
-                <h3>Changement de Batterie</h3>
+                <i class="fas fa-battery-full"></i>
+                <h3>🔋 Changement de Batterie</h3>
                 <p>Batteries de qualité pour prolonger la vie de votre téléphone</p>
             </div>
-        </div>
-        <p class="price-note">⚠️ Les tarifs peuvent varier selon le modèle et l'état du téléphone</p>
-    </section>
+            <div class="service-card">
+                <i class="fas fa-tint"></i>
+                <h3>💧 Dégâts des Eaux</h3>
+                <p>Traitement spécialisé pour les téléphones endommagés par l'eau</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-volume-up"></i>
+                <h3>🔊 Problèmes Audio</h3>
+                <p>Réparation de haut-parleurs et microphones</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-camera"></i>
+                <h3>📸 Réparation Caméra</h3>
+                <p>Remplacement et réparation de caméras avant et arrière</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-bolt"></i>
+                <h3>⚡ Problèmes de Charge</h3>
+                <p>Réparation du port de charge et connecteurs</p>
+            </div>
+        </section>
 
-    <section class="booking">
-        <h2>📅 Réserver un Rendez-Vous</h2>
-        <form class="booking-form" id="bookingForm">
-            <input type="text" placeholder="Votre Nom" name="name" id="customerName" required>
-            <input type="tel" placeholder="Votre Téléphone"  name="phone" id="customerPhone"required>
-            <select required name="service" id="serviceType">
-                <option value="">Type de Réparation</option>
-                <option>📱 Réparation d'Écran</option>
-                <option>🔋 Changement de Batterie</option>
-                <option>💧 Dégâts des Eaux</option>
-                <option>🔊 Problèmes Audio</option>
-                <option>📸 Réparation Caméra</option>
-                <option>⚡ Problèmes de Charge</option>
-                <option>✨ Nettoyage</option>
-            </select>
-            <textarea placeholder="Description du prob name="description" id="problemDescription"lème" rows="3"></textarea>
-            <button type="submit" class="submit-btn">Envoyer la Demande</button>
-        </form>
-    </section>
-        <h2>❓ Questions Fréquentes</h2>
-        <div class="faq-container">
+        <div class="warning">
+            ⚠️ Les tarifs peuvent varier selon le modèle et l'état du téléphone
+        </div>
+
+        <section class="form-section">
+            <h2>📅 Réserver un Rendez-Vous</h2>
+            <form>
+                <input type="text" placeholder="Votre Nom" required aria-label="Votre Nom">
+                <input type="tel" placeholder="Votre Téléphone" required aria-label="Votre Téléphone">
+                <select required aria-label="Type de Réparation">
+                    <option value="">Type de Réparation</option>
+                    <option value="ecran">📱 Réparation d'Écran</option>
+                    <option value="batterie">🔋 Changement de Batterie</option>
+                    <option value="eau">💧 Dégâts des Eaux</option>
+                    <option value="audio">🔊 Problèmes Audio</option>
+                    <option value="camera">📸 Réparation Caméra</option>
+                    <option value="charge">⚡ Problèmes de Charge</option>
+                    <option value="nettoyage">✨ Nettoyage</option>
+                </select>
+                <textarea rows="4" placeholder="Description du problème" aria-label="Description"></textarea>
+                <button type="submit">Envoyer la Demande</button>
+            </form>
+        </section>
+
+        <section class="faq-section">
+            <h2>❓ Questions Fréquentes</h2>
             <div class="faq-item">
                 <h3>🕰️ Combien de temps prend une réparation?</h3>
                 <p>La plupart des réparations (comme le remplacement d'écran ou de batterie) sont effectuées en 30 à 60 minutes.</p>
@@ -247,136 +514,91 @@
                 <h3>📱 Travaillez-vous sur toutes les marques?</h3>
                 <p>Oui! Nous réparons Apple, Samsung, Huawei, Xiaomi, et toutes les marques principales.</p>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="reviews" style="padding: 80px 20px; background: #f8f9fa; text-align: center;">
-        <h2 style="font-size: 2.5rem; margin-bottom: 50px; color: #667eea;">⭐ Avis de Nos Clients</h2>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; max-width: 1200px; margin: 0 auto;">
-            <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                <div style="font-size: 2rem; color: #ffd700; margin-bottom: 15px;">⭐⭐⭐⭐⭐</div>
-                <p style="font-style: italic; margin-bottom: 20px;">"Service impeccable! Mon écran a été réparé en 30 minutes. Très professionnel!"</p>
-                <p style="font-weight: bold; color: #667eea;">- Sophie L.</p>
-            </div>
-            <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                <div style="font-size: 2rem; color: #ffd700; margin-bottom: 15px;">⭐⭐⭐⭐⭐</div>
-                <p style="font-style: italic; margin-bottom: 20px;">"Excellent rapport qualité-prix. Mon iPhone fonctionne comme neuf!"</p>
-                <p style="font-weight: bold; color: #667eea;">- Marc D.</p>
-            </div>
-            <div style="background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
-                <div style="font-size: 2rem; color: #ffd700; margin-bottom: 15px;">⭐⭐⭐⭐⭐</div>
-                <p style="font-style: italic; margin-bottom: 20px;">"Rapide, efficace et garantie respectée. Je recommande vivement!"</p>
-                <p style="font-weight: bold; color: #667eea;">- Amélie R.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="brands" style="padding: 60px 20px; text-align: center; background: white;">
-        <h2 style="font-size: 2rem; margin-bottom: 40px; color: #333;">📱 Nous Réparons Toutes Les Marques</h2>
-        <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 40px; max-width: 1000px; margin: 0 auto;">
-            <div style="font-size: 3rem; font-weight: bold; color: #000000; opacity: 0.7; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">iPhone</div>
-            <div style="font-size: 3rem; font-weight: bold; color: #1428a0; opacity: 0.7; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">SAMSUNG</div>
-            <div style="font-size: 3rem; font-weight: bold; color: #e60012; opacity: 0.7; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">HUAWEI</div>
-            <div style="font-size: 3rem; font-weight: bold; color: #ff6900; opacity: 0.7; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">XIAOMI</div>
-            <div style="font-size: 3rem; font-weight: bold; color: #00a862; opacity: 0.7; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.7'">OPPO</div>
-        </div>
-    </section>
-    <section class="location" style="padding: 80px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-        <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px;">
-            <div style="text-align: center;">
-                <h2 style="font-size: 2.5rem; margin-bottom: 30px;">⏰ Horaires d'Ouverture</h2>
-                <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; backdrop-filter: blur(10px);">
-                    <p style="font-size: 1.3rem; margin: 15px 0;"><strong>Lundi - Samedi:</strong> 9h-20h</p>
-                    <p style="font-size: 1.3rem; margin: 15px 0;"><strong>Dimanche:</strong> Fermé</p>
-                    <div style="margin-top: 25px; padding: 15px; background: #4caf50; border-radius: 10px; font-size: 1.2rem; font-weight: bold;">
-                        🟢 OUVERT MAINTENANT
-                    </div>
+        <section class="reviews-section">
+            <h2>⭐ Avis de Nos Clients</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Service impeccable! Mon écran a été réparé en 30 minutes. Très professionnel!"</p>
+                    <small>- Sophie L.</small>
+                </div>
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Excellent rapport qualité-prix. Mon iPhone fonctionne comme neuf!"</p>
+                    <small>- Marc D.</small>
+                </div>
+                <div class="review-card">
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p>"Rapide, efficace et garantie respectée. Je recommande vivement!"</p>
+                    <small>- Amélie R.</small>
                 </div>
             </div>
-            <div>
-                <h2 style="font-size: 2.5rem; margin-bottom: 30px; text-align: center;">📍 Notre Adresse</h2>
-                <div style="background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; backdrop-filter: blur(10px);">
-                    <p style="font-size: 1.3rem; margin-bottom: 20px;"><strong>🏢 Adresse:</strong><br>123 Rue de la Réparation<br>83000 Toulon, France</p>
-                    <p style="font-size: 1.3rem; margin-bottom: 20px;"><strong>📞 Téléphone:</strong><br><a href="tel:0748323921" style="color: white; text-decoration: underline;">07 48 32 39 21</a></p>
-                    <p style="font-size: 1.3rem;"><strong>📧 Email:</strong><br>lyabendehbi@gmail.com</p>
-                </div>
-                <div style="margin-top: 30px; height: 300px; border-radius: 15px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2888.5!2d5.928!3d43.1242!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c91b3fd1234567%3A0x1234567890abcdef!2s83000%20Toulon%2C%20France!5e0!3m2!1sfr!2sfr!4v1234567890" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>                </div>
+        </section>
+
+        <!-- КНОПКА PWA УСТАНОВКИ -->
+        <button id="installBtn" class="install-btn" style="display:none;">
+            СКАЧИВАТЬ НАШУ ПРИЛОЖЕНИЕ НА Android ТЕЛЕФОН
+        </button>
+
+        <section class="brands-section">
+            <h2>📱 Nous Réparons Toutes Les Marques</h2>
+            <div class="brands-grid">
+                <div class="brand-item">🍎 Apple</div>
+                <div class="brand-item">📱 Samsung</div>
+                <div class="brand-item">📲 Huawei</div>
+                <div class="brand-item">📳 Xiaomi</div>
+                <div class="brand-item">📴 Oppo</div>
+                <div class="brand-item">📵 OnePlus</div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <footer>
-        <div style="text-align: center; padding: 20px 0;">
-            <div style="margin-bottom: 20px;">
-                <a href="https://instagram.com" style="display: inline-block; margin: 0 15px; font-size: 2.5rem; color: #E4405F; text-decoration: none; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">📸</a>
-                <a href="https://facebook.com" style="display: inline-block; margin: 0 15px; font-size: 2.5rem; color: #1877F2; text-decoration: none; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">👍</a>
-                <a href="https://wa.me/0748323921" style="display: inline-block; margin: 0 15px; font-size: 2.5rem; color: #25D366; text-decoration: none; transition: transform 0.3s;" onmouseover="this.style.transform='scale(1.2)'" onmouseout="this.style.transform='scale(1)'">💬</a>
+        <section class="hours-section">
+            <h2>⏰ Horaires d'Ouverture</h2>
+            <p><strong>Lundi - Samedi:</strong> 9h00 - 20h00</p>
+            <p><strong>Dimanche:</strong> Fermé</p>
+            <p class="status-open">🟢 OUVERT MAINTENANT</p>
+        </section>
+
+        <section class="address-section">
+            <h2>📍 Notre Adresse</h2>
+            <p><strong>🏢 Adresse:</strong><br>123 Rue de la Réparation<br>83000 Toulon, France</p>
+            <p><strong>📞 Téléphone:</strong> <a href="tel:0748323921">07 48 32 39 21</a></p>
+            <p><strong>📧 Email:</strong> <a href="mailto:lyabendehbi@gmail.com">lyabendehbi@gmail.com</a></p>
+            <div class="social-links">
+                <a href="https://instagram.com/" aria-label="Instagram">📸</a>
+                <a href="https://facebook.com/" aria-label="Facebook">👍</a>
+                <a href="https://wa.me/0748323921" aria-label="WhatsApp">💬</a>
             </div>
-            <p>&copy; 2025 Service de Réparation de Téléphones - MOURAD. Tous droits réservés.</p>
-        </div>
-    </footer>
+        </section>
 
-    <a href="https://wa.me/0748323921?text=Bonjour%2C%20je%20souhaite%20réparer%20mon%20téléphone" class="whatsapp-btn" target="_blank" aria-label="Contacter via WhatsApp">
-        💬
-    </a>
-
-    <div class="back-to-top" id="backToTop" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
-        ↑
+        <footer>
+            <p>© 2025 Service de Réparation de Téléphones - MOURAD. Tous droits réservés.</p>
+            <a href="https://wa.me/0748323921?text=Bonjour%2C%20je%20souhaite%20r%C3%A9parer%20mon%20t%C3%A9l%C3%A9phone">💬 Contactez-nous sur WhatsApp</a>
+        </footer>
     </div>
 
+    <!-- PWA Install Prompt Script -->
     <script>
-        window.addEventListener('scroll', function() {
-            const backToTop = document.getElementById('backToTop');
-            if (window.scrollY > 300) {
-                backToTop.classList.add('show');
-            } else {
-                backToTop.classList.remove('show');
-            }
+        let deferredPrompt;
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            document.getElementById('installBtn').style.display = 'flex';
         });
 
-        document.getElementById('bookingForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // Récupérer les données du formulaire
-        const name = document.getElementById('customerName').value;
-        const phone = document.getElementById('customerPhone').value;
-        const service = document.getElementById('serviceType').value;
-        const description = document.getElementById('problemDescription').value;
-        
-        // Créer le message pour WhatsApp
-        const whatsappMessage = `🔧 Nouvelle Demande de Réparation\n\n` +
-            `👤 Nom: ${name}\n` +
-            `📞 Téléphone: ${phone}\n` +
-            `🛠️ Service: ${service}\n` +
-            `📝 Description: ${description}\n\n` +
-            `Date: ${new Date().toLocaleString('fr-FR')}`;
-        
-        // Créer le message pour l'email
-        const emailSubject = encodeURIComponent('Nouvelle demande de réparation');
-        const emailBody = encodeURIComponent(
-            `Nouvelle Demande de Réparation\n\n` +
-            `Nom: ${name}\n` +
-            `Téléphone: ${phone}\n` +
-            `Service: ${service}\n` +
-            `Description: ${description}\n\n` +
-            `Date: ${new Date().toLocaleString('fr-FR')}`
-        );
-        
-        // Ouvrir WhatsApp dans un nouvel onglet
-        const whatsappURL = `https://wa.me/33784390172?text=${encodeURIComponent(whatsappMessage)}`;
-        window.open(whatsappURL, '_blank');
-        
-        // Ouvrir le client email dans un nouvel onglet
-        const emailURL = `mailto:lyabendehbi@gmail.com?subject=${emailSubject}&body=${emailBody}`;
-        window.open(emailURL, '_blank');
-        
-        // Afficher un message de confirmation
-        alert('✅ Votre demande a été préparée!\n\n📱 WhatsApp et Email vont s\'ouvrir pour envoyer votre demande.\n\nNous vous contacterons bientôt!');
-        
-        // Réinitialiser le formulaire
-        this.reset();
-    });
+        document.getElementById('installBtn').addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') {
+                    deferredPrompt = null;
+                }
+                document.getElementById('installBtn').style.display = 'none';
+            }
+        });
     </script>
 </body>
 </html>
