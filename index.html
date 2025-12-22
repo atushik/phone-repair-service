@@ -752,6 +752,19 @@
             75% { transform: rotate(15deg) scale(1.15); }
         }
 
+        select#serviceType option {
+            padding-left: 8px;
+            animation: emoji-pulse 2s ease-in-out infinite;
+        }
+
+        select#serviceType option:nth-child(2) { animation-delay: 0.1s; }
+        select#serviceType option:nth-child(3) { animation-delay: 0.2s; }
+        select#serviceType option:nth-child(4) { animation-delay: 0.3s; }
+        select#serviceType option:nth-child(5) { animation-delay: 0.4s; }
+        select#serviceType option:nth-child(6) { animation-delay: 0.5s; }
+        select#serviceType option:nth-child(7) { animation-delay: 0.6s; }
+        select#serviceType option:nth-child(8) { animation-delay: 0.7s; }
+
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2em;
@@ -960,13 +973,13 @@
                 <input type="tel" id="telClient" placeholder="Votre Téléphone" required aria-label="Votre Téléphone">
                 <select id="serviceType" required aria-label="Type de Réparation">
                     <option value="">Type de Réparation</option>
-                    <option value="🔧 Réparation d'Écran">🔧 Réparation d'Écran</option>
-                    <option value="🔋 Changement de Batterie">🔋 Changement de Batterie</option>
-                    <option value="💧 Dégâts des Eaux">💧 Dégâts des Eaux</option>
-                    <option value="🔊 Problèmes Audio">🔊 Problèmes Audio</option>
-                    <option value="📸 Réparation Caméra">📸 Réparation Caméra</option>
-                    <option value="⚡ Problèmes de Charge">⚡ Problèmes de Charge</option>
-                    <option value="✨ Nettoyage">✨ Nettoyage</option>
+                    <option value="Réparation d'Écran">📱 Réparation d'Écran</option>
+                    <option value="Changement de Batterie">🔋 Changement de Batterie</option>
+                    <option value="Dégâts des Eaux">💧 Dégâts des Eaux</option>
+                    <option value="Problèmes Audio">🔊 Problèmes Audio</option>
+                    <option value="Réparation Caméra">📸 Réparation Caméra</option>
+                    <option value="Problèmes de Charge">⚡ Problèmes de Charge</option>
+                    <option value="Nettoyage">✨ Nettoyage</option>
                 </select>
                 <textarea id="descProbleme" rows="4" placeholder="Description du problème" aria-label="Description"></textarea>
                 <button type="submit">Envoyer la Demande</button>
@@ -1097,6 +1110,13 @@
         window.addEventListener('appinstalled', () => {
             installContainer.style.display = 'none';
         });
+
+        if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone) {
+            const installContainerCheck = document.getElementById('pwaInstallContainer');
+            if (installContainerCheck) {
+                installContainerCheck.style.display = 'none';
+            }
+        }
 
         document.getElementById('repairForm').addEventListener('submit', function(e) {
             e.preventDefault();
