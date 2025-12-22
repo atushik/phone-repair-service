@@ -1,159 +1,252 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Service professionnel de réparation de téléphones. Écran, batterie, eau, audio. Réparation rapide 30-60 min. Garantie 6 mois. Prix transparents.">
-    <meta name="keywords" content="réparation téléphone, réparation écran, changement batterie, réparation iPhone, réparation Samsung, MOURAD">
-    <meta name="author" content="MOURAD - Service de Réparation">
-    <title>Service de Réparation de Téléphones - MOURAD | Toulon</title>
-    <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#4CAF50">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="apple-touch-icon" href="/logo.jpg">
-    <link rel="icon" type="image/jpeg" href="/logo.jpg">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; position: relative; overflow-x: hidden; }
-        .floating-logos { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; overflow: hidden; }
-        .floating-logo { position: absolute; width: 60px; height: 60px; background-image: url('logo.jpg'); background-size: cover; background-position: center; border-radius: 50%; opacity: 0.15; animation: float-up linear infinite; }
-        .floating-logo:nth-child(1) { left: 10%; width: 50px; height: 50px; animation-duration: 20s; animation-delay: 0s; }
-        .floating-logo:nth-child(2) { left: 20%; width: 70px; height: 70px; animation-duration: 25s; animation-delay: 2s; }
-        .floating-logo:nth-child(3) { left: 30%; width: 45px; height: 45px; animation-duration: 22s; animation-delay: 4s; }
-        .floating-logo:nth-child(4) { left: 40%; width: 65px; height: 65px; animation-duration: 28s; animation-delay: 1s; }
-        .floating-logo:nth-child(5) { left: 50%; width: 55px; height: 55px; animation-duration: 24s; animation-delay: 3s; }
-        .floating-logo:nth-child(6) { left: 60%; width: 60px; height: 60px; animation-duration: 26s; animation-delay: 5s; }
-        .floating-logo:nth-child(7) { left: 70%; width: 48px; height: 48px; animation-duration: 23s; animation-delay: 2.5s; }
-        .floating-logo:nth-child(8) { left: 80%; width: 68px; height: 68px; animation-duration: 27s; animation-delay: 4.5s; }
-        .floating-logo:nth-child(9) { left: 90%; width: 52px; height: 52px; animation-duration: 21s; animation-delay: 1.5s; }
-        .floating-logo:nth-child(10) { left: 15%; width: 58px; height: 58px; animation-duration: 29s; animation-delay: 3.5s; }
-        @keyframes float-up { 0% { bottom: -100px; transform: translateX(0) rotate(0deg); opacity: 0; } 10% { opacity: 0.15; } 90% { opacity: 0.15; } 100% { bottom: 110vh; transform: translateX(100px) rotate(360deg); opacity: 0; } }
-        .container { max-width: 1200px; margin: 0 auto; padding: 20px; position: relative; z-index: 10; }
-        header { text-align: center; padding: 60px 20px; background: rgba(255, 255, 255, 0.95); border-radius: 20px; margin-bottom: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); animation: fadeInDown 0.8s ease; }
-        header h1 { font-size: 2.5em; color: #2c3e50; margin-bottom: 10px; }
-        header p { font-size: 1.2em; color: #7f8c8d; margin-bottom: 20px; }
-        .cta-button { display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 15px 40px; border-radius: 50px; text-decoration: none; font-size: 1.2em; font-weight: bold; transition: transform 0.3s ease; box-shadow: 0 5px 15px rgba(0,0,0,0.2); animation: pulse-cta 2s infinite; }
-        .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin: 40px 0; }
-        .service-card { background: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); text-align: center; transition: transform 0.3s ease; }
-        .service-card i { font-size: 3em; color: #667eea; margin-bottom: 15px; animation: icon-pulse 2s infinite; }
-        .warning { background: #fff3cd; border-left: 4px solid #ffc107; padding: 15px; margin: 20px 0; border-radius: 5px; text-align: center; }
-        .form-section, .faq-section, .reviews-section, .brands-section, .hours-section, .address-section, .map-section { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin: 40px 0; }
-        .form-section h2 { color: #2c3e50; margin-bottom: 30px; text-align: center; }
-        input, textarea { width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1em; }
-        button[type="submit"] { width: 100%; padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; font-size: 1.1em; font-weight: bold; cursor: pointer; }
-        .custom-select { position: relative; width: 100%; margin: 10px 0; }
-        .select-trigger { width: 100%; padding: 12px; border: 2px solid #e0e0e0; border-radius: 8px; background: white; text-align: left; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
-        .select-options { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: #222; border-radius: 8px; z-index: 100; box-shadow: 0 10px 30px rgba(0,0,0,0.5); padding: 10px 0; }
-        .select-options.show { display: block; }
-        .option-item { padding: 12px 20px; color: white; cursor: pointer; display: flex; align-items: center; transition: background 0.2s; }
-        .option-item:hover { background: #444; }
-        .option-item span { margin-right: 15px; display: inline-block; }
-        .pwa-install-container { display: none; justify-content: center; padding: 40px 20px; margin: 50px 0; background: rgba(255,255,255,0.1); border-radius: 20px; }
-        .install-btn-pwa { background: linear-gradient(90deg, #ff0844, #ffb199); animation: rainbow-wave 8s infinite; border: none; border-radius: 60px; padding: 25px 50px; font-size: 18px; font-weight: 900; color: white; cursor: pointer; display: flex; align-items: center; }
-        .install-btn-pwa::before { content: '📱'; margin-right: 10px; animation: phone-bounce 1.5s infinite; }
-        .whatsapp-float-btn { display: inline-flex; align-items: center; background: #25D366; color: white; padding: 20px 50px; border-radius: 60px; text-decoration: none; font-weight: bold; }
-        @keyframes phone-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-        @keyframes emoji-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-        @keyframes emoji-rotate { 0%, 100% { transform: rotate(0); } 50% { transform: rotate(15deg); } }
-        @keyframes icon-pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-        .sticker-bounce { animation: emoji-bounce 2s infinite; }
-        .sticker-rotate { animation: emoji-rotate 2.5s infinite; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Service professionnel de réparation de téléphones. Écran, batterie, eau, audio. Réparation rapide 30-60 min. Garantie 6 mois. Prix transparents." />
+  <meta name="keywords" content="réparation téléphone, réparation écran, changement batterie, réparation iPhone, réparation Samsung, MOURAD" />
+  <meta name="author" content="MOURAD - Service de Réparation" />
+  <title>Service de Réparation de Téléphones - MOURAD Toulon</title>
+
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#4CAF50" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="apple-touch-icon" href="logo.jpg" />
+  <link rel="icon" type="image/jpeg" href="logo.jpg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{font-family:Segoe UI,Tahoma,Geneva,Verdana,sans-serif;line-height:1.6;color:#333;background:linear-gradient(135deg,#667eea 0,#764ba2 100);min-height:100vh;position:relative;overflow-x:hidden}
+    .floating-logos{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1;overflow:hidden}
+    .floating-logo{position:absolute;width:60px;height:60px;background-image:url('logo.jpg');background-size:cover;background-position:center;border-radius:50%;opacity:.15;animation:float-up linear infinite}
+    .floating-logo:nth-child(1){left:10%;width:50px;height:50px;animation-duration:20s;animation-delay:0s}
+    .floating-logo:nth-child(2){left:20%;width:70px;height:70px;animation-duration:25s;animation-delay:2s}
+    .floating-logo:nth-child(3){left:30%;width:45px;height:45px;animation-duration:22s;animation-delay:4s}
+    .floating-logo:nth-child(4){left:40%;width:65px;height:65px;animation-duration:28s;animation-delay:1s}
+    .floating-logo:nth-child(5){left:50%;width:55px;height:55px;animation-duration:24s;animation-delay:3s}
+    .floating-logo:nth-child(6){left:60%;width:60px;height:60px;animation-duration:26s;animation-delay:5s}
+    .floating-logo:nth-child(7){left:70%;width:48px;height:48px;animation-duration:23s;animation-delay:2.5s}
+    .floating-logo:nth-child(8){left:80%;width:68px;height:68px;animation-duration:27s;animation-delay:4.5s}
+    .floating-logo:nth-child(9){left:90%;width:52px;height:52px;animation-duration:21s;animation-delay:1.5s}
+    .floating-logo:nth-child(10){left:15%;width:58px;height:58px;animation-duration:29s;animation-delay:3.5s}
+    @keyframes float-up{0%{bottom:-100px;transform:translateX(0) rotate(0);opacity:0}10%{opacity:.15}90%{opacity:.15}100%{bottom:110vh;transform:translateX(100px) rotate(360deg);opacity:0}}
+    .container{max-width:1200px;margin:0 auto;padding:20px;position:relative;z-index:10}
+    header{text-align:center;padding:60px 20px;background:rgba(255,255,255,.95);border-radius:20px;margin-bottom:30px;box-shadow:0 10px 30px rgba(0,0,0,.2);animation:fadeInDown .8s ease}
+    header h1{font-size:2.5em;color:#2c3e50;margin-bottom:10px}
+    header p{font-size:1.2em;color:#7f8c8d;margin-bottom:20px}
+    .cta-button{display:inline-block;background:linear-gradient(135deg,#667eea 0,#764ba2 100);color:#fff;padding:15px 40px;border-radius:50px;text-decoration:none;font-size:1.2em;font-weight:700;transition:transform .3s ease;box-shadow:0 5px 15px rgba(0,0,0,.2);animation:pulse-cta 2s infinite}
+    .cta-button:hover{transform:translateY(-3px)}
+    @keyframes pulse-cta{0%,100%{box-shadow:0 5px 15px rgba(0,0,0,.2)}50%{box-shadow:0 5px 25px rgba(102,126,234,.6)}}
+    .services{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:25px;margin:40px 0}
+    .service-card{background:#fff;padding:30px;border-radius:15px;box-shadow:0 5px 15px rgba(0,0,0,.1);text-align:center;transition:transform .3s ease}
+    .service-card:hover{transform:translateY(-5px)}
+    .service-card i{font-size:3em;color:#667eea;margin-bottom:15px;animation:icon-pulse 2s infinite}
+    @keyframes icon-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+    .warning{background:#fff3cd;border-left:4px solid #ffc107;padding:15px;margin:20px 0;border-radius:5px;text-align:center}
+    .form-section,.faq-section,.reviews-section,.brands-section,.hours-section,.address-section,.map-section{background:#fff;padding:40px;border-radius:15px;box-shadow:0 5px 15px rgba(0,0,0,.1);margin:40px 0}
+    .form-section h2,.hours-section h2,.address-section h2{color:#2c3e50;margin-bottom:30px;text-align:center}
+    input,textarea{width:100%;padding:12px;margin:10px 0;border:2px solid #e0e0e0;border-radius:8px;font-size:1em}
+    button[type="submit"]{width:100%;padding:15px;background:linear-gradient(135deg,#667eea 0,#764ba2 100);color:#fff;border:none;border-radius:8px;font-size:1.1em;font-weight:700;cursor:pointer}
+    .custom-select{position:relative;width:100%;margin:10px 0}
+    .select-trigger{width:100%;padding:12px;border:2px solid #e0e0e0;border-radius:8px;background:#fff;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+    .select-options{display:none;position:absolute;top:100%;left:0;width:100%;background:#222;border-radius:8px;z-index:100;box-shadow:0 10px 30px rgba(0,0,0,.5);padding:10px 0}
+    .select-options.show{display:block}
+    .option-item{padding:12px 20px;color:#fff;cursor:pointer;display:flex;align-items:center;transition:background .2s}
+    .option-item:hover{background:#444}
+    .option-item span{margin-right:15px;display:inline-block}
+    .pwa-install-container{display:none;justify-content:center;padding:40px 20px;margin:50px 0;background:rgba(255,255,255,.1);border-radius:20px}
+    .install-btn-pwa{background:linear-gradient(90deg,#ff0844,#ffb199);animation:rainbow-wave 8s infinite;border:none;border-radius:60px;padding:25px 50px;font-size:18px;font-weight:900;color:#fff;cursor:pointer;display:flex;align-items:center}
+    .install-btn-pwa:before{content:"📲";margin-right:10px;animation:phone-bounce 1.5s infinite}
+    @keyframes phone-bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    @keyframes rainbow-wave{0%{filter:hue-rotate(0)}100%{filter:hue-rotate(360deg)}}
+    .whatsapp-footer-button{display:flex;justify-content:center;margin:30px 0}
+    .whatsapp-float-btn{display:inline-flex;align-items:center;background:#25D366;color:#fff;padding:20px 50px;border-radius:60px;text-decoration:none;font-weight:700}
+    footer{text-align:center;color:#fff;margin:30px 0}
+    @keyframes fadeInDown{from{opacity:0;transform:translateY(-30px)}to{opacity:1;transform:translateY(0)}}
+  </style>
 </head>
+
 <body>
-    <div class="floating-logos">
-        <div class="floating-logo"></div><div class="floating-logo"></div><div class="floating-logo"></div><div class="floating-logo"></div><div class="floating-logo"></div>
-    </div>
-    <div class="container">
-        <header>
-            <h1>Service de Réparation de Téléphones</h1>
-            <p>Expert en réparation rapide et professionnelle - MOURAD</p>
-            <a href="tel:+33784390172" class="cta-button">Appelez Maintenant</a>
-        </header>
-        <section class="services">
-            <div class="service-card"><i class="fas fa-mobile-alt"></i><h3>Réparation d'Écran</h3><p>Remplacement rapide d'écrans cassés.</p></div>
-            <div class="service-card"><i class="fas fa-battery-full"></i><h3>Changement de Batterie</h3><p>Batteries de qualité durable.</p></div>
-            <div class="service-card"><i class="fas fa-bolt"></i><h3>Problèmes de Charge</h3><p>Réparation connecteurs de charge.</p></div>
-        </section>
-        <div class="warning">⚠️ Les tarifs varient selon le modèle et l'état.</div>
-        <section class="form-section">
-            <h2>Réserver un Rendez-Vous</h2>
-            <form id="repairForm">
-                <input type="text" id="nomClient" placeholder="Votre Nom" required>
-                <input type="tel" id="telClient" placeholder="Votre Téléphone" required>
-                <div class="custom-select" id="serviceSelect">
-                    <div class="select-trigger" id="selectTrigger"><span>Type de Réparation</span><i class="fas fa-chevron-down"></i></div>
-                    <div class="select-options" id="selectOptions">
-                        <div class="option-item" data-value="Réparation d'Écran"><span class="sticker-bounce">📱</span> Réparation d'Écran</div>
-                        <div class="option-item" data-value="Changement de Batterie"><span class="sticker-rotate">🔋</span> Changement de Batterie</div>
-                        <div class="option-item" data-value="Dégâts des Eaux"><span class="sticker-bounce">💧</span> Dégâts des Eaux</div>
-                        <div class="option-item" data-value="Problèmes Audio"><span class="sticker-rotate">🔊</span> Problèmes Audio</div>
-                        <div class="option-item" data-value="Réparation Caméra"><span class="sticker-bounce">📸</span> Réparation Caméra</div>
-                        <div class="option-item" data-value="Problèmes de Charge"><span class="sticker-rotate">⚡</span> Problèmes de Charge</div>
-                        <div class="option-item" data-value="Nettoyage"><span class="sticker-bounce">✨</span> Nettoyage</div>
-                    </div>
-                </div>
-                <textarea id="descProbleme" rows="4" placeholder="Description du problème"></textarea>
-                <button type="submit">Envoyer la Demande</button>
-            </form>
-        </section>
-        <div id="pwaInstallContainer" class="pwa-install-container">
-            <button id="installBtn" class="install-btn-pwa">TÉLÉCHARGER NOTRE APPLICATION SUR TÉLÉPHONE Android</button>
-        </div>
-        <section class="hours-section">
-            <h2>Horaires d'Ouverture</h2>
-            <p><strong>Lundi - Samedi:</strong> 9h00 - 20h00</p>
-            <p><strong>Dimanche:</strong> Fermé</p>
-        </section>
-        <section class="address-section">
-            <h2>Notre Adresse</h2>
-            <p><strong>🏢 Adresse:</strong><br>123 Rue de la Réparation<br>83000 Toulon, France</p>
-            <p><strong>📞 Téléphone:</strong> <a href="tel:+33784390172">07 84 39 01 72</a></p>
-            <p><strong>📧 Email:</strong> <a href="mailto:lyabendehbi@gmail.com">lyabendehbi@gmail.com</a></p>
-        </section>
-        <section class="map-section">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2903.837777!2d5.9246!3d43.1247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDA3JzI5LjAiTiA1wrA1NSczMC42IkU!5e0!3m2!1sfr!2sfr!4v1234567890" width="100%" height="300" style="border:0; border-radius: 15px;" loading="lazy"></iframe>
-        </section>
-        <div class="whatsapp-footer-button">
-            <a href="https://wa.me/33784390172" class="whatsapp-float-btn">💬 WhatsApp</a>
-        </div>
-        <footer><p>© 2025 Repair MOURAD. Tous droits réservés.</p></footer>
-    </div>
-    <script>
-        const trigger = document.getElementById('selectTrigger');
-        const options = document.getElementById('selectOptions');
-        const items = document.querySelectorAll('.option-item');
-        let selectedService = "";
-        trigger.addEventListener('click', () => options.classList.toggle('show'));
-        items.forEach(item => {
-            item.addEventListener('click', () => {
-                selectedService = item.getAttribute('data-value');
-                trigger.querySelector('span').innerText = item.innerText;
-                options.classList.remove('show');
-            });
-        });
-        document.addEventListener('click', (e) => { if(!trigger.contains(e.target)) options.classList.remove('show'); });
+  <div class="floating-logos">
+    <div class="floating-logo"></div>
+    <div class="floating-logo"></div>
+    <div class="floating-logo"></div>
+    <div class="floating-logo"></div>
+    <div class="floating-logo"></div>
+    <div class="floating-logo"></div>
+    <div class="floating-logo"></div>
+    <div class="floating-logo"></div>
+    <div class="floating-logo"></div>
+    <div class="floating-logo"></div>
+  </div>
 
-        let deferredPrompt;
-        const installBtn = document.getElementById('installBtn');
-        const installContainer = document.getElementById('pwaInstallContainer');
-        window.addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); deferredPrompt = e; installContainer.style.display = 'flex'; });
-        installBtn.addEventListener('click', async () => { if(deferredPrompt){ deferredPrompt.prompt(); const {outcome} = await deferredPrompt.userChoice; if(outcome === 'accepted') installContainer.style.display = 'none'; deferredPrompt = null; } });
-        window.addEventListener('appinstalled', () => { installContainer.style.display = 'none'; });
-        if(window.matchMedia('(display-mode: standalone)').matches) installContainer.style.display = 'none';
+  <div class="container">
+    <header>
+      <h1>Service de Réparation de Téléphones</h1>
+      <p>Expert en réparation rapide et professionnelle - MOURAD</p>
+      <a href="tel:+33784390172" class="cta-button">Appelez Maintenant</a>
+    </header>
 
-        document.getElementById('repairForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const nom = document.getElementById('nomClient').value;
-            const tel = document.getElementById('telClient').value;
-            const desc = document.getElementById('descProbleme').value;
-            const date = new Date().toLocaleString('fr-FR');
-            const message = `📱 Nouvelle Demande de Réparation\n\n👤 Nom: ${nom}\n📞 Téléphone: ${tel}\n🔧 Service: ${selectedService}\n📝 Description: ${desc}\n\nDate: ${date}`;
-            window.open(`https://wa.me/33784390172?text=${encodeURIComponent(message)}`, '_blank');
-        });
-    </script>
+    <section class="services">
+      <div class="service-card">
+        <i class="fas fa-mobile-alt"></i>
+        <h3>Réparation d'écran</h3>
+        <p>Remplacement rapide d'écrans cassés.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-battery-full"></i>
+        <h3>Changement de Batterie</h3>
+        <p>Batteries de qualité durable.</p>
+      </div>
+      <div class="service-card">
+        <i class="fas fa-bolt"></i>
+        <h3>Problèmes de Charge</h3>
+        <p>Réparation connecteurs de charge.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="warning">Les tarifs varient selon le modèle et l'état.</div>
+    </section>
+
+    <section class="form-section">
+      <h2>Réserver un Rendez-Vous</h2>
+      <form id="repairForm">
+        <input type="text" id="nomClient" placeholder="Votre Nom" required />
+        <input type="tel" id="telClient" placeholder="Votre Téléphone" required />
+
+        <div class="custom-select" id="serviceSelect">
+          <div class="select-trigger" id="selectTrigger">
+            <span>Type de Réparation</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="select-options" id="selectOptions">
+            <div class="option-item" data-value="Réparation d'écran"><span>📱</span>Réparation d'écran</div>
+            <div class="option-item" data-value="Changement de Batterie"><span>🔋</span>Changement de Batterie</div>
+            <div class="option-item" data-value="Dégâts des Eaux"><span>💧</span>Dégâts des Eaux</div>
+            <div class="option-item" data-value="Problèmes Audio"><span>🔊</span>Problèmes Audio</div>
+            <div class="option-item" data-value="Réparation Caméra"><span>📷</span>Réparation Caméra</div>
+            <div class="option-item" data-value="Problèmes de Charge"><span>⚡</span>Problèmes de Charge</div>
+            <div class="option-item" data-value="Nettoyage"><span>🧼</span>Nettoyage</div>
+          </div>
+        </div>
+
+        <textarea id="descProbleme" rows="4" placeholder="Description du problème"></textarea>
+        <button type="submit">Envoyer la Demande</button>
+      </form>
+    </section>
+
+    <section>
+      <div id="pwaInstallContainer" class="pwa-install-container">
+        <button id="installBtn" class="install-btn-pwa">TÉLÉCHARGER NOTRE APPLICATION SUR TÉLÉPHONE Android</button>
+      </div>
+    </section>
+
+    <section class="hours-section">
+      <h2>Horaires d'Ouverture</h2>
+      <p><strong>Lundi - Samedi:</strong> 9h00 - 20h00</p>
+    </section>
+
+    <section class="address-section">
+      <h2>Notre Adresse</h2>
+      <p><strong>🏢 Adresse:</strong><br />123 Rue de la Réparation<br />83000 Toulon, France</p>
+      <p><strong>📞 Téléphone:</strong> <a href="tel:+33784390172">07 84 39 01 72</a></p>
+      <p><strong>📧 Email:</strong> <a href="mailto:lyabendehbi@gmail.com">lyabendehbi@gmail.com</a></p>
+    </section>
+
+    <section class="map-section">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2903.837777!2d5.9246!3d43.1247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x03A0x0!2zNDPCsDA3JzI5LjAiTiA1wrA1NSczMC42IkU!5e0!3m2!1sfr!2sfr!4v1234567890"
+        width="100%"
+        height="300"
+        style="border:0;border-radius:15px"
+        loading="lazy">
+      </iframe>
+    </section>
+
+    <div class="whatsapp-footer-button">
+      <a href="https://wa.me/33784390172" class="whatsapp-float-btn">WhatsApp</a>
+    </div>
+
+    <footer>
+      <p>© 2025 Repair MOURAD. Tous droits réservés.</p>
+    </footer>
+  </div>
+
+  <script>
+    const trigger = document.getElementById("selectTrigger");
+    const options = document.getElementById("selectOptions");
+    const items = document.querySelectorAll(".option-item");
+    let selectedService = "";
+
+    trigger.addEventListener("click", () => {
+      options.classList.toggle("show");
+    });
+
+    items.forEach((item) => {
+      item.addEventListener("click", () => {
+        selectedService = item.getAttribute("data-value");
+        trigger.querySelector("span").innerText = item.innerText.trim();
+        options.classList.remove("show");
+      });
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!trigger.contains(e.target) && !options.contains(e.target)) {
+        options.classList.remove("show");
+      }
+    });
+
+    let deferredPrompt;
+    const installBtn = document.getElementById("installBtn");
+    const installContainer = document.getElementById("pwaInstallContainer");
+
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installContainer.style.display = "flex";
+    });
+
+    installBtn.addEventListener("click", async () => {
+      if (!deferredPrompt) return;
+      deferredPrompt.prompt();
+      const outcome = await deferredPrompt.userChoice;
+      if (outcome.outcome === "accepted") {
+        installContainer.style.display = "none";
+      }
+      deferredPrompt = null;
+    });
+
+    window.addEventListener("appinstalled", () => {
+      installContainer.style.display = "none";
+    });
+
+    if (window.matchMedia("(display-mode: standalone)").matches) {
+      installContainer.style.display = "none";
+    }
+
+    document.getElementById("repairForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const nom = document.getElementById("nomClient").value;
+      const tel = document.getElementById("telClient").value;
+      const desc = document.getElementById("descProbleme").value;
+      const date = new Date().toLocaleString("fr-FR");
+      const message =
+        "Nouvelle Demande de Réparation\n\nNom: " +
+        nom +
+        "\nTéléphone: " +
+        tel +
+        "\nService: " +
+        (selectedService || "Non précisé") +
+        "\nDescription: " +
+        desc +
+        "\nDate: " +
+        date;
+
+      window.open("https://wa.me/33784390172?text=" + encodeURIComponent(message), "_blank");
+    });
+  </script>
 </body>
 </html>
