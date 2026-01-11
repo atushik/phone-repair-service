@@ -2531,16 +2531,29 @@
 
         // Copy Promo Code
         function copyPromo(code) {
-            navigator.clipboard.writeText(code).then(() => {
-                alert('✅ Промокод скопирован: ' + code);
-            });
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(code).then(() => {
+                    alert('✅ Промокод скопирован: ' + code);
+                }).catch(() => {
+                    // Fallback if clipboard API fails
+                    alert('Промокод: ' + code + ' (скопируйте вручную)');
+                });
+            } else {
+                // Fallback for browsers without clipboard API
+                alert('Промокод: ' + code + ' (скопируйте вручную)');
+            }
         }
 
         // Animate Stats Counter
         function animateCounters() {
             const counters = document.querySelectorAll('.stat-number');
             counters.forEach(counter => {
-                const target = parseInt(counter.dataset.target);
+                const targetStr = counter.dataset.target;
+                if (!targetStr) return;
+                
+                const target = parseInt(targetStr, 10);
+                if (isNaN(target)) return;
+                
                 let current = 0;
                 const increment = target / 100;
                 const timer = setInterval(() => {
@@ -2557,7 +2570,7 @@
 
         // Trigger counter animation on scroll
         const observer = new IntersectionObserver(entries => {
-            if (entries[0].isIntersecting) {
+            if (entries && entries.length > 0 && entries[0].isIntersecting) {
                 animateCounters();
                 observer.disconnect();
             }
@@ -2580,19 +2593,30 @@
             const urgent = document.getElementById('urgentRepair');
             const promo = document.getElementById('promoCode').value.toUpperCase();
             
-            if (!model.value || !repair.value) {
-                document.getElementById('totalPrice').textContent = '-€';
+            if (!model || !repair || !model.value || !repair.value) {
+                const priceElem = document.getElementById('totalPrice');
+                if (priceElem) priceElem.textContent = '-€';
                 return;
             }
             
-            let basePrice = parseFloat(model.selectedOptions[0].dataset.base);
-            let multiplier = parseFloat(repair.selectedOptions[0].dataset.multiplier);
+            const selectedModel = model.selectedOptions[0];
+            const selectedRepair = repair.selectedOptions[0];
+            
+            if (!selectedModel || !selectedRepair || !selectedModel.dataset.base || !selectedRepair.dataset.multiplier) {
+                const priceElem = document.getElementById('totalPrice');
+                if (priceElem) priceElem.textContent = '-€';
+                return;
+            }
+            
+            let basePrice = parseFloat(selectedModel.dataset.base);
+            let multiplier = parseFloat(selectedRepair.dataset.multiplier);
             let price = basePrice * multiplier;
             
-            if (urgent.checked) price += 20;
+            if (urgent && urgent.checked) price += 20;
             if (promocodes[promo]) price *= promocodes[promo];
             
-            document.getElementById('totalPrice').textContent = price.toFixed(0) + '€';
+            const priceElem = document.getElementById('totalPrice');
+            if (priceElem) priceElem.textContent = price.toFixed(0) + '€';
         }
 
         const phoneModelElem = document.getElementById('phoneModel');
@@ -2623,13 +2647,29 @@
                 
                 const resultsDiv = document.getElementById('searchResults');
                 if (search.length > 0) {
-                    resultsDiv.innerHTML = results.map(m => `
-                        <div class="search-result-item">
-                            <span class="model-name">📱 ${m.name}</span>
-                            <span class="model-price">${m.price}</span>
-                            <span class="model-repairs">${m.repairs.join(', ')}</span>
-                        </div>
-                    `).join('');
+                    // Create elements safely to prevent XSS
+                    resultsDiv.innerHTML = '';
+                    results.forEach(m => {
+                        const itemDiv = document.createElement('div');
+                        itemDiv.className = 'search-result-item';
+                        
+                        const nameSpan = document.createElement('span');
+                        nameSpan.className = 'model-name';
+                        nameSpan.textContent = '📱 ' + m.name;
+                        
+                        const priceSpan = document.createElement('span');
+                        priceSpan.className = 'model-price';
+                        priceSpan.textContent = m.price;
+                        
+                        const repairsSpan = document.createElement('span');
+                        repairsSpan.className = 'model-repairs';
+                        repairsSpan.textContent = m.repairs.join(', ');
+                        
+                        itemDiv.appendChild(nameSpan);
+                        itemDiv.appendChild(priceSpan);
+                        itemDiv.appendChild(repairsSpan);
+                        resultsDiv.appendChild(itemDiv);
+                    });
                 } else {
                     resultsDiv.innerHTML = '';
                 }
