@@ -830,7 +830,7 @@
             border-bottom: none;
         }
 
-        /* Enhance the original select with animated indicator */
+        /* Enhanced select element with animated indicator */
         select#serviceType {
             position: relative;
             font-size: 1.1em;
@@ -859,19 +859,6 @@
         @keyframes select-pulse {
             0%, 100% { transform: scale(1); }
             50% { transform: scale(1.03); }
-        }
-
-        /* Style for option elements */
-        select#serviceType option {
-            padding: 12px 8px;
-            font-size: 1.1em;
-            background: white;
-            color: #333;
-        }
-
-        select#serviceType option:checked {
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2) 0%, rgba(118, 75, 162, 0.2) 100%);
-            font-weight: bold;
         }
 
         /* Smooth scrollbar for custom dropdown */
@@ -1249,8 +1236,18 @@
         // Enhanced emoji animation for service type select
         const serviceSelect = document.getElementById('serviceType');
         
-        // Create custom dropdown for better emoji animation visibility
+        // Emoji regex pattern constant to avoid duplication
+        const EMOJI_REGEX = /[\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/u;
+        const EMOJI_REGEX_GLOBAL = /[\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu;
+        
+        // Create custom dropdown for better emoji animation visibility (only once)
+        let dropdownInitialized = false;
+        let blurTimeout = null;
+        
         function createCustomDropdown() {
+            if (dropdownInitialized) return;
+            dropdownInitialized = true;
+            
             const wrapper = document.createElement('div');
             wrapper.className = 'custom-select-wrapper';
             wrapper.style.position = 'relative';
@@ -1267,10 +1264,10 @@
                 customOption.className = 'custom-select-option';
                 customOption.setAttribute('data-value', option.value);
                 
-                // Extract emoji and text
+                // Extract emoji and text using constant regex
                 const text = option.textContent;
-                const emoji = text.match(/[\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/u);
-                const textOnly = text.replace(/[\u{1F300}-\u{1F9FF}]|[\u{2600}-\u{26FF}]|[\u{2700}-\u{27BF}]/gu, '').trim();
+                const emoji = text.match(EMOJI_REGEX);
+                const textOnly = text.replace(EMOJI_REGEX_GLOBAL, '').trim();
                 
                 if (emoji) {
                     const emojiSpan = document.createElement('span');
@@ -1305,15 +1302,25 @@
             
             // Toggle custom dropdown on select focus
             serviceSelect.addEventListener('focus', function(e) {
+                // Clear any pending blur timeout to avoid race conditions
+                if (blurTimeout) {
+                    clearTimeout(blurTimeout);
+                    blurTimeout = null;
+                }
                 customDropdown.style.display = 'block';
                 this.style.animation = 'select-glow 1.5s ease-in-out infinite';
             });
             
             serviceSelect.addEventListener('blur', function(e) {
+                // Clear previous timeout to avoid race conditions
+                if (blurTimeout) {
+                    clearTimeout(blurTimeout);
+                }
                 // Delay to allow click on custom option
-                setTimeout(() => {
+                blurTimeout = setTimeout(() => {
                     customDropdown.style.display = 'none';
                     this.style.animation = 'none';
+                    blurTimeout = null;
                 }, 200);
             });
             
