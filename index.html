@@ -26,21 +26,89 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Enhanced Meta Tags for SEO -->
+    <meta property="og:title" content="Ремонт Телефонов MOURAD | Toulon - от 49€">
+    <meta property="og:description" content="Профессиональный ремонт iPhone, Samsung, Xiaomi. Быстро, качественно, с гарантией 6 месяцев. Toulon.">
+    <meta property="og:image" content="/logo.jpg">
+    <meta property="og:url" content="https://yoursite.com">
+    <meta property="og:type" content="website">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ремонт Телефонов MOURAD | Toulon">
+    <meta name="twitter:description" content="Ремонт экрана, батареи, воды от 49€">
+    <meta name="twitter:image" content="/logo.jpg">
+    
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "MOURAD - Service de Réparation",
+      "image": "/logo.jpg",
+      "description": "Service professionnel de réparation de téléphones à Toulon",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Toulon",
+        "addressCountry": "FR"
+      },
+      "priceRange": "49€-150€",
+      "telephone": "+33784390172",
+      "openingHours": "Mo-Sa 09:00-20:00",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "127"
+      }
+    }
+    </script>
+    
     <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #333;
+            --text-secondary: #7f8c8d;
+            --border-color: #e0e0e0;
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --accent: #4CAF50;
+            --warning: #ffc107;
+            --danger: #f44336;
+            --success: #4CAF50;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #16213e;
+            --text-primary: #eee;
+            --text-secondary: #aaa;
+            --border-color: #333;
+            --gradient-primary: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text-primary);
+            background: var(--gradient-primary);
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
         .floating-logos {
@@ -928,6 +996,934 @@
             }
         }
 
+        /* ===== THEME TOGGLE ===== */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .theme-btn {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1.5em;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .theme-btn:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .theme-icon {
+            display: none;
+        }
+
+        .theme-icon.active {
+            display: inline-block;
+            animation: iconRotate 0.5s ease;
+        }
+
+        @keyframes iconRotate {
+            from { transform: rotate(-180deg); }
+            to { transform: rotate(0deg); }
+        }
+
+        /* ===== PROMO BANNER / COUNTDOWN ===== */
+        .promo-banner {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+            padding: 20px;
+            text-align: center;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .promo-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .promo-icon {
+            font-size: 2em;
+            animation: emoji-pulse 1.5s ease-in-out infinite;
+        }
+
+        .promo-text {
+            color: white;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .countdown {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .countdown-item {
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+            padding: 10px 15px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 60px;
+        }
+
+        .countdown-value {
+            font-size: 2em;
+            font-weight: 900;
+            color: white;
+            line-height: 1;
+        }
+
+        .countdown-label {
+            font-size: 0.7em;
+            color: rgba(255,255,255,0.9);
+            text-transform: uppercase;
+        }
+
+        .countdown-separator {
+            font-size: 2em;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* ===== PRICE CALCULATOR ===== */
+        .calculator-section {
+            background: var(--bg-primary);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 40px 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .calculator-section h2 {
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .calculator-card {
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+
+        .calc-row {
+            margin-bottom: 20px;
+        }
+
+        .calc-row label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .calc-select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1em;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .calc-select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .calc-row input[type="checkbox"] {
+            margin-right: 8px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .calc-result {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid var(--border-color);
+        }
+
+        .price-display {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .price-label {
+            display: block;
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .price-amount {
+            display: block;
+            font-size: 3em;
+            font-weight: 900;
+            color: var(--accent);
+            animation: priceGlow 2s ease-in-out infinite;
+        }
+
+        .price-amount.affordable { color: #4CAF50; }
+        .price-amount.moderate { color: #ffc107; }
+        .price-amount.expensive { color: #f44336; }
+
+        @keyframes priceGlow {
+            0%, 100% { text-shadow: 0 0 10px currentColor; }
+            50% { text-shadow: 0 0 20px currentColor; }
+        }
+
+        .calc-book-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--gradient-primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .calc-book-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .calc-book-btn:not(:disabled):hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* ===== STATS SECTION ===== */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            background: var(--bg-primary);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 3em;
+            font-weight: 900;
+            color: #667eea;
+            line-height: 1;
+        }
+
+        .stat-label {
+            display: block;
+            margin-top: 10px;
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+
+        /* ===== MODEL SEARCH ===== */
+        .model-search {
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 15px 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 1.1em;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            margin-top: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 100;
+            display: none;
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-result-item {
+            padding: 15px 20px;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border-color);
+            transition: background 0.2s ease;
+        }
+
+        .search-result-item:hover {
+            background: var(--bg-secondary);
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-name {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .result-price {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+
+        .result-type {
+            display: inline-block;
+            padding: 2px 8px;
+            background: #667eea;
+            color: white;
+            border-radius: 5px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+
+        .highlight {
+            background: yellow;
+            font-weight: bold;
+        }
+
+        /* ===== GALLERY SECTION ===== */
+        .gallery-section {
+            background: var(--bg-primary);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 40px 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .gallery-section h2 {
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-item {
+            text-align: center;
+        }
+
+        .comparison-slider {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .before-image, .after-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .after-image {
+            clip-path: polygon(50% 0, 100% 0, 100% 100%, 50% 100%);
+        }
+
+        .comparison-slider .label {
+            position: absolute;
+            top: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+
+        .before-image .label {
+            left: 10px;
+        }
+
+        .after-image .label {
+            right: 10px;
+        }
+
+        .slider-handle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: ew-resize;
+            z-index: 10;
+        }
+
+        .gallery-caption {
+            margin-top: 15px;
+            color: var(--text-secondary);
+            font-weight: 600;
+        }
+
+        /* ===== APPOINTMENT PICKER ===== */
+        .appointment-picker {
+            margin: 30px 0;
+        }
+
+        .appointment-picker h3 {
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .date-picker {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .date-btn {
+            padding: 20px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .date-btn:hover, .date-btn.selected {
+            border-color: #667eea;
+            background: rgba(102, 126, 234, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .date-btn .day {
+            display: block;
+            font-weight: bold;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .date-btn .slots {
+            display: block;
+            font-size: 0.9em;
+            color: var(--text-secondary);
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+        }
+
+        .time-slot {
+            padding: 15px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+            font-weight: 600;
+        }
+
+        .time-slot:hover {
+            border-color: #4CAF50;
+            background: rgba(76, 175, 80, 0.1);
+            transform: scale(1.05);
+        }
+
+        .time-slot.selected {
+            background: #4CAF50;
+            color: white;
+            border-color: #4CAF50;
+        }
+
+        .time-slot.booked {
+            opacity: 0.5;
+            cursor: not-allowed;
+            text-decoration: line-through;
+        }
+
+        /* ===== PROMO CODE ===== */
+        .promo-section {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            align-items: center;
+        }
+
+        .promo-input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1em;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .promo-btn {
+            padding: 12px 25px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .promo-btn:hover {
+            background: #5568d3;
+            transform: scale(1.05);
+        }
+
+        .promo-message {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: bold;
+            display: none;
+        }
+
+        .promo-message.success {
+            display: block;
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .promo-message.error {
+            display: block;
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* ===== LOYALTY PROGRAM ===== */
+        .loyalty-section {
+            background: var(--bg-primary);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 40px 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .loyalty-section h2 {
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .loyalty-tiers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .tier {
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .tier:hover {
+            transform: translateY(-10px) scale(1.05);
+        }
+
+        .tier.bronze {
+            background: linear-gradient(135deg, #CD7F32 0%, #E5A661 100%);
+            color: white;
+        }
+
+        .tier.silver {
+            background: linear-gradient(135deg, #C0C0C0 0%, #E0E0E0 100%);
+            color: #333;
+        }
+
+        .tier.gold {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+            color: #333;
+            animation: goldGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes goldGlow {
+            0%, 100% { box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3); }
+            50% { box-shadow: 0 10px 30px rgba(255, 215, 0, 0.6); }
+        }
+
+        .tier-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .tier h3 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .tier p {
+            margin-bottom: 15px;
+        }
+
+        .benefit {
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .referral-bonus {
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            text-align: left;
+        }
+
+        .referral-icon {
+            font-size: 3em;
+        }
+
+        .referral-text strong {
+            display: block;
+            font-size: 1.3em;
+            color: var(--text-primary);
+            margin-bottom: 5px;
+        }
+
+        .referral-text p {
+            color: var(--text-secondary);
+        }
+
+        /* ===== VIDEO REVIEWS ===== */
+        .video-reviews-section {
+            background: var(--bg-primary);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 40px 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .video-reviews-section h2 {
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .video-card {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-5px) scale(1.02);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .video-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .customer-name {
+            color: var(--text-primary);
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .video-caption {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+
+        /* ===== PROCESS SECTION ===== */
+        .process-section {
+            background: var(--bg-primary);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin: 40px 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .process-section h2 {
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .progress-steps {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUpStep 0.6s ease forwards;
+        }
+
+        .step:nth-child(2) { animation-delay: 0.2s; }
+        .step:nth-child(4) { animation-delay: 0.4s; }
+        .step:nth-child(6) { animation-delay: 0.6s; }
+        .step:nth-child(8) { animation-delay: 0.8s; }
+
+        @keyframes fadeInUpStep {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .step-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            animation: iconBounce 2s ease-in-out infinite;
+        }
+
+        @keyframes iconBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .step-content h3 {
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .step-content p {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+
+        .progress-line {
+            flex: 0 0 50px;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
+            animation: lineGrow 0.6s ease forwards;
+            transform-origin: left;
+            transform: scaleX(0);
+        }
+
+        .progress-line:nth-of-type(2) { animation-delay: 0.2s; }
+        .progress-line:nth-of-type(4) { animation-delay: 0.4s; }
+        .progress-line:nth-of-type(6) { animation-delay: 0.6s; }
+
+        @keyframes lineGrow {
+            to { transform: scaleX(1); }
+        }
+
+        /* ===== STICKY CALL BUTTON ===== */
+        .sticky-call-btn {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1em;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @media (max-width: 768px) {
+            .sticky-call-btn {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* ===== FORM ENHANCEMENTS ===== */
+        .form-field {
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .field-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2em;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .field-icon.show {
+            opacity: 1;
+        }
+
+        .field-icon.success {
+            color: #4CAF50;
+        }
+
+        .field-icon.error {
+            color: #f44336;
+        }
+
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 40px;
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .form-success.show {
+            display: block;
+            animation: fadeInUp 0.6s ease;
+        }
+
+        .success-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .form-success h3 {
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .form-success p {
+            color: var(--text-secondary);
+        }
+
+        .btn-loader {
+            display: none;
+        }
+
+        .btn-text.loading {
+            display: none;
+        }
+
+        .btn-loader.loading {
+            display: inline;
+        }
+
+        /* ===== CONFETTI CANVAS ===== */
+        #confettiCanvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* ===== GLASSMORPHISM ===== */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2em;
@@ -953,6 +1949,38 @@
             .floating-logo {
                 width: 40px !important;
                 height: 40px !important;
+            }
+
+            .countdown {
+                flex-direction: column;
+                gap: 5px;
+            }
+
+            .countdown-separator {
+                display: none;
+            }
+
+            .progress-steps {
+                flex-direction: column;
+            }
+
+            .progress-line {
+                width: 4px;
+                height: 50px;
+                flex: none;
+            }
+
+            .promo-content {
+                flex-direction: column;
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
             }
         }
     
@@ -1069,6 +2097,22 @@
     </style>
 </head>
 <body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle">
+        <button id="themeToggle" class="theme-btn" aria-label="Toggle dark mode">
+            <span class="theme-icon sun active">☀️</span>
+            <span class="theme-icon moon">🌙</span>
+        </button>
+    </div>
+
+    <!-- Confetti Canvas -->
+    <canvas id="confettiCanvas"></canvas>
+
+    <!-- Sticky Call Button for Mobile -->
+    <a href="tel:+33784390172" class="sticky-call-btn" aria-label="Call now">
+        📞 Позвонить
+    </a>
+
     <div class="floating-logos">
         <div class="floating-logo"></div>
         <div class="floating-logo"></div>
@@ -1088,6 +2132,30 @@
     </div>
 
     <div class="container">
+        <!-- Promo Banner with Countdown -->
+        <div class="promo-banner">
+            <div class="promo-content">
+                <span class="promo-icon">🔥</span>
+                <span class="promo-text">Специальное предложение заканчивается через:</span>
+                <div class="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="hours">--</span>
+                        <span class="countdown-label">часов</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="minutes">--</span>
+                        <span class="countdown-label">минут</span>
+                    </div>
+                    <div class="countdown-separator">:</div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="seconds">--</span>
+                        <span class="countdown-label">секунд</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <header>
             <h1>Service de Réparation de Téléphones</h1>
             <p>Expert en réparation rapide et professionnelle - MOURAD</p>
@@ -1128,6 +2196,150 @@
         </section>
 
         <div class="warning">Les tarifs peuvent varier selon le modèle et l'état du téléphone</div>
+
+        <!-- Stats Section with Animated Counters -->
+        <section class="stats-section">
+            <div class="stat-item">
+                <span class="stat-number" data-target="500">0</span>+
+                <span class="stat-label">Довольных клиентов</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="1200">0</span>+
+                <span class="stat-label">Ремонтов выполнено</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" data-target="98">0</span>%
+                <span class="stat-label">Успешных ремонтов</span>
+            </div>
+        </section>
+
+        <!-- Price Calculator Section -->
+        <section class="calculator-section">
+            <h2>💰 Калькулятор Стоимости</h2>
+            <div class="calculator-card">
+                <div class="calc-row">
+                    <label>📱 Модель телефона:</label>
+                    <select id="phoneModel" class="calc-select">
+                        <option value="">Выберите модель</option>
+                        <option value="iphone14" data-base="89">iPhone 14 Pro</option>
+                        <option value="iphone13" data-base="79">iPhone 13</option>
+                        <option value="samsung23" data-base="75">Samsung Galaxy S23</option>
+                        <option value="samsung22" data-base="69">Samsung Galaxy S22</option>
+                        <option value="xiaomi" data-base="59">Xiaomi</option>
+                        <option value="other" data-base="49">Другие модели</option>
+                    </select>
+                </div>
+                
+                <div class="calc-row">
+                    <label>🔧 Тип ремонта:</label>
+                    <select id="repairType" class="calc-select">
+                        <option value="">Выберите тип</option>
+                        <option value="screen" data-mult="1">Экран</option>
+                        <option value="battery" data-mult="0.6">Батарея</option>
+                        <option value="water" data-mult="1.2">Вода</option>
+                        <option value="audio" data-mult="0.8">Аудио</option>
+                        <option value="camera" data-mult="0.9">Камера</option>
+                    </select>
+                </div>
+                
+                <div class="calc-row">
+                    <label>
+                        <input type="checkbox" id="urgentRepair"> 
+                        ⚡ Срочный ремонт (+20€)
+                    </label>
+                </div>
+                
+                <div class="promo-section">
+                    <input type="text" id="promoCode" placeholder="🎁 Введите промокод" class="promo-input">
+                    <button type="button" id="applyPromo" class="promo-btn">Применить</button>
+                </div>
+                <div id="promoMessage" class="promo-message"></div>
+                
+                <div class="calc-result">
+                    <div class="price-display">
+                        <span class="price-label">Итоговая цена:</span>
+                        <span class="price-amount" id="totalPrice">--</span>
+                    </div>
+                    <button class="calc-book-btn" id="calcBookBtn" disabled>
+                        🔧 Заказать ремонт
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loyalty Program Section -->
+        <section class="loyalty-section">
+            <h2>🏆 Программа Лояльности</h2>
+            <div class="loyalty-tiers">
+                <div class="tier bronze">
+                    <div class="tier-icon">🥉</div>
+                    <h3>Бронза</h3>
+                    <p>1-4 ремонта</p>
+                    <div class="benefit">5% скидка</div>
+                </div>
+                <div class="tier silver">
+                    <div class="tier-icon">🥈</div>
+                    <h3>Серебро</h3>
+                    <p>5-9 ремонтов</p>
+                    <div class="benefit">10% скидка</div>
+                </div>
+                <div class="tier gold">
+                    <div class="tier-icon">🥇</div>
+                    <h3>Золото</h3>
+                    <p>10+ ремонтов</p>
+                    <div class="benefit">20% скидка</div>
+                </div>
+            </div>
+            
+            <div class="referral-bonus">
+                <div class="referral-icon">🎁</div>
+                <div class="referral-text">
+                    <strong>Приведи друга</strong>
+                    <p>Получи 15€ на следующий ремонт!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Repair Process Section -->
+        <section class="process-section">
+            <h2>📈 Как Мы Работаем</h2>
+            <div class="progress-steps">
+                <div class="step">
+                    <div class="step-icon">📞</div>
+                    <div class="step-content">
+                        <h3>1. Запись</h3>
+                        <p>Онлайн или по телефону</p>
+                    </div>
+                </div>
+                <div class="progress-line"></div>
+                
+                <div class="step">
+                    <div class="step-icon">🔍</div>
+                    <div class="step-content">
+                        <h3>2. Диагностика</h3>
+                        <p>Бесплатная проверка - 10 мин</p>
+                    </div>
+                </div>
+                <div class="progress-line"></div>
+                
+                <div class="step">
+                    <div class="step-icon">🔧</div>
+                    <div class="step-content">
+                        <h3>3. Ремонт</h3>
+                        <p>30-60 минут</p>
+                    </div>
+                </div>
+                <div class="progress-line"></div>
+                
+                <div class="step">
+                    <div class="step-icon">✅</div>
+                    <div class="step-content">
+                        <h3>4. Готово!</h3>
+                        <p>С гарантией 6 месяцев</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section class="form-section">
             <h2>Réserver un Rendez-Vous</h2>
@@ -1186,8 +2398,47 @@
                 </select>
                 
                 <textarea id="descProbleme" rows="4" placeholder="Description du problème" aria-label="Description"></textarea>
-                <button type="submit">Envoyer la Demande</button>
+                
+                <!-- Visual Appointment Picker -->
+                <div class="appointment-picker">
+                    <h3>Выберите удобное время</h3>
+                    <div class="date-picker">
+                        <button type="button" class="date-btn" data-date="today">
+                            <span class="day">Сегодня</span>
+                            <span class="slots">🟢 2 слота</span>
+                        </button>
+                        <button type="button" class="date-btn" data-date="tomorrow">
+                            <span class="day">Завтра</span>
+                            <span class="slots">🟡 5 слотов</span>
+                        </button>
+                        <button type="button" class="date-btn" data-date="dayafter">
+                            <span class="day">Послезавтра</span>
+                            <span class="slots">🟢 7 слотов</span>
+                        </button>
+                    </div>
+                    
+                    <div class="time-slots" id="timeSlots">
+                        <button type="button" class="time-slot" data-time="10:00">10:00</button>
+                        <button type="button" class="time-slot" data-time="11:30">11:30</button>
+                        <button type="button" class="time-slot booked" disabled data-time="13:00">13:00 ❌</button>
+                        <button type="button" class="time-slot" data-time="15:00">15:00</button>
+                        <button type="button" class="time-slot" data-time="16:30">16:30</button>
+                    </div>
+                    <input type="hidden" id="selectedDateTime" name="selectedDateTime">
+                </div>
+                
+                <button type="submit" id="submitBtn">
+                    <span class="btn-text">Envoyer la Demande</span>
+                    <span class="btn-loader">⏳ Отправка...</span>
+                </button>
             </form>
+            
+            <!-- Success Message -->
+            <div class="form-success" id="formSuccess">
+                <div class="success-icon">✅</div>
+                <h3>Спасибо!</h3>
+                <p>Мы свяжемся с вами в течение 15 минут</p>
+            </div>
         </section>
 
         <section class="faq-section">
@@ -1231,6 +2482,101 @@
             </div>
         </section>
 
+        <!-- Before/After Gallery -->
+        <section class="gallery-section">
+            <h2>📸 Наши Работы: До и После</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="comparison-slider">
+                        <div class="before-image" style="background-image: url('https://via.placeholder.com/400x300?text=Before+Repair')">
+                            <span class="label">До</span>
+                        </div>
+                        <div class="after-image" style="background-image: url('https://via.placeholder.com/400x300?text=After+Repair')">
+                            <span class="label">После</span>
+                        </div>
+                        <input type="range" min="0" max="100" value="50" class="slider-handle">
+                    </div>
+                    <p class="gallery-caption">iPhone 13 - Замена экрана</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="comparison-slider">
+                        <div class="before-image" style="background-image: url('https://via.placeholder.com/400x300?text=Screen+Broken')">
+                            <span class="label">До</span>
+                        </div>
+                        <div class="after-image" style="background-image: url('https://via.placeholder.com/400x300?text=Screen+Fixed')">
+                            <span class="label">После</span>
+                        </div>
+                        <input type="range" min="0" max="100" value="50" class="slider-handle">
+                    </div>
+                    <p class="gallery-caption">Samsung S23 - Ремонт батареи</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="comparison-slider">
+                        <div class="before-image" style="background-image: url('https://via.placeholder.com/400x300?text=Water+Damage')">
+                            <span class="label">До</span>
+                        </div>
+                        <div class="after-image" style="background-image: url('https://via.placeholder.com/400x300?text=Fully+Restored')">
+                            <span class="label">После</span>
+                        </div>
+                        <input type="range" min="0" max="100" value="50" class="slider-handle">
+                    </div>
+                    <p class="gallery-caption">Xiaomi - Повреждение водой</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Video Testimonials -->
+        <section class="video-reviews-section">
+            <h2>🎥 Видео-Отзывы</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="customer-name">⭐⭐⭐⭐⭐ Jean-Pierre</div>
+                        <p class="video-caption">iPhone 13 - Замена экрана</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="customer-name">⭐⭐⭐⭐⭐ Marie</div>
+                        <p class="video-caption">Samsung S22 - Замена батареи</p>
+                    </div>
+                </div>
+                <div class="video-card">
+                    <div class="video-wrapper">
+                        <iframe 
+                            src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <div class="customer-name">⭐⭐⭐⭐⭐ Ahmed</div>
+                        <p class="video-caption">iPhone 14 - Повреждение водой</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <div id="pwaInstallContainer" class="pwa-install-container">
             <button id="installBtn" class="install-btn-pwa">
                 TÉLÉCHARGER NOTRE APPLICATION SUR TÉLÉPHONE Android
@@ -1239,6 +2585,13 @@
 
         <section class="brands-section">
             <h2>Nous Réparons Toutes Les Marques</h2>
+            
+            <!-- Live Model Search -->
+            <div class="model-search">
+                <input type="text" id="modelSearch" placeholder="🔎 Найти вашу модель телефона..." class="search-input">
+                <div id="searchResults" class="search-results"></div>
+            </div>
+            
             <div class="brands-grid">
                 <div class="brand-item">Apple iPhone</div>
                 <div class="brand-item">Samsung</div>
@@ -1459,6 +2812,360 @@
             
             const whatsappUrl = `https://wa.me/33784390172?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
+            
+            // Show confetti
+            launchConfetti();
+            
+            // Show success message
+            setTimeout(() => {
+                const form = document.getElementById('repairForm');
+                const successMsg = document.getElementById('formSuccess');
+                form.style.display = 'none';
+                successMsg.classList.add('show');
+            }, 500);
+        });
+
+        // ===== DARK MODE TOGGLE =====
+        const themeToggle = document.getElementById('themeToggle');
+        const sunIcon = document.querySelector('.theme-icon.sun');
+        const moonIcon = document.querySelector('.theme-icon.moon');
+        
+        // Load saved theme
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        if (currentTheme === 'dark') {
+            sunIcon.classList.remove('active');
+            moonIcon.classList.add('active');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            const theme = document.documentElement.getAttribute('data-theme');
+            const newTheme = theme === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            sunIcon.classList.toggle('active');
+            moonIcon.classList.toggle('active');
+        });
+
+        // ===== COUNTDOWN TIMER =====
+        function updateCountdown() {
+            const now = new Date();
+            const endOfDay = new Date();
+            endOfDay.setHours(23, 59, 59, 999);
+            
+            const diff = endOfDay - now;
+            
+            const hours = Math.floor(diff / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+        
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // ===== PRICE CALCULATOR =====
+        const phoneModelSelect = document.getElementById('phoneModel');
+        const repairTypeSelect = document.getElementById('repairType');
+        const urgentCheckbox = document.getElementById('urgentRepair');
+        const totalPriceDisplay = document.getElementById('totalPrice');
+        const calcBookBtn = document.getElementById('calcBookBtn');
+        let discountPercent = 0;
+        let discountFixed = 0;
+        
+        function calculatePrice() {
+            const phoneOption = phoneModelSelect.options[phoneModelSelect.selectedIndex];
+            const repairOption = repairTypeSelect.options[repairTypeSelect.selectedIndex];
+            
+            if (!phoneOption || !repairOption || !phoneOption.dataset.base || !repairOption.dataset.mult) {
+                totalPriceDisplay.textContent = '--';
+                calcBookBtn.disabled = true;
+                return;
+            }
+            
+            const basePrice = parseFloat(phoneOption.dataset.base);
+            const multiplier = parseFloat(repairOption.dataset.mult);
+            const urgentFee = urgentCheckbox.checked ? 20 : 0;
+            
+            let total = (basePrice * multiplier) + urgentFee;
+            
+            // Apply discounts
+            if (discountPercent > 0) {
+                total = total * (1 - discountPercent / 100);
+            }
+            if (discountFixed > 0) {
+                total = Math.max(0, total - discountFixed);
+            }
+            
+            total = Math.round(total);
+            
+            // Animate price update
+            animateCounter(totalPriceDisplay, 0, total, 500);
+            
+            // Color code price
+            totalPriceDisplay.classList.remove('affordable', 'moderate', 'expensive');
+            if (total < 60) {
+                totalPriceDisplay.classList.add('affordable');
+            } else if (total < 90) {
+                totalPriceDisplay.classList.add('moderate');
+            } else {
+                totalPriceDisplay.classList.add('expensive');
+            }
+            
+            calcBookBtn.disabled = false;
+        }
+        
+        phoneModelSelect.addEventListener('change', calculatePrice);
+        repairTypeSelect.addEventListener('change', calculatePrice);
+        urgentCheckbox.addEventListener('change', calculatePrice);
+        
+        calcBookBtn.addEventListener('click', () => {
+            // Scroll to booking form
+            document.querySelector('.form-section').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        // ===== PROMO CODE SYSTEM =====
+        const promoCodes = {
+            'FIRST10': { discount: 10, type: 'percent', message: '10% скидка!' },
+            'WELCOME20': { discount: 20, type: 'fixed', message: '20€ скидка!' },
+            'MOURAD15': { discount: 15, type: 'percent', message: '15% скидка!' }
+        };
+        
+        document.getElementById('applyPromo').addEventListener('click', () => {
+            const promoInput = document.getElementById('promoCode');
+            const promoMessage = document.getElementById('promoMessage');
+            const code = promoInput.value.toUpperCase().trim();
+            
+            if (promoCodes[code]) {
+                const promo = promoCodes[code];
+                promoMessage.textContent = '✅ ' + promo.message;
+                promoMessage.className = 'promo-message success';
+                
+                if (promo.type === 'percent') {
+                    discountPercent = promo.discount;
+                    discountFixed = 0;
+                } else {
+                    discountFixed = promo.discount;
+                    discountPercent = 0;
+                }
+                
+                calculatePrice();
+            } else {
+                promoMessage.textContent = '❌ Неверный промокод';
+                promoMessage.className = 'promo-message error';
+                discountPercent = 0;
+                discountFixed = 0;
+                calculatePrice();
+            }
+        });
+
+        // ===== ANIMATED COUNTERS =====
+        function animateCounter(element, start, end, duration) {
+            const startTime = Date.now();
+            const range = end - start;
+            
+            function update() {
+                const now = Date.now();
+                const progress = Math.min((now - startTime) / duration, 1);
+                const easeProgress = progress * (2 - progress); // ease out
+                const current = Math.floor(start + (range * easeProgress));
+                
+                if (element.id === 'totalPrice') {
+                    element.textContent = current + '€';
+                } else {
+                    element.textContent = current;
+                }
+                
+                if (progress < 1) {
+                    requestAnimationFrame(update);
+                }
+            }
+            
+            update();
+        }
+        
+        // Animate stats on scroll
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                    entry.target.classList.add('animated');
+                    const target = parseInt(entry.target.dataset.target);
+                    animateCounter(entry.target, 0, target, 2000);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        document.querySelectorAll('.stat-number').forEach(stat => {
+            statsObserver.observe(stat);
+        });
+
+        // ===== LIVE MODEL SEARCH =====
+        const models = [
+            {name: "iPhone 14 Pro", price: "от 89€", type: "Apple"},
+            {name: "iPhone 13", price: "от 79€", type: "Apple"},
+            {name: "iPhone 12", price: "от 69€", type: "Apple"},
+            {name: "Samsung Galaxy S23", price: "от 75€", type: "Samsung"},
+            {name: "Samsung Galaxy S22", price: "от 69€", type: "Samsung"},
+            {name: "Samsung Galaxy A54", price: "от 59€", type: "Samsung"},
+            {name: "Xiaomi 13", price: "от 59€", type: "Xiaomi"},
+            {name: "Xiaomi Redmi Note 12", price: "от 49€", type: "Xiaomi"},
+            {name: "Huawei P50", price: "от 65€", type: "Huawei"},
+            {name: "OnePlus 11", price: "от 69€", type: "OnePlus"}
+        ];
+        
+        const modelSearchInput = document.getElementById('modelSearch');
+        const searchResults = document.getElementById('searchResults');
+        let searchTimeout;
+        
+        modelSearchInput.addEventListener('input', (e) => {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(() => {
+                const query = e.target.value.toLowerCase().trim();
+                
+                if (query.length < 2) {
+                    searchResults.classList.remove('active');
+                    return;
+                }
+                
+                const matches = models.filter(model => 
+                    model.name.toLowerCase().includes(query) ||
+                    model.type.toLowerCase().includes(query)
+                );
+                
+                if (matches.length > 0) {
+                    searchResults.innerHTML = matches.map(model => `
+                        <div class="search-result-item" data-model="${model.name}">
+                            <span class="result-name">${highlightText(model.name, query)}</span>
+                            <span class="result-type">${model.type}</span>
+                            <span class="result-price">${model.price}</span>
+                        </div>
+                    `).join('');
+                    searchResults.classList.add('active');
+                } else {
+                    searchResults.innerHTML = '<div class="search-result-item">Ничего не найдено</div>';
+                    searchResults.classList.add('active');
+                }
+            }, 300);
+        });
+        
+        searchResults.addEventListener('click', (e) => {
+            const item = e.target.closest('.search-result-item');
+            if (item && item.dataset.model) {
+                modelSearchInput.value = item.dataset.model;
+                searchResults.classList.remove('active');
+                // Could auto-fill calculator here
+            }
+        });
+        
+        function highlightText(text, query) {
+            const regex = new RegExp(`(${query})`, 'gi');
+            return text.replace(regex, '<span class="highlight">$1</span>');
+        }
+
+        // ===== BEFORE/AFTER GALLERY SLIDERS =====
+        document.querySelectorAll('.comparison-slider').forEach(slider => {
+            const handle = slider.querySelector('.slider-handle');
+            const afterImage = slider.querySelector('.after-image');
+            
+            handle.addEventListener('input', (e) => {
+                const value = e.target.value;
+                afterImage.style.clipPath = `polygon(${value}% 0, 100% 0, 100% 100%, ${value}% 100%)`;
+            });
+        });
+
+        // ===== APPOINTMENT PICKER =====
+        const dateBtns = document.querySelectorAll('.date-btn');
+        const timeSlots = document.querySelectorAll('.time-slot:not(.booked)');
+        const selectedDateTimeInput = document.getElementById('selectedDateTime');
+        let selectedDate = '';
+        let selectedTime = '';
+        
+        dateBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                dateBtns.forEach(b => b.classList.remove('selected'));
+                btn.classList.add('selected');
+                selectedDate = btn.dataset.date;
+                updateSelectedDateTime();
+            });
+        });
+        
+        timeSlots.forEach(slot => {
+            slot.addEventListener('click', () => {
+                timeSlots.forEach(s => s.classList.remove('selected'));
+                slot.classList.add('selected');
+                selectedTime = slot.dataset.time;
+                updateSelectedDateTime();
+            });
+        });
+        
+        function updateSelectedDateTime() {
+            if (selectedDate && selectedTime) {
+                selectedDateTimeInput.value = `${selectedDate} ${selectedTime}`;
+            }
+        }
+
+        // ===== CONFETTI ANIMATION =====
+        function launchConfetti() {
+            const canvas = document.getElementById('confettiCanvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            canvas.style.display = 'block';
+            
+            const confetti = [];
+            const colors = ['#9333ea', '#4CAF50', '#FFD700', '#ff6b6b', '#4ecdc4'];
+            
+            for (let i = 0; i < 150; i++) {
+                confetti.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height - canvas.height,
+                    r: Math.random() * 6 + 4,
+                    d: Math.random() * 10 + 5,
+                    color: colors[Math.floor(Math.random() * colors.length)],
+                    tilt: Math.random() * 10 - 5,
+                    tiltAngle: 0
+                });
+            }
+            
+            let animationId;
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                confetti.forEach((c, i) => {
+                    ctx.beginPath();
+                    ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2);
+                    ctx.fillStyle = c.color;
+                    ctx.fill();
+                    
+                    c.y += c.d;
+                    c.x += Math.sin(c.tiltAngle);
+                    c.tiltAngle += 0.1;
+                    
+                    if (c.y > canvas.height) {
+                        confetti.splice(i, 1);
+                    }
+                });
+                
+                if (confetti.length > 0) {
+                    animationId = requestAnimationFrame(draw);
+                } else {
+                    canvas.style.display = 'none';
+                    cancelAnimationFrame(animationId);
+                }
+            }
+            
+            draw();
+        }
+
+        // Close search results when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.model-search')) {
+                searchResults.classList.remove('active');
+            }
         });
     </script>
 </body>
