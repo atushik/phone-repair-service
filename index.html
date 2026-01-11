@@ -1204,35 +1204,40 @@
                     .sticky-mobile-buttons { display: flex; }
                     body { padding-bottom: 60px; }
                 }
-                // Прокрутка к форме по кнопке "Записаться"
-                document.addEventListener('DOMContentLoaded', function() {
-                    document.querySelectorAll('.sticky-btn[href^="#repairForm"]').forEach(btn => {
-                        btn.addEventListener('click', function(e) {
-                            e.preventDefault();
-                            const form = document.getElementById('repairForm');
-                            if (form) form.scrollIntoView({behavior:'smooth'});
-                        });
+            </style>
+            <script>
+            // Прокрутка к форме по кнопке "S'inscrire"
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelectorAll('.sticky-btn[href^="#repairForm"]').forEach(btn => {
+                    btn.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const form = document.getElementById('repairForm');
+                        if (form) form.scrollIntoView({behavior:'smooth'});
                     });
                 });
+            });
+            </script>
         <header>
-            <button class="theme-toggle" id="themeToggle" title="Сменить тему" aria-label="Сменить тему">🌙</button>
-                    // Тёмная тема
-                    const themeToggle = document.getElementById('themeToggle');
-                    function setTheme(dark) {
-                        document.body.classList.toggle('dark', dark);
-                        themeToggle.textContent = dark ? '☀️' : '🌙';
-                        localStorage.setItem('theme', dark ? 'dark' : 'light');
-                    }
-                    themeToggle.addEventListener('click', () => {
-                        setTheme(!document.body.classList.contains('dark'));
-                    });
-                    // Инициализация темы при загрузке
-                    (function(){
-                        const saved = localStorage.getItem('theme');
-                        if(saved === 'dark' || (saved === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                            setTheme(true);
-                        }
-                    })();
+            <button class="theme-toggle" id="themeToggle" title="Changer le thème" aria-label="Changer le thème">🌙</button>
+            <script>
+            // Thème sombre
+            const themeToggle = document.getElementById('themeToggle');
+            function setTheme(dark) {
+                document.body.classList.toggle('dark', dark);
+                themeToggle.textContent = dark ? '☀️' : '🌙';
+                localStorage.setItem('theme', dark ? 'dark' : 'light');
+            }
+            themeToggle.addEventListener('click', () => {
+                setTheme(!document.body.classList.contains('dark'));
+            });
+            // Initialisation du thème au chargement
+            (function(){
+                const saved = localStorage.getItem('theme');
+                if(saved === 'dark' || (saved === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    setTheme(true);
+                }
+            })();
+            </script>
             <h1>Service de Réparation de Téléphones</h1>
             <p>Expert en réparation rapide et professionnelle - MOURAD</p>
             <a href="tel:+33784390172" class="cta-button">Appelez Maintenant</a>
@@ -1273,69 +1278,73 @@
 
         <!-- Калькулятор цен -->
         <section class="form-section" id="price-calculator-section">
-            <h2>Калькулятор цен</h2>
+            <h2>Calculateur de prix</h2>
             <form id="priceCalculatorForm" style="max-width:500px;margin:auto;">
-                <label for="modelSearch">Поиск модели</label>
-                <input type="text" id="modelSearch" placeholder="Начните вводить модель..." autocomplete="off" style="width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:1.5px solid #e0e0e0;">
-                <label for="modelSelect">Модель телефона</label>
+                <label for="modelSearch">Recherche de modèle</label>
+                <input type="text" id="modelSearch" placeholder="Commencez à saisir le modèle..." autocomplete="off" style="width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:1.5px solid #e0e0e0;">
+                <label for="modelSelect">Modèle de téléphone</label>
                 <select id="modelSelect" required>
-                    <option value="">Выберите модель</option>
+                    <option value="">Choisissez le modèle</option>
                     <option value="iphone">iPhone</option>
                     <option value="samsung">Samsung</option>
                     <option value="xiaomi">Xiaomi</option>
                     <option value="huawei">Huawei</option>
                     <option value="oppo">Oppo</option>
                 </select>
-                <label for="repairTypeSelect">Тип ремонта</label>
+                <label for="repairTypeSelect">Type de réparation</label>
                 <select id="repairTypeSelect" required>
-                    <option value="">Выберите тип ремонта</option>
-                    <option value="screen">Экран</option>
-                    <option value="battery">Батарея</option>
-                    <option value="camera">Камера</option>
-                    <option value="audio">Аудио</option>
-                    <option value="charge">Зарядка</option>
-                    <option value="water">Влага</option>
+                    <option value="">Choisissez le type de réparation</option>
+                    <option value="screen">Écran</option>
+                    <option value="battery">Batterie</option>
+                    <option value="camera">Caméra</option>
+                    <option value="audio">Audio</option>
+                    <option value="charge">Charge</option>
+                    <option value="water">Eau</option>
                 </select>
-                <label for="promoInput">Промокод</label>
-                <input type="text" id="promoInput" placeholder="Введите промокод" style="width:100%;padding:10px;margin-bottom:8px;border-radius:8px;border:1.5px solid #e0e0e0;">
+                <label for="promoInput">Code promo</label>
+                <input type="text" id="promoInput" placeholder="Entrez le code promo" style="width:100%;padding:10px;margin-bottom:8px;border-radius:8px;border:1.5px solid #e0e0e0;">
                 <div id="promoMsg" style="font-size:0.98em;margin-bottom:8px;"></div>
                 <div style="margin:20px 0;font-size:1.3em;">
-                    <span>Цена: </span><span id="calcPrice">—</span> €
+                    <span>Prix : </span><span id="calcPrice">—</span> €
                 </div>
+            </form>
+            <style>
                 #promoMsg { min-height: 18px; }
                 #promoMsg.valid { color: #25D366; }
                 #promoMsg.invalid { color: #ff0844; }
-                    // Промокоды
-                    const promoInput = document.getElementById('promoInput');
-                    const promoMsg = document.getElementById('promoMsg');
-                    let promoDiscount = 0;
-                    const promoCodes = {
-                        'ALEX10': 10, // 10% скидка
-                        'REPAIR5': 5, // 5% скидка
-                        'VIP20': 20
-                    };
-            </form>
-                // Live-поиск по моделям
-                (function(){
-                    const modelSearch = document.getElementById('modelSearch');
-                    const modelSelect = document.getElementById('modelSelect');
-                    if (!modelSearch || !modelSelect) return;
-                    const allOptions = Array.from(modelSelect.options).filter(o => o.value);
-                    modelSearch.addEventListener('input', function() {
-                        const val = this.value.trim().toLowerCase();
-                        modelSelect.innerHTML = '<option value="">Выберите модель</option>';
-                        allOptions.forEach(opt => {
-                            if (!val || opt.text.toLowerCase().includes(val)) {
-                                modelSelect.appendChild(opt.cloneNode(true));
-                            }
-                        });
+            </style>
+            <script>
+            // Codes promo
+            const promoInput = document.getElementById('promoInput');
+            const promoMsg = document.getElementById('promoMsg');
+            let promoDiscount = 0;
+            const promoCodes = {
+                'ALEX10': 10,
+                'REPAIR5': 5,
+                'VIP20': 20
+            };
+            // Recherche en direct par modèle
+            (function(){
+                const modelSearch = document.getElementById('modelSearch');
+                const modelSelect = document.getElementById('modelSelect');
+                if (!modelSearch || !modelSelect) return;
+                const allOptions = Array.from(modelSelect.options).filter(o => o.value);
+                modelSearch.addEventListener('input', function() {
+                    const val = this.value.trim().toLowerCase();
+                    modelSelect.innerHTML = '<option value="">Choisissez le modèle</option>';
+                    allOptions.forEach(opt => {
+                        if (!val || opt.text.toLowerCase().includes(val)) {
+                            modelSelect.appendChild(opt.cloneNode(true));
+                        }
                     });
-                })();
+                });
+            })();
+            </script>
         </section>
 
         <!-- Галерея до/после -->
         <section class="form-section" id="before-after-gallery">
-            <h2>Галерея до/после</h2>
+            <h2>Galerie avant/après</h2>
             <div class="before-after-slider" style="max-width:400px;margin:auto;">
                 <div class="ba-container">
                     <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=400&q=80" alt="Avant" class="ba-img ba-img-before">
@@ -1345,67 +1354,71 @@
                     <div class="ba-handle" id="baHandle"></div>
                 </div>
                 <div style="display:flex;justify-content:space-between;font-size:0.95em;margin-top:8px;">
-                    <span>До</span><span>После</span>
+                    <span>Avant</span><span>Après</span>
                 </div>
             </div>
         </section>
 
         <!-- Микроанимации: Счётчики -->
         <section class="form-section" id="counters-section" style="text-align:center;">
-            <h2>Наши достижения</h2>
+            <h2>Nos réalisations</h2>
             <div style="display:flex;justify-content:center;gap:40px;flex-wrap:wrap;">
                 <div>
                     <div class="counter" data-target="1000" style="font-size:2.5em;font-weight:bold;">0</div>
-                    <div>Ремонтов</div>
+                    <div>Réparations</div>
                 </div>
                 <div>
                     <div class="counter" data-target="500" style="font-size:2.5em;font-weight:bold;">0</div>
-                    <div>Довольных клиентов</div>
+                    <div>Clients satisfaits</div>
                 </div>
                 <div>
                     <div class="counter" data-target="8" style="font-size:2.5em;font-weight:bold;">0</div>
-                    <div>Лет опыта</div>
+                    <div>Années d'expérience</div>
                 </div>
             </div>
         </section>
 
         <!-- Программа лояльности -->
         <section class="form-section" id="loyalty-section" style="max-width:420px;margin:32px auto 0 auto;text-align:center;">
-            <h2>Программа лояльности</h2>
-            <div style="margin-bottom:12px;">Сделайте 5 ремонтов — получите <b>бесплатный аксессуар</b> или скидку!</div>
+            <h2>Programme de fidélité</h2>
+            <div style="margin-bottom:12px;">Effectuez 5 réparations — recevez un <b>accessoire gratuit</b> ou une remise !</div>
             <div id="loyaltyProgressBar" style="background:#e0e0e0;border-radius:12px;height:28px;overflow:hidden;position:relative;">
                 <div id="loyaltyBar" style="background:linear-gradient(90deg,#667eea,#ffd700);height:100%;width:0%;transition:width 0.7s;"></div>
                 <div id="loyaltyText" style="position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-weight:bold;color:#232526;"></div>
             </div>
             <button id="loyaltyAddBtn" style="margin-top:16px;padding:8px 24px;border-radius:8px;background:#667eea;color:#fff;font-weight:bold;border:none;cursor:pointer;">Добавить ремонт</button>
+                        <button id="loyaltyAddBtn" style="margin-top:16px;padding:8px 24px;border-radius:8px;background:#667eea;color:#fff;font-weight:bold;border:none;cursor:pointer;">Ajouter une réparation</button>
             <div id="loyaltyRewardMsg" style="margin-top:14px;font-size:1.1em;color:#25D366;display:none;">Поздравляем! Ваш подарок ждёт вас 🎁</div>
+                    <div id="loyaltyRewardMsg" style="margin-top:14px;font-size:1.1em;color:#25D366;display:none;">Félicitations ! Votre cadeau vous attend 🎁</div>
         </section>
 
         <!-- Видео-секция -->
         <section class="form-section" id="video-section" style="max-width:600px;margin:32px auto 0 auto;text-align:center;">
-            <h2>Как мы работаем</h2>
+            <h2>Comment ça marche</h2>
             <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,0.10);margin-bottom:12px;">
                 <iframe src="https://www.youtube.com/embed/2Vv-BfVoq4g" title="YouTube video" frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
             </div>
             <div style="font-size:1em;color:#7f8c8d;">Посмотрите короткое видео о нашем сервисе и процессе ремонта</div>
+                    <div style="font-size:1em;color:#7f8c8d;">Regardez une courte vidéo sur notre service et le processus de réparation</div>
         </section>
 
         <!-- Прогресс-бар ремонта -->
         <section class="form-section" id="repair-progress-section" style="max-width:600px;margin:32px auto 0 auto;text-align:center;">
-            <h2>Этапы ремонта</h2>
+            <h2>Étapes de réparation</h2>
             <div id="repairProgressBar" style="display:flex;align-items:center;justify-content:space-between;gap:0.5em;margin:24px 0 12px 0;">
-                <div class="progress-step done"><span>1</span><div>Диагностика</div></div>
+                <div class="progress-step done"><span>1</span><div>Diagnostic</div></div>
                 <div class="progress-line"></div>
-                <div class="progress-step done"><span>2</span><div>Согласование</div></div>
+                <div class="progress-step done"><span>2</span><div>Accord</div></div>
                 <div class="progress-line"></div>
-                <div class="progress-step active"><span>3</span><div>Ремонт</div></div>
+                <div class="progress-step active"><span>3</span><div>Réparation</div></div>
                 <div class="progress-line"></div>
-                <div class="progress-step"><span>4</span><div>Готово!</div></div>
+                <div class="progress-step"><span>4</span><div>Terminé !</div></div>
             </div>
-            <button id="nextRepairStep" style="padding:8px 24px;border-radius:8px;background:#667eea;color:#fff;font-weight:bold;border:none;cursor:pointer;">Следующий этап</button>
+            <button id="nextRepairStep" style="padding:8px 24px;border-radius:8px;background:#667eea;color:#fff;font-weight:bold;border:none;cursor:pointer;">Étape suivante</button>
         </section>
 
         /* Прогресс-бар ремонта */
+        <style>
         #repairProgressBar { user-select:none; }
         .progress-step {
             display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -1429,7 +1442,9 @@
         body.dark .progress-step.active span { background:#ffd700; color:#232526; }
         body.dark .progress-line { background:#232526; }
         body.dark .progress-step div { color:#ffd700; }
-        // Прогресс-бар ремонта: смена этапов
+        </style>
+        <script>
+        // Changement d'étape du progrès réparation
         (function(){
             const steps = Array.from(document.querySelectorAll('#repairProgressBar .progress-step'));
             const btn = document.getElementById('nextRepairStep');
@@ -1445,6 +1460,7 @@
                 }
             });
         })();
+        </script>
 
     /* Программа лояльности */
     #loyalty-section { box-shadow: 0 4px 16px rgba(102,126,234,0.07); }
