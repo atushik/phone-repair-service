@@ -780,8 +780,12 @@
             box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
         }
 
-        .custom-select-placeholder {
+        .custom-select-text {
             color: #999;
+        }
+
+        .custom-select-text.has-value {
+            color: #333;
         }
 
         .custom-select-arrow {
@@ -892,9 +896,9 @@
             }
         }
 
-        /* Stop pulse on hover */
-        .custom-option:hover .custom-option-emoji {
-            animation: emojiHoverEffect 0.6s ease !important;
+        /* Stop pulse on hover - override with more specific selector */
+        .custom-select-dropdown.active .custom-option:hover .custom-option-emoji {
+            animation: emojiHoverEffect 0.6s ease;
         }
 
         /* Hide native select */
@@ -1123,37 +1127,37 @@
                 <!-- Custom Select -->
                 <div class="custom-select-wrapper">
                     <div class="custom-select" id="customSelectTrigger" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Type de Réparation">
-                        <span class="custom-select-placeholder">Type de Réparation</span>
+                        <span class="custom-select-text">Type de Réparation</span>
                         <span class="custom-select-arrow">▼</span>
                     </div>
                     <div class="custom-select-dropdown" id="customSelectDropdown" role="listbox">
                         <div class="custom-option" data-value="Réparation d'Écran" role="option" tabindex="0">
                             <span class="custom-option-emoji">📱</span>
-                            <span>Réparation d'Écran</span>
+                            <span class="custom-option-text">Réparation d'Écran</span>
                         </div>
                         <div class="custom-option" data-value="Changement de Batterie" role="option" tabindex="0">
                             <span class="custom-option-emoji">🔋</span>
-                            <span>Changement de Batterie</span>
+                            <span class="custom-option-text">Changement de Batterie</span>
                         </div>
                         <div class="custom-option" data-value="Dégâts des Eaux" role="option" tabindex="0">
                             <span class="custom-option-emoji">💧</span>
-                            <span>Dégâts des Eaux</span>
+                            <span class="custom-option-text">Dégâts des Eaux</span>
                         </div>
                         <div class="custom-option" data-value="Problèmes Audio" role="option" tabindex="0">
                             <span class="custom-option-emoji">🔊</span>
-                            <span>Problèmes Audio</span>
+                            <span class="custom-option-text">Problèmes Audio</span>
                         </div>
                         <div class="custom-option" data-value="Réparation Caméra" role="option" tabindex="0">
                             <span class="custom-option-emoji">📸</span>
-                            <span>Réparation Caméra</span>
+                            <span class="custom-option-text">Réparation Caméra</span>
                         </div>
                         <div class="custom-option" data-value="Problèmes de Charge" role="option" tabindex="0">
                             <span class="custom-option-emoji">⚡</span>
-                            <span>Problèmes de Charge</span>
+                            <span class="custom-option-text">Problèmes de Charge</span>
                         </div>
                         <div class="custom-option" data-value="Nettoyage" role="option" tabindex="0">
                             <span class="custom-option-emoji">✨</span>
-                            <span>Nettoyage</span>
+                            <span class="custom-option-text">Nettoyage</span>
                         </div>
                     </div>
                 </div>
@@ -1310,6 +1314,8 @@
         // Custom Select Functionality
         const customSelectTrigger = document.getElementById('customSelectTrigger');
         const customSelectDropdown = document.getElementById('customSelectDropdown');
+        const customSelectWrapper = document.querySelector('.custom-select-wrapper');
+        const customSelectText = customSelectTrigger.querySelector('.custom-select-text');
         const nativeSelect = document.getElementById('serviceType');
         const customOptions = document.querySelectorAll('.custom-option');
 
@@ -1339,11 +1345,11 @@
         function selectOption(optionElement) {
             const value = optionElement.getAttribute('data-value');
             const emoji = optionElement.querySelector('.custom-option-emoji').textContent;
-            const text = optionElement.querySelector('span:last-child').textContent;
+            const text = optionElement.querySelector('.custom-option-text').textContent;
             
             // Update custom select display
-            customSelectTrigger.querySelector('.custom-select-placeholder').textContent = emoji + ' ' + text;
-            customSelectTrigger.querySelector('.custom-select-placeholder').classList.remove('custom-select-placeholder');
+            customSelectText.textContent = emoji + ' ' + text;
+            customSelectText.classList.add('has-value');
             
             // Update native select value
             nativeSelect.value = value;
@@ -1401,7 +1407,7 @@
 
         // Close dropdown when clicking outside
         document.addEventListener('click', function(e) {
-            if (!customSelectTrigger.contains(e.target) && !customSelectDropdown.contains(e.target)) {
+            if (!customSelectWrapper.contains(e.target)) {
                 closeDropdown();
             }
         });
@@ -1417,8 +1423,12 @@
             
             // Validate that service type is selected
             if (!service) {
-                alert('Veuillez sélectionner un type de réparation');
+                // Focus the custom select and add visual feedback
                 customSelectTrigger.focus();
+                customSelectTrigger.style.borderColor = '#ff4444';
+                setTimeout(() => {
+                    customSelectTrigger.style.borderColor = '';
+                }, 2000);
                 return;
             }
             
