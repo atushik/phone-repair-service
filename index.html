@@ -1,6 +1,55 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+            <!-- SEO: Open Graph, Twitter, Canonical -->
+            <link rel="canonical" href="https://alexlivraison.shop/phone-repair-service">
+            <meta property="og:title" content="Service de Réparation de Téléphones - MOURAD | Toulon">
+            <meta property="og:description" content="Service professionnel de réparation de téléphones à Toulon. Écran, batterie, eau, audio. Réparation rapide 30-60 min. Garantie 6 mois. Prix transparents.">
+            <meta property="og:type" content="website">
+            <meta property="og:url" content="https://alexlivraison.shop/phone-repair-service">
+            <meta property="og:image" content="https://alexlivraison.shop/logo.jpg">
+            <meta name="twitter:card" content="summary_large_image">
+            <meta name="twitter:title" content="Service de Réparation de Téléphones - MOURAD | Toulon">
+            <meta name="twitter:description" content="Service professionnel de réparation de téléphones à Toulon. Réparation rapide, garantie 6 mois, prix прозрачные.">
+            <meta name="twitter:image" content="https://alexlivraison.shop/logo.jpg">
+
+            <!-- Schema.org JSON-LD -->
+            <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "LocalBusiness",
+                "name": "MOURAD - Service de Réparation de Téléphones",
+                "image": "https://alexlivraison.shop/logo.jpg",
+                "@id": "https://alexlivraison.shop/phone-repair-service",
+                "url": "https://alexlivraison.shop/phone-repair-service",
+                "telephone": "+33784390172",
+                "address": {
+                    "@type": "PostalAddress",
+                    "streetAddress": "123 Rue de la Réparation",
+                    "addressLocality": "Toulon",
+                    "postalCode": "83000",
+                    "addressCountry": "FR"
+                },
+                "geo": {
+                    "@type": "GeoCoordinates",
+                    "latitude": 43.1247,
+                    "longitude": 5.9246
+                },
+                "openingHoursSpecification": [{
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": [
+                        "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"
+                    ],
+                    "opens": "09:00",
+                    "closes": "20:00"
+                }],
+                "sameAs": [
+                    "https://instagram.com/",
+                    "https://facebook.com/",
+                    "https://wa.me/33784390172"
+                ]
+            }
+            </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Service professionnel de réparation de téléphones. Écran, batterie, eau, audio. Réparation rapide 30-60 min. Garantie 6 mois. Prix transparents.">
@@ -27,6 +76,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        :root {
+            --color-bg: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --color-text: #333;
+            --color-card: #fff;
+            --color-header: rgba(255,255,255,0.95);
+            --color-shadow: rgba(0,0,0,0.2);
+        }
+        body.dark {
+            --color-bg: linear-gradient(135deg, #232526 0%, #414345 100%);
+            --color-text: #f1f1f1;
+            --color-card: #232526;
+            --color-header: rgba(35,37,38,0.95);
+            --color-shadow: rgba(0,0,0,0.7);
+        }
         * {
             margin: 0;
             padding: 0;
@@ -36,8 +99,8 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--color-text);
+            background: var(--color-bg);
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
@@ -113,11 +176,25 @@
         header {
             text-align: center;
             padding: 60px 20px;
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--color-header);
             border-radius: 20px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px var(--color-shadow);
             animation: fadeInDown 0.8s ease;
+            position: relative;
+        }
+        .theme-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 2em;
+            cursor: pointer;
+            color: #ffb300;
+            transition: color 0.3s;
+        }
+        body.dark .theme-toggle { color: #ffd700; }
         }
 
         header h1 {
@@ -159,7 +236,7 @@
         }
 
         .service-card {
-            background: white;
+            background: var(--color-card);
             padding: 30px;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -200,7 +277,7 @@
         }
 
         .form-section {
-            background: white;
+            background: var(--color-card);
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -253,7 +330,7 @@
         }
 
         .faq-section {
-            background: white;
+            background: var(--color-card);
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -288,7 +365,7 @@
         }
 
         .reviews-section {
-            background: white;
+            background: var(--color-card);
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -340,7 +417,7 @@
         }
 
         .brands-section {
-            background: white;
+            background: var(--color-card);
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -381,7 +458,7 @@
         .brand-item:nth-child(6) { animation: brand-float 3s ease-in-out infinite; animation-delay: 1.5s; }
 
         .hours-section {
-            background: white;
+            background: var(--color-card);
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -409,7 +486,7 @@
         }
 
         .address-section {
-            background: white;
+            background: var(--color-card);
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -448,7 +525,7 @@
         }
 
         .map-section {
-            background: white;
+            background: var(--color-card);
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
@@ -525,7 +602,7 @@
         footer {
             text-align: center;
             padding: 30px;
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--color-header);
             border-radius: 15px;
             margin-top: 40px;
             animation: fadeIn 1s ease;
@@ -1088,7 +1165,74 @@
     </div>
 
     <div class="container">
+                <!-- Sticky кнопки для мобильных -->
+                <div class="sticky-mobile-buttons" id="stickyMobileButtons">
+                    <a href="tel:+33784390172" class="sticky-btn" aria-label="Позвонить"><i class="fas fa-phone"></i><span>Позвонить</span></a>
+                    <a href="https://wa.me/33784390172?text=Bonjour%2C%20je%20souhaite%20r%C3%A9parer%20mon%20t%C3%A9l%C3%A9phone" class="sticky-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+                    <a href="#repairForm" class="sticky-btn" aria-label="Записаться"><i class="fas fa-calendar-check"></i><span>Записаться</span></a>
+                </div>
+
+                /* Sticky кнопки для мобильных */
+                .sticky-mobile-buttons {
+                    display: none;
+                    position: fixed;
+                    left: 0; right: 0; bottom: 0;
+                    z-index: 10000;
+                    background: var(--color-header, #fff);
+                    box-shadow: 0 -2px 16px rgba(0,0,0,0.12);
+                    padding: 8px 0 4px 0;
+                    justify-content: space-around;
+                    align-items: center;
+                    gap: 0;
+                }
+                .sticky-btn {
+                    flex: 1 1 0;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    color: #667eea;
+                    font-size: 1.2em;
+                    text-decoration: none;
+                    padding: 6px 0;
+                    transition: color 0.2s;
+                }
+                .sticky-btn i { font-size: 1.5em; margin-bottom: 2px; }
+                .sticky-btn:active, .sticky-btn:hover { color: #764ba2; }
+                .sticky-btn span { font-size: 0.85em; }
+                @media (max-width: 800px) {
+                    .sticky-mobile-buttons { display: flex; }
+                    body { padding-bottom: 60px; }
+                }
+                // Прокрутка к форме по кнопке "Записаться"
+                document.addEventListener('DOMContentLoaded', function() {
+                    document.querySelectorAll('.sticky-btn[href^="#repairForm"]').forEach(btn => {
+                        btn.addEventListener('click', function(e) {
+                            e.preventDefault();
+                            const form = document.getElementById('repairForm');
+                            if (form) form.scrollIntoView({behavior:'smooth'});
+                        });
+                    });
+                });
         <header>
+            <button class="theme-toggle" id="themeToggle" title="Сменить тему" aria-label="Сменить тему">🌙</button>
+                    // Тёмная тема
+                    const themeToggle = document.getElementById('themeToggle');
+                    function setTheme(dark) {
+                        document.body.classList.toggle('dark', dark);
+                        themeToggle.textContent = dark ? '☀️' : '🌙';
+                        localStorage.setItem('theme', dark ? 'dark' : 'light');
+                    }
+                    themeToggle.addEventListener('click', () => {
+                        setTheme(!document.body.classList.contains('dark'));
+                    });
+                    // Инициализация темы при загрузке
+                    (function(){
+                        const saved = localStorage.getItem('theme');
+                        if(saved === 'dark' || (saved === null && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                            setTheme(true);
+                        }
+                    })();
             <h1>Service de Réparation de Téléphones</h1>
             <p>Expert en réparation rapide et professionnelle - MOURAD</p>
             <a href="tel:+33784390172" class="cta-button">Appelez Maintenant</a>
@@ -1127,13 +1271,495 @@
             </div>
         </section>
 
+        <!-- Калькулятор цен -->
+        <section class="form-section" id="price-calculator-section">
+            <h2>Калькулятор цен</h2>
+            <form id="priceCalculatorForm" style="max-width:500px;margin:auto;">
+                <label for="modelSearch">Поиск модели</label>
+                <input type="text" id="modelSearch" placeholder="Начните вводить модель..." autocomplete="off" style="width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:1.5px solid #e0e0e0;">
+                <label for="modelSelect">Модель телефона</label>
+                <select id="modelSelect" required>
+                    <option value="">Выберите модель</option>
+                    <option value="iphone">iPhone</option>
+                    <option value="samsung">Samsung</option>
+                    <option value="xiaomi">Xiaomi</option>
+                    <option value="huawei">Huawei</option>
+                    <option value="oppo">Oppo</option>
+                </select>
+                <label for="repairTypeSelect">Тип ремонта</label>
+                <select id="repairTypeSelect" required>
+                    <option value="">Выберите тип ремонта</option>
+                    <option value="screen">Экран</option>
+                    <option value="battery">Батарея</option>
+                    <option value="camera">Камера</option>
+                    <option value="audio">Аудио</option>
+                    <option value="charge">Зарядка</option>
+                    <option value="water">Влага</option>
+                </select>
+                <label for="promoInput">Промокод</label>
+                <input type="text" id="promoInput" placeholder="Введите промокод" style="width:100%;padding:10px;margin-bottom:8px;border-radius:8px;border:1.5px solid #e0e0e0;">
+                <div id="promoMsg" style="font-size:0.98em;margin-bottom:8px;"></div>
+                <div style="margin:20px 0;font-size:1.3em;">
+                    <span>Цена: </span><span id="calcPrice">—</span> €
+                </div>
+                #promoMsg { min-height: 18px; }
+                #promoMsg.valid { color: #25D366; }
+                #promoMsg.invalid { color: #ff0844; }
+                    // Промокоды
+                    const promoInput = document.getElementById('promoInput');
+                    const promoMsg = document.getElementById('promoMsg');
+                    let promoDiscount = 0;
+                    const promoCodes = {
+                        'ALEX10': 10, // 10% скидка
+                        'REPAIR5': 5, // 5% скидка
+                        'VIP20': 20
+                    };
+            </form>
+                // Live-поиск по моделям
+                (function(){
+                    const modelSearch = document.getElementById('modelSearch');
+                    const modelSelect = document.getElementById('modelSelect');
+                    if (!modelSearch || !modelSelect) return;
+                    const allOptions = Array.from(modelSelect.options).filter(o => o.value);
+                    modelSearch.addEventListener('input', function() {
+                        const val = this.value.trim().toLowerCase();
+                        modelSelect.innerHTML = '<option value="">Выберите модель</option>';
+                        allOptions.forEach(opt => {
+                            if (!val || opt.text.toLowerCase().includes(val)) {
+                                modelSelect.appendChild(opt.cloneNode(true));
+                            }
+                        });
+                    });
+                })();
+        </section>
+
+        <!-- Галерея до/после -->
+        <section class="form-section" id="before-after-gallery">
+            <h2>Галерея до/после</h2>
+            <div class="before-after-slider" style="max-width:400px;margin:auto;">
+                <div class="ba-container">
+                    <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=400&q=80" alt="Avant" class="ba-img ba-img-before">
+                    <div class="ba-resize" id="baResize">
+                        <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308?auto=format&fit=crop&w=400&q=80" alt="Après" class="ba-img ba-img-after">
+                    </div>
+                    <div class="ba-handle" id="baHandle"></div>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-size:0.95em;margin-top:8px;">
+                    <span>До</span><span>После</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Микроанимации: Счётчики -->
+        <section class="form-section" id="counters-section" style="text-align:center;">
+            <h2>Наши достижения</h2>
+            <div style="display:flex;justify-content:center;gap:40px;flex-wrap:wrap;">
+                <div>
+                    <div class="counter" data-target="1000" style="font-size:2.5em;font-weight:bold;">0</div>
+                    <div>Ремонтов</div>
+                </div>
+                <div>
+                    <div class="counter" data-target="500" style="font-size:2.5em;font-weight:bold;">0</div>
+                    <div>Довольных клиентов</div>
+                </div>
+                <div>
+                    <div class="counter" data-target="8" style="font-size:2.5em;font-weight:bold;">0</div>
+                    <div>Лет опыта</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Программа лояльности -->
+        <section class="form-section" id="loyalty-section" style="max-width:420px;margin:32px auto 0 auto;text-align:center;">
+            <h2>Программа лояльности</h2>
+            <div style="margin-bottom:12px;">Сделайте 5 ремонтов — получите <b>бесплатный аксессуар</b> или скидку!</div>
+            <div id="loyaltyProgressBar" style="background:#e0e0e0;border-radius:12px;height:28px;overflow:hidden;position:relative;">
+                <div id="loyaltyBar" style="background:linear-gradient(90deg,#667eea,#ffd700);height:100%;width:0%;transition:width 0.7s;"></div>
+                <div id="loyaltyText" style="position:absolute;left:0;top:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-weight:bold;color:#232526;"></div>
+            </div>
+            <button id="loyaltyAddBtn" style="margin-top:16px;padding:8px 24px;border-radius:8px;background:#667eea;color:#fff;font-weight:bold;border:none;cursor:pointer;">Добавить ремонт</button>
+            <div id="loyaltyRewardMsg" style="margin-top:14px;font-size:1.1em;color:#25D366;display:none;">Поздравляем! Ваш подарок ждёт вас 🎁</div>
+        </section>
+
+        <!-- Видео-секция -->
+        <section class="form-section" id="video-section" style="max-width:600px;margin:32px auto 0 auto;text-align:center;">
+            <h2>Как мы работаем</h2>
+            <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:16px;box-shadow:0 4px 16px rgba(0,0,0,0.10);margin-bottom:12px;">
+                <iframe src="https://www.youtube.com/embed/2Vv-BfVoq4g" title="YouTube video" frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe>
+            </div>
+            <div style="font-size:1em;color:#7f8c8d;">Посмотрите короткое видео о нашем сервисе и процессе ремонта</div>
+        </section>
+
+        <!-- Прогресс-бар ремонта -->
+        <section class="form-section" id="repair-progress-section" style="max-width:600px;margin:32px auto 0 auto;text-align:center;">
+            <h2>Этапы ремонта</h2>
+            <div id="repairProgressBar" style="display:flex;align-items:center;justify-content:space-between;gap:0.5em;margin:24px 0 12px 0;">
+                <div class="progress-step done"><span>1</span><div>Диагностика</div></div>
+                <div class="progress-line"></div>
+                <div class="progress-step done"><span>2</span><div>Согласование</div></div>
+                <div class="progress-line"></div>
+                <div class="progress-step active"><span>3</span><div>Ремонт</div></div>
+                <div class="progress-line"></div>
+                <div class="progress-step"><span>4</span><div>Готово!</div></div>
+            </div>
+            <button id="nextRepairStep" style="padding:8px 24px;border-radius:8px;background:#667eea;color:#fff;font-weight:bold;border:none;cursor:pointer;">Следующий этап</button>
+        </section>
+
+        /* Прогресс-бар ремонта */
+        #repairProgressBar { user-select:none; }
+        .progress-step {
+            display:flex;flex-direction:column;align-items:center;justify-content:center;
+            min-width:60px;position:relative;
+        }
+        .progress-step span {
+            display:inline-block;width:32px;height:32px;border-radius:50%;background:#e0e0e0;color:#667eea;font-weight:bold;font-size:1.2em;line-height:32px;text-align:center;margin-bottom:6px;transition:background 0.3s,color 0.3s;
+        }
+        .progress-step.done span { background:#25D366; color:#fff; }
+        .progress-step.active span { background:#ffd700; color:#232526; animation: pulse-step 1s infinite alternate; }
+        .progress-step div { font-size:0.95em; color:#7f8c8d; }
+        .progress-step.done div { color:#25D366; }
+        .progress-step.active div { color:#ffd700; font-weight:bold; }
+        .progress-line {
+            flex:1;height:4px;background:#e0e0e0;border-radius:2px;margin:0 2px;transition:background 0.3s;
+        }
+        .progress-step.done ~ .progress-line { background:#25D366; }
+        @keyframes pulse-step { 0%{box-shadow:0 0 0 0 #ffd700;} 100%{box-shadow:0 0 12px 4px #ffd700;} }
+        body.dark .progress-step span { background:#232526; color:#ffd700; }
+        body.dark .progress-step.done span { background:#25D366; color:#232526; }
+        body.dark .progress-step.active span { background:#ffd700; color:#232526; }
+        body.dark .progress-line { background:#232526; }
+        body.dark .progress-step div { color:#ffd700; }
+        // Прогресс-бар ремонта: смена этапов
+        (function(){
+            const steps = Array.from(document.querySelectorAll('#repairProgressBar .progress-step'));
+            const btn = document.getElementById('nextRepairStep');
+            if (!steps.length || !btn) return;
+            let current = steps.findIndex(s=>s.classList.contains('active'));
+            btn.addEventListener('click', function(){
+                if (current<0) current=0;
+                if (current<steps.length-1) {
+                    steps[current].classList.remove('active');
+                    steps[current].classList.add('done');
+                    current++;
+                    steps[current].classList.add('active');
+                }
+            });
+        })();
+
+    /* Программа лояльности */
+    #loyalty-section { box-shadow: 0 4px 16px rgba(102,126,234,0.07); }
+    #loyaltyAddBtn:active { background:#764ba2; }
+    body.dark #loyaltyProgressBar { background:#232526; }
+    body.dark #loyaltyBar { background:linear-gradient(90deg,#ffd700,#667eea); }
+    body.dark #loyaltyText { color:#ffd700; }
+
+        // Логика программы лояльности
+        (function(){
+            const maxRepairs = 5;
+            const bar = document.getElementById('loyaltyBar');
+            const text = document.getElementById('loyaltyText');
+            const btn = document.getElementById('loyaltyAddBtn');
+            const msg = document.getElementById('loyaltyRewardMsg');
+            if (!bar || !text || !btn || !msg) return;
+            function getCount() {
+                return +(localStorage.getItem('loyaltyRepairs')||'0');
+            }
+            function setCount(val) {
+                localStorage.setItem('loyaltyRepairs', val);
+            }
+            function updateUI() {
+                const count = getCount();
+                const percent = Math.min(100, Math.round(100*count/maxRepairs));
+                bar.style.width = percent+'%';
+                text.textContent = count+" / "+maxRepairs;
+                if (count>=maxRepairs) {
+                    btn.disabled = true;
+                    msg.style.display = '';
+                } else {
+                    btn.disabled = false;
+                    msg.style.display = 'none';
+                }
+            }
+            btn.addEventListener('click', function(){
+                let count = getCount();
+                if (count<maxRepairs) {
+                    setCount(++count);
+                    updateUI();
+                }
+            });
+            updateUI();
+        })();
+
+    /* Счётчики */
+    #counters-section .counter { color: #667eea; transition: color 0.3s; }
+    body.dark #counters-section .counter { color: #ffd700; }
+
+        // Анимация счётчиков
+        function animateCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                let started = false;
+                function run() {
+                    if (started) return;
+                    started = true;
+                    const target = +counter.getAttribute('data-target');
+                    let current = 0;
+                    const step = Math.max(1, Math.floor(target / 100));
+                    function update() {
+                        current += step;
+                        if (current >= target) {
+                            counter.textContent = target + (target >= 1000 ? '+' : '');
+                        } else {
+                            counter.textContent = current;
+                            requestAnimationFrame(update);
+                        }
+                    }
+                    update();
+                }
+                // Запуск при появлении на экране
+                const observer = new IntersectionObserver(entries => {
+                    if (entries[0].isIntersecting) {
+                        run();
+                        observer.disconnect();
+                    }
+                }, { threshold: 0.5 });
+                observer.observe(counter);
+            });
+        }
+        document.addEventListener('DOMContentLoaded', animateCounters);
+
+        // Конфетти при отправке формы
+        function launchConfetti() {
+            const colors = ['#ffd700','#667eea','#ffb300','#764ba2','#25D366','#ff0844'];
+            for(let i=0;i<80;i++){
+                const conf = document.createElement('div');
+                conf.style.position = 'fixed';
+                conf.style.left = Math.random()*100+'vw';
+                conf.style.top = '-30px';
+                conf.style.width = conf.style.height = (8+Math.random()*8)+'px';
+                conf.style.background = colors[Math.floor(Math.random()*colors.length)];
+                conf.style.opacity = 0.8;
+                conf.style.borderRadius = '50%';
+                conf.style.zIndex = 9999;
+                conf.style.pointerEvents = 'none';
+                conf.style.transition = 'transform 1.8s cubic-bezier(.23,1.02,.64,1), opacity 1.8s';
+                document.body.appendChild(conf);
+                setTimeout(()=>{
+                    conf.style.transform = `translateY(${80+Math.random()*40}vh) rotate(${Math.random()*360}deg)`;
+                    conf.style.opacity = 0;
+                },10);
+                setTimeout(()=>conf.remove(),2000);
+            }
+        }
+
+            /* Before/After Gallery */
+            .before-after-slider { position: relative; }
+            .ba-container { position: relative; width: 100%; height: 250px; overflow: hidden; border-radius: 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.10); }
+            .ba-img { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; user-select: none; pointer-events: none; }
+            .ba-resize { position: absolute; top: 0; left: 0; height: 100%; width: 50%; overflow: hidden; transition: width 0.2s; }
+            .ba-img-after { left: 0; }
+            .ba-handle { position: absolute; top: 0; left: 50%; width: 18px; height: 100%; background: rgba(102,126,234,0.85); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); cursor: ew-resize; z-index: 2; display: flex; align-items: center; justify-content: center; transition: background 0.2s; }
+            .ba-handle::after { content: '\2194'; color: #fff; font-size: 1.3em; display: block; margin: auto; }
+            .ba-handle:hover { background: #764ba2; }
+
+
+                // Before/After Gallery Logic
+                (function(){
+                    const baResize = document.getElementById('baResize');
+                    const baHandle = document.getElementById('baHandle');
+                    const baContainer = baResize && baResize.parentElement;
+                    if (!baResize || !baHandle || !baContainer) return;
+                    let dragging = false;
+                    function setSlider(x) {
+                        const rect = baContainer.getBoundingClientRect();
+                        let pos = Math.max(0, Math.min(x - rect.left, rect.width));
+                        baResize.style.width = pos + 'px';
+                        baHandle.style.left = pos + 'px';
+                    }
+                    baHandle.addEventListener('mousedown', function(e) {
+                        dragging = true;
+                        document.body.style.userSelect = 'none';
+                    });
+                    window.addEventListener('mousemove', function(e) {
+                        if (dragging) setSlider(e.clientX);
+                    });
+                    window.addEventListener('mouseup', function() {
+                        dragging = false;
+                        document.body.style.userSelect = '';
+                    });
+                    baContainer.addEventListener('click', function(e) {
+                        setSlider(e.clientX);
+                    });
+                    // Touch support
+                    baHandle.addEventListener('touchstart', function(e) { dragging = true; }, {passive:true});
+                    window.addEventListener('touchmove', function(e) {
+                        if (dragging && e.touches[0]) setSlider(e.touches[0].clientX);
+                    }, {passive:false});
+                    window.addEventListener('touchend', function() { dragging = false; });
+                })();
+        // Калькулятор цен
+        const priceTable = {
+            iphone:    { screen: 90, battery: 50, camera: 60, audio: 40, charge: 45, water: 70 },
+            samsung:   { screen: 80, battery: 45, camera: 55, audio: 35, charge: 40, water: 65 },
+            xiaomi:    { screen: 70, battery: 40, camera: 50, audio: 30, charge: 35, water: 60 },
+            huawei:    { screen: 75, battery: 42, camera: 52, audio: 32, charge: 38, water: 62 },
+            oppo:      { screen: 68, battery: 38, camera: 48, audio: 28, charge: 33, water: 58 }
+        };
+        const modelSelect = document.getElementById('modelSelect');
+        const repairTypeSelect = document.getElementById('repairTypeSelect');
+        const calcPrice = document.getElementById('calcPrice');
+        function updatePrice() {
+            const model = modelSelect.value;
+            const type = repairTypeSelect.value;
+            let base = priceTable[model] && priceTable[model][type] ? priceTable[model][type] : null;
+            if (base) {
+                let finalPrice = base;
+                if (promoDiscount > 0) {
+                    finalPrice = Math.round(base * (1 - promoDiscount / 100));
+                }
+                calcPrice.textContent = finalPrice;
+            } else {
+                calcPrice.textContent = '—';
+            }
+        }
+        modelSelect && modelSelect.addEventListener('change', updatePrice);
+        repairTypeSelect && repairTypeSelect.addEventListener('change', updatePrice);
+        promoInput && promoInput.addEventListener('input', function() {
+            const val = this.value.trim().toUpperCase();
+            if (val && promoCodes[val]) {
+                promoDiscount = promoCodes[val];
+                promoMsg.textContent = `Промокод применён: -${promoDiscount}%`;
+                promoMsg.className = 'valid';
+            } else if (val) {
+                promoDiscount = 0;
+                promoMsg.textContent = 'Промокод не найден';
+                promoMsg.className = 'invalid';
+            } else {
+                promoDiscount = 0;
+                promoMsg.textContent = '';
+                promoMsg.className = '';
+            }
+            updatePrice();
+        });
+
         <div class="warning">Les tarifs peuvent varier selon le modèle et l'état du téléphone</div>
+
+        <!-- Срочная акция с таймером -->
+        <section class="form-section" id="promo-timer-section" style="background:linear-gradient(90deg,#ff0844,#ffb199,#ffe066);color:#232526;text-align:center;max-width:500px;margin:32px auto 0 auto;box-shadow:0 4px 16px rgba(255,8,68,0.08);">
+            <h2 style="margin-bottom:10px;">🔥 Срочная акция!</h2>
+            <div style="font-size:1.15em;margin-bottom:10px;">Только сегодня: -15% на ремонт экрана по промокоду <b>ALEX10</b></div>
+            <div id="countdown-timer" style="font-size:2em;font-weight:bold;letter-spacing:2px;margin-bottom:6px;"></div>
+            <div style="font-size:0.95em;">Успейте воспользоваться до конца дня!</div>
+        </section>
+    #promo-timer-section { border:2px solid #ff0844; border-radius:16px; animation:pulse-timer 2s infinite alternate; }
+    @keyframes pulse-timer { 0%{box-shadow:0 0 0 0 #ff0844;} 100%{box-shadow:0 0 24px 6px #ff0844;} }
+    #countdown-timer { color:#ff0844; text-shadow:0 2px 8px #fff8; }
+    body.dark #promo-timer-section { background:linear-gradient(90deg,#232526,#ff0844,#ffe066); color:#ffd700; }
+    body.dark #countdown-timer { color:#ffd700; }
+        // Таймер обратного отсчёта до конца дня
+        (function(){
+            const timerEl = document.getElementById('countdown-timer');
+            if (!timerEl) return;
+            function updateTimer() {
+                const now = new Date();
+                const end = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23,59,59);
+                let diff = Math.max(0, Math.floor((end-now)/1000));
+                const h = String(Math.floor(diff/3600)).padStart(2,'0');
+                const m = String(Math.floor((diff%3600)/60)).padStart(2,'0');
+                const s = String(diff%60).padStart(2,'0');
+                timerEl.textContent = `${h}:${m}:${s}`;
+                if (diff>0) setTimeout(updateTimer, 1000);
+                else timerEl.textContent = '00:00:00';
+            }
+            updateTimer();
+        })();
 
         <section class="form-section">
             <h2>Réserver un Rendez-Vous</h2>
             <form id="repairForm">
-                <input type="text" id="nomClient" placeholder="Votre Nom" required aria-label="Votre Nom">
-                <input type="tel" id="telClient" placeholder="Votre Téléphone" required aria-label="Votre Téléphone">
+                <input type="text" id="nomClient" placeholder="Votre Nom" required aria-label="Votre Nom" autocomplete="name">
+                <input type="tel" id="telClient" placeholder="Votre Téléphone" required aria-label="Votre Téléphone" autocomplete="tel" pattern="[0-9+ ]{8,16}">
+                <div id="formErrors" style="color:#ff0844;font-size:0.98em;min-height:18px;margin-bottom:6px;"></div>
+        // Автозаполнение и валидация формы
+        (function(){
+            const nameInput = document.getElementById('nomClient');
+            const telInput = document.getElementById('telClient');
+            const formErrors = document.getElementById('formErrors');
+            // Автозаполнение из localStorage
+            document.addEventListener('DOMContentLoaded', function() {
+                if (localStorage.getItem('userName')) nameInput.value = localStorage.getItem('userName');
+                if (localStorage.getItem('userTel')) telInput.value = localStorage.getItem('userTel');
+            });
+            // Сохранять при изменении
+            nameInput.addEventListener('input', ()=>localStorage.setItem('userName', nameInput.value));
+            telInput.addEventListener('input', ()=>localStorage.setItem('userTel', telInput.value));
+        })();
+
+                <!-- Календарь и слоты времени -->
+                <div id="calendarSlotBlock" style="margin:18px 0;">
+                    <label for="dateSlot">Выберите дату</label>
+                    <input type="date" id="dateSlot" required style="width:100%;padding:10px;margin-bottom:10px;border-radius:8px;border:1.5px solid #e0e0e0;max-width:220px;">
+                    <div id="timeSlots" style="margin-top:8px;display:flex;flex-wrap:wrap;gap:8px;"></div>
+                    <input type="hidden" id="selectedTimeSlot" name="selectedTimeSlot" required>
+                </div>
+
+                        /* Слоты времени */
+                        #calendarSlotBlock { text-align:left; }
+                        #timeSlots { margin-bottom:10px; }
+                        .slot-btn {
+                            padding:7px 16px;
+                            border-radius:7px;
+                            border:1.5px solid #667eea;
+                            background:#f8f9fa;
+                            color:#333;
+                            font-size:1em;
+                            cursor:pointer;
+                            transition:background 0.2s, color 0.2s, border 0.2s;
+                        }
+                        .slot-btn.selected, .slot-btn:active {
+                            background:#667eea;
+                            color:#fff;
+                            border-color:#764ba2;
+                        }
+                        .slot-btn:disabled {
+                            opacity:0.5;
+                            cursor:not-allowed;
+                        }
+                        body.dark .slot-btn { background:#232526; color:#ffd700; border-color:#ffd700; }
+                        body.dark .slot-btn.selected { background:#ffd700; color:#232526; border-color:#ffd700; }
+
+                        // Слоты времени и календарь
+                        (function(){
+                            const dateInput = document.getElementById('dateSlot');
+                            const timeSlotsDiv = document.getElementById('timeSlots');
+                            const hiddenSlot = document.getElementById('selectedTimeSlot');
+                            if (!dateInput || !timeSlotsDiv || !hiddenSlot) return;
+                            // Слоты: 09:00-19:00, шаг 1 час
+                            const slots = Array.from({length:11},(_,i)=>{
+                                const h = 9+i;
+                                return (h<10?'0':'')+h+':00';
+                            });
+                            function renderSlots() {
+                                timeSlotsDiv.innerHTML = '';
+                                slots.forEach(slot=>{
+                                    const btn = document.createElement('button');
+                                    btn.type = 'button';
+                                    btn.className = 'slot-btn';
+                                    btn.textContent = slot;
+                                    btn.onclick = ()=>{
+                                        document.querySelectorAll('.slot-btn').forEach(b=>b.classList.remove('selected'));
+                                        btn.classList.add('selected');
+                                        hiddenSlot.value = slot;
+                                    };
+                                    timeSlotsDiv.appendChild(btn);
+                                });
+                                hiddenSlot.value = '';
+                            }
+                            dateInput.addEventListener('change', renderSlots);
+                            // min date = today
+                            const today = new Date();
+                            dateInput.min = today.toISOString().split('T')[0];
+                        })();
                 
                 <!-- Custom Select -->
                 <div class="custom-select-wrapper">
@@ -1432,10 +2058,31 @@
         document.getElementById('repairForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const nom = document.getElementById('nomClient').value;
-            const tel = document.getElementById('telClient').value;
+            const nom = document.getElementById('nomClient').value.trim();
+            const tel = document.getElementById('telClient').value.trim();
+            const formErrors = document.getElementById('formErrors');
+            formErrors.textContent = '';
+            // Проверка имени
+            if (!nom || nom.length < 2) {
+                formErrors.textContent = 'Пожалуйста, введите корректное имя (минимум 2 буквы).';
+                document.getElementById('nomClient').focus();
+                return;
+            }
+            // Проверка телефона
+            const telClean = tel.replace(/[^0-9+]/g,'');
+            if (!/^\+?\d{8,16}$/.test(telClean)) {
+                formErrors.textContent = 'Пожалуйста, введите корректный телефон (8-16 цифр, можно с +).';
+                document.getElementById('telClient').focus();
+                return;
+            }
             const service = document.getElementById('serviceType').value;
             const description = document.getElementById('descProbleme').value;
+            const dateSlot = document.getElementById('dateSlot').value;
+            const timeSlot = document.getElementById('selectedTimeSlot').value;
+            if (!dateSlot || !timeSlot) {
+                alert('Пожалуйста, выберите дату и время записи!');
+                return;
+            }
             
             // Validate that service type is selected
             if (!service) {
@@ -1456,8 +2103,9 @@
             const timeStr = now.toLocaleTimeString('fr-FR');
             
             const message = `📱 Nouvelle Demande de Réparation\n\n👤 Nom: ${nom}\n📞 Téléphone: ${tel}\n🔧 Service: ${service}\n📝 Description: ${description}\n\n📅 Date: ${dateStr} ${timeStr}`;
-            
-            const whatsappUrl = `https://wa.me/33784390172?text=${encodeURIComponent(message)}`;
+            const slotMsg = `\n🗓️ Слот: ${dateSlot} ${timeSlot}`;
+            const whatsappUrl = `https://wa.me/33784390172?text=${encodeURIComponent(message+slotMsg)}`;
+            launchConfetti();
             window.open(whatsappUrl, '_blank');
         });
     </script>
