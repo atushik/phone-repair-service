@@ -16,6 +16,20 @@
     <link rel="apple-touch-icon" href="/logo.jpg">
     <link rel="icon" type="image/jpeg" href="/logo.jpg">
     
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://mourad-repair.fr">
+    <meta property="og:title" content="Service de Réparation de Téléphones - MOURAD | Toulon">
+    <meta property="og:description" content="Réparation rapide et professionnelle de téléphones à Toulon. Écran, batterie, eau. 30-60 min. Garantie 6 mois.">
+    <meta property="og:image" content="/logo.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://mourad-repair.fr">
+    <meta property="twitter:title" content="Réparation Téléphones Toulon - MOURAD">
+    <meta property="twitter:description" content="Service rapide et professionnel">
+    <meta property="twitter:image" content="/logo.jpg">
+    
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -26,7 +40,74 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
+    <!-- Schema.org LocalBusiness -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "MOURAD - Service de Réparation",
+      "image": "/logo.jpg",
+      "description": "Service professionnel de réparation de téléphones",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "123 Rue de la Réparation",
+        "addressLocality": "Toulon",
+        "addressRegion": "PACA",
+        "postalCode": "83000",
+        "addressCountry": "FR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 43.1242,
+        "longitude": 5.9280
+      },
+      "telephone": "+33784390172",
+      "priceRange": "€€",
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+          "opens": "09:00",
+          "closes": "20:00"
+        }
+      ],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "250"
+      }
+    }
+    </script>
+    
     <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #333;
+            --text-secondary: #7f8c8d;
+            --accent: #667eea;
+            --accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --shadow: rgba(0,0,0,0.1);
+            --shadow-hover: rgba(0,0,0,0.2);
+            --border-color: #e0e0e0;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #1a1a2e;
+            --bg-secondary: #16213e;
+            --text-primary: #eee;
+            --text-secondary: #aaa;
+            --accent: #a78bfa;
+            --accent-gradient: linear-gradient(135deg, #a78bfa 0%, #c084fc 100%);
+            --shadow: rgba(0,0,0,0.3);
+            --shadow-hover: rgba(0,0,0,0.5);
+            --border-color: #333;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -956,7 +1037,1248 @@
             }
         }
     
-    <style>
+        /* ============================================ */
+        /* FEATURE 1: PRICE CALCULATOR STYLES */
+        /* ============================================ */
+        .calculator-section {
+            background: var(--bg-primary);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--shadow);
+            margin: 40px 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .calculator-section h2 {
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .calculator-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .calc-input-group {
+            margin: 20px 0;
+        }
+
+        .calc-input-group label {
+            display: block;
+            color: var(--text-primary);
+            font-weight: bold;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+
+        .calc-select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1em;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .calc-select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .calc-checkbox-group {
+            margin: 25px 0;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+        }
+
+        .calc-checkbox-group label {
+            display: block;
+            margin: 15px 0;
+            font-size: 1.1em;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .calc-checkbox-group label:hover {
+            transform: translateX(5px);
+        }
+
+        .calc-checkbox-group input[type="checkbox"] {
+            margin-right: 10px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .calc-promo {
+            display: flex;
+            gap: 10px;
+            margin: 25px 0;
+        }
+
+        .calc-promo input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1em;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .calc-promo button {
+            padding: 15px 30px;
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .calc-promo button:hover {
+            transform: scale(1.05);
+        }
+
+        .calc-result {
+            margin-top: 30px;
+            padding: 30px;
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            border: 3px solid var(--accent);
+        }
+
+        .price-breakdown p {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            font-size: 1.1em;
+            color: var(--text-primary);
+        }
+
+        .price-breakdown .discount {
+            color: #27ae60;
+            font-weight: bold;
+        }
+
+        .total-price {
+            margin: 25px 0;
+            padding: 20px;
+            background: var(--accent-gradient);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .total-price h3 {
+            color: white;
+            font-size: 2em;
+            margin: 0;
+            animation: pulse-price 2s infinite;
+        }
+
+        @keyframes pulse-price {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .book-now-btn {
+            width: 100%;
+            padding: 20px;
+            background: #27ae60;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .book-now-btn:hover {
+            background: #229954;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(39, 174, 96, 0.4);
+        }
+
+        /* ============================================ */
+        /* FEATURE 2: DARK MODE THEME SWITCHER */
+        /* ============================================ */
+        .theme-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+
+        #themeToggle {
+            background: var(--bg-primary);
+            border: 2px solid var(--accent);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px var(--shadow);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #themeToggle:hover {
+            transform: rotate(180deg) scale(1.1);
+            box-shadow: 0 8px 25px var(--shadow-hover);
+        }
+
+        .theme-icon {
+            font-size: 1.8em;
+            transition: transform 0.3s ease;
+        }
+
+        /* ============================================ */
+        /* FEATURE 3: BEFORE/AFTER GALLERY SLIDER */
+        /* ============================================ */
+        .gallery-section {
+            background: var(--bg-primary);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--shadow);
+            margin: 40px 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .gallery-section h2 {
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .gallery-slider {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .comparison-slider {
+            display: flex;
+            overflow: hidden;
+            position: relative;
+            transition: transform 0.5s ease;
+        }
+
+        .comparison-item {
+            min-width: 100%;
+            padding: 20px;
+        }
+
+        .comparison-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .before-image, .after-image {
+            position: relative;
+            height: 300px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .before-image:hover, .after-image:hover {
+            transform: scale(1.05);
+        }
+
+        .image-label {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(0,0,0,0.7);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.8em;
+        }
+
+        .broken-screen, .fixed-screen {
+            font-size: 1.2em;
+            padding: 10px;
+        }
+
+        .comparison-description {
+            text-align: center;
+            color: var(--text-primary);
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .gallery-controls {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .gallery-prev, .gallery-next {
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-prev:hover, .gallery-next:hover {
+            transform: scale(1.2);
+        }
+
+        .gallery-dots {
+            display: flex;
+            gap: 10px;
+        }
+
+        .gallery-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--border-color);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-dot.active {
+            background: var(--accent);
+            transform: scale(1.3);
+        }
+
+        /* ============================================ */
+        /* FEATURE 4: STATISTICS COUNTERS */
+        /* ============================================ */
+        .stats-section {
+            background: var(--bg-primary);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--shadow);
+            margin: 40px 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .stats-section h2 {
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px var(--shadow-hover);
+        }
+
+        .stat-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .stat-number {
+            font-size: 3em;
+            font-weight: bold;
+            color: var(--accent);
+            display: block;
+            margin: 15px 0;
+        }
+
+        .stat-card p {
+            color: var(--text-secondary);
+            font-size: 1.1em;
+        }
+
+        /* ============================================ */
+        /* FEATURE 5: LIVE SEARCH */
+        /* ============================================ */
+        .search-section {
+            background: var(--bg-primary);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--shadow);
+            margin: 40px 0;
+            animation: fadeIn 1s ease;
+        }
+
+        .search-section h2 {
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        #phoneSearch {
+            width: 100%;
+            padding: 20px;
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            font-size: 1.1em;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+
+        #phoneSearch:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--bg-primary);
+            border: 2px solid var(--accent);
+            border-radius: 15px;
+            margin-top: 10px;
+            max-height: 400px;
+            overflow-y: auto;
+            box-shadow: 0 10px 30px var(--shadow-hover);
+            z-index: 1000;
+            display: none;
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-result-item {
+            padding: 15px 20px;
+            border-bottom: 1px solid var(--border-color);
+            cursor: pointer;
+            transition: background 0.2s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .search-result-item:hover {
+            background: var(--bg-secondary);
+        }
+
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+
+        .search-result-name {
+            color: var(--text-primary);
+            font-weight: bold;
+        }
+
+        .search-result-price {
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .search-highlight {
+            background: yellow;
+            color: #000;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        /* ============================================ */
+        /* FEATURE 6: MOBILE FAB BUTTONS */
+        /* ============================================ */
+        .mobile-fab-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 9998;
+        }
+
+        .fab-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .fab-button:hover {
+            transform: scale(1.15);
+        }
+
+        .fab-call {
+            background: linear-gradient(135deg, #27ae60, #229954);
+        }
+
+        .fab-whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+        }
+
+        .fab-scroll-top {
+            background: var(--accent-gradient);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .fab-scroll-top.visible {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .fab-icon {
+            font-size: 1.8em;
+        }
+
+        /* ============================================ */
+        /* FEATURE 7: TIME SLOT PICKER */
+        /* ============================================ */
+        .timeslot-picker {
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .timeslot-picker h3 {
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .date-selector {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .date-nav {
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.2em;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .dates-container {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 10px 0;
+        }
+
+        .date-card {
+            background: var(--bg-primary);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            padding: 15px;
+            min-width: 120px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .date-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-5px);
+        }
+
+        .date-card.active {
+            background: var(--accent-gradient);
+            border-color: var(--accent);
+        }
+
+        .date-card.active * {
+            color: white !important;
+        }
+
+        .day-name {
+            display: block;
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            margin-bottom: 5px;
+        }
+
+        .day-number {
+            display: block;
+            font-size: 2em;
+            font-weight: bold;
+            color: var(--text-primary);
+            margin: 5px 0;
+        }
+
+        .month {
+            display: block;
+            font-size: 0.9em;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .availability {
+            display: block;
+            font-size: 0.8em;
+            padding: 5px;
+            border-radius: 5px;
+            background: var(--bg-secondary);
+        }
+
+        .time-slots {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 15px;
+        }
+
+        .time-slot {
+            padding: 15px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .time-slot.available:hover {
+            background: var(--accent-gradient);
+            color: white;
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .time-slot.booked {
+            background: #e0e0e0;
+            color: #999;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+
+        .time-slot.selected {
+            background: var(--accent-gradient);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        /* ============================================ */
+        /* FEATURE 8 & 10: PROMO BANNER & COUNTDOWN */
+        /* ============================================ */
+        .promo-banner {
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            animation: slideInLeft 0.8s ease;
+            box-shadow: 0 5px 15px rgba(245, 87, 108, 0.4);
+        }
+
+        .promo-icon {
+            font-size: 2em;
+            margin-right: 15px;
+        }
+
+        .promo-banner p {
+            flex: 1;
+            font-size: 1.1em;
+            margin: 0;
+        }
+
+        .promo-close {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            font-size: 1.2em;
+            transition: all 0.3s ease;
+        }
+
+        .promo-close:hover {
+            background: white;
+            color: #f5576c;
+            transform: rotate(90deg);
+        }
+
+        .promo-timer {
+            background: var(--bg-primary);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--shadow);
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .promo-timer h3 {
+            color: var(--text-primary);
+            font-size: 1.8em;
+            margin-bottom: 30px;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: var(--accent-gradient);
+            padding: 25px;
+            border-radius: 15px;
+            min-width: 100px;
+            color: white;
+        }
+
+        .countdown-number {
+            display: block;
+            font-size: 3em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .countdown-label {
+            display: block;
+            font-size: 1em;
+            text-transform: uppercase;
+        }
+
+        .promo-description {
+            color: var(--text-primary);
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        /* ============================================ */
+        /* FEATURE 9: LOYALTY PROGRAM */
+        /* ============================================ */
+        .loyalty-section {
+            background: var(--bg-primary);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--shadow);
+            margin: 40px 0;
+        }
+
+        .loyalty-section h2 {
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .loyalty-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .loyalty-card {
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .loyalty-progress {
+            margin-bottom: 30px;
+        }
+
+        .progress-bar {
+            background: var(--border-color);
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 15px;
+        }
+
+        .progress-fill {
+            background: var(--accent-gradient);
+            height: 100%;
+            transition: width 0.5s ease;
+            animation: progress-shine 2s infinite;
+        }
+
+        @keyframes progress-shine {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        .loyalty-progress p {
+            color: var(--text-primary);
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .loyalty-benefits {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: var(--bg-primary);
+            border-radius: 10px;
+            transition: transform 0.3s ease;
+        }
+
+        .benefit-item:hover {
+            transform: translateX(10px);
+        }
+
+        .benefit-item.unlocked {
+            border-left: 4px solid #27ae60;
+        }
+
+        .benefit-item.locked {
+            opacity: 0.5;
+            border-left: 4px solid #7f8c8d;
+        }
+
+        .benefit-icon {
+            font-size: 1.5em;
+        }
+
+        .benefit-item p {
+            color: var(--text-primary);
+            margin: 0;
+        }
+
+        .referral-box {
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 15px;
+        }
+
+        .referral-box h3 {
+            color: var(--text-primary);
+            margin-bottom: 15px;
+        }
+
+        .referral-box p {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .referral-link {
+            display: flex;
+            gap: 10px;
+        }
+
+        .referral-link input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .copy-btn {
+            padding: 12px 20px;
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* ============================================ */
+        /* FEATURE 13: VIDEO TESTIMONIALS */
+        /* ============================================ */
+        .video-testimonials {
+            background: var(--bg-primary);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--shadow);
+            margin: 40px 0;
+        }
+
+        .video-testimonials h2 {
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .video-card {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .video-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px var(--shadow-hover);
+        }
+
+        .video-thumbnail {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+            font-weight: bold;
+            position: relative;
+        }
+
+        .video-thumbnail iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .play-icon {
+            font-size: 3em;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .play-icon:hover {
+            transform: scale(1.2);
+        }
+
+        .video-caption {
+            padding: 20px;
+            color: var(--text-primary);
+            text-align: center;
+        }
+
+        /* ============================================ */
+        /* FEATURE 14: PROGRESS TRACKER */
+        /* ============================================ */
+        .progress-tracker {
+            background: var(--bg-primary);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px var(--shadow);
+            margin: 40px 0;
+        }
+
+        .progress-tracker h2 {
+            color: var(--text-primary);
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .progress-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .progress-step {
+            text-align: center;
+            padding: 25px;
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+        }
+
+        .progress-step.completed {
+            border-color: #27ae60;
+        }
+
+        .progress-step.active {
+            border-color: var(--accent);
+            animation: pulse-border 2s infinite;
+        }
+
+        @keyframes pulse-border {
+            0%, 100% { box-shadow: 0 0 0 0 var(--accent); }
+            50% { box-shadow: 0 0 0 10px transparent; }
+        }
+
+        .step-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .progress-step h3 {
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .progress-step p {
+            color: var(--text-secondary);
+        }
+
+        /* ============================================ */
+        /* FEATURE 15: UI ENHANCEMENTS */
+        /* ============================================ */
+        .toast-container {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .toast {
+            background: var(--bg-primary);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px var(--shadow-hover);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            min-width: 300px;
+            animation: slideInRight 0.3s ease;
+            border-left: 4px solid var(--accent);
+        }
+
+        .toast.success {
+            border-left-color: #27ae60;
+        }
+
+        .toast.error {
+            border-left-color: #e74c3c;
+        }
+
+        .toast.info {
+            border-left-color: #3498db;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .toast-icon {
+            font-size: 1.5em;
+        }
+
+        .toast-message {
+            flex: 1;
+            color: var(--text-primary);
+        }
+
+        .toast-close {
+            background: transparent;
+            border: none;
+            font-size: 1.2em;
+            cursor: pointer;
+            color: var(--text-secondary);
+        }
+
+        .form-step-indicator {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+
+        .step {
+            flex: 1;
+            padding: 15px 10px;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            text-align: center;
+            color: var(--text-secondary);
+            font-weight: bold;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .step.active {
+            background: var(--accent-gradient);
+            color: white;
+            border-color: var(--accent);
+        }
+
+        .step.completed {
+            background: #27ae60;
+            color: white;
+        }
+
+        /* Tooltip */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .tooltip .tooltiptext {
+            visibility: hidden;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 8px 12px;
+            border-radius: 6px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            white-space: nowrap;
+            font-size: 0.9em;
+        }
+
+        .tooltip:hover .tooltiptext {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Pulse animation for CTA */
+        .pulse-btn {
+            animation: pulse-cta 2s infinite;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            .loyalty-container {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-images {
+                grid-template-columns: 1fr;
+            }
+
+            .countdown {
+                gap: 10px;
+            }
+
+            .countdown-item {
+                min-width: 80px;
+                padding: 15px;
+            }
+
+            .countdown-number {
+                font-size: 2em;
+            }
+
+            .date-card {
+                min-width: 100px;
+            }
+
+            .theme-switcher {
+                top: 10px;
+                right: 10px;
+            }
+
+            #themeToggle {
+                width: 50px;
+                height: 50px;
+            }
+
+            .mobile-fab-container {
+                bottom: 10px;
+                right: 10px;
+            }
+
+            .fab-button {
+                width: 50px;
+                height: 50px;
+            }
+
+            .promo-banner {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .toast {
+                min-width: 250px;
+            }
+        }
+    
+        /* ============================================ */
+        /* PWA INSTALL BUTTON STYLES */
+        /* ============================================ */
         .pwa-install-container {
             display: none;
             justify-content: center;
@@ -1069,6 +2391,29 @@
     </style>
 </head>
 <body>
+    <!-- FEATURE 2: DARK MODE THEME SWITCHER -->
+    <div class="theme-switcher">
+        <button id="themeToggle" aria-label="Toggle theme">
+            <span class="theme-icon">🌙</span>
+        </button>
+    </div>
+
+    <!-- FEATURE 6: MOBILE FAB BUTTONS -->
+    <div class="mobile-fab-container">
+        <a href="tel:+33784390172" class="fab-button fab-call">
+            <span class="fab-icon">📞</span>
+        </a>
+        <a href="https://wa.me/33784390172" class="fab-button fab-whatsapp">
+            <span class="fab-icon">💬</span>
+        </a>
+        <button class="fab-button fab-scroll-top" id="scrollTop">
+            <span class="fab-icon">⬆️</span>
+        </button>
+    </div>
+
+    <!-- FEATURE 15: TOAST CONTAINER -->
+    <div class="toast-container" id="toastContainer"></div>
+
     <div class="floating-logos">
         <div class="floating-logo"></div>
         <div class="floating-logo"></div>
@@ -1129,8 +2474,276 @@
 
         <div class="warning">Les tarifs peuvent varier selon le modèle et l'état du téléphone</div>
 
+        <!-- FEATURE 1: PRICE CALCULATOR -->
+        <section class="calculator-section" id="calculator">
+            <h2>💰 Калькулятор Стоимости</h2>
+            <div class="calculator-container">
+                <div class="calc-input-group">
+                    <label>📱 Выберите модель:</label>
+                    <select id="phoneModel" class="calc-select">
+                        <option value="">Выберите модель</option>
+                        <option value="iphone14" data-base="89">iPhone 14 Pro</option>
+                        <option value="iphone13" data-base="79">iPhone 13</option>
+                        <option value="samsung23" data-base="69">Samsung Galaxy S23</option>
+                        <option value="samsung22" data-base="59">Samsung Galaxy S22</option>
+                        <option value="xiaomi" data-base="49">Xiaomi</option>
+                        <option value="other" data-base="39">Другие модели</option>
+                    </select>
+                </div>
+                
+                <div class="calc-input-group">
+                    <label>🔧 Тип ремонта:</label>
+                    <select id="repairType" class="calc-select">
+                        <option value="">Выберите тип</option>
+                        <option value="screen" data-multiplier="1.0">Замена экрана</option>
+                        <option value="battery" data-multiplier="0.5">Замена батареи</option>
+                        <option value="water" data-multiplier="1.2">Ремонт после воды</option>
+                        <option value="camera" data-multiplier="0.8">Ремонт камеры</option>
+                        <option value="audio" data-multiplier="0.6">Ремонт звука</option>
+                        <option value="charging" data-multiplier="0.4">Ремонт разъема</option>
+                    </select>
+                </div>
+                
+                <div class="calc-checkbox-group">
+                    <label>
+                        <input type="checkbox" id="urgentRepair" data-extra="20">
+                        ⚡ Срочный ремонт (+20€)
+                    </label>
+                    <label>
+                        <input type="checkbox" id="warranty" data-extra="15">
+                        🛡️ Расширенная гарантия 12 мес (+15€)
+                    </label>
+                </div>
+                
+                <div class="calc-promo">
+                    <input type="text" id="promoCode" placeholder="🎟️ Введите промокод">
+                    <button id="applyPromo">Применить</button>
+                </div>
+                
+                <div class="calc-result">
+                    <div class="price-breakdown">
+                        <p>Базовая цена: <span id="basePrice">0€</span></p>
+                        <p>Услуги: <span id="servicePrice">0€</span></p>
+                        <p>Скидка: <span id="discount" class="discount">-0€</span></p>
+                    </div>
+                    <div class="total-price">
+                        <h3>ИТОГО: <span id="totalPrice">0€</span></h3>
+                    </div>
+                    <button class="book-now-btn" onclick="scrollToForm()">📞 Записаться на ремонт</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURE 8: PROMO BANNER -->
+        <div class="promo-banner" id="promoBanner">
+            <span class="promo-icon">🎁</span>
+            <p>Используйте код <strong>FIRST10</strong> для скидки 10% на первый ремонт!</p>
+            <button class="promo-close" onclick="closePromoBanner()">✕</button>
+        </div>
+
+        <!-- FEATURE 4: STATISTICS COUNTERS -->
+        <section class="stats-section" id="stats">
+            <h2>📊 Наши Достижения</h2>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">😊</div>
+                    <div class="stat-number" data-target="3500">0</div>
+                    <p>Довольных клиентов</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔧</div>
+                    <div class="stat-number" data-target="8500">0</div>
+                    <p>Выполненных ремонтов</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⭐</div>
+                    <div class="stat-number" data-target="98">0</div>
+                    <p>% положительных отзывов</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⚡</div>
+                    <div class="stat-number" data-target="45">0</div>
+                    <p>Минут средний ремонт</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURE 3: BEFORE/AFTER GALLERY -->
+        <section class="gallery-section" id="gallery">
+            <h2>📸 Наши Работы - До и После</h2>
+            <div class="gallery-slider">
+                <div class="comparison-slider" id="comparisonSlider">
+                    <div class="comparison-item">
+                        <div class="comparison-images">
+                            <div class="before-image" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
+                                <span class="image-label">ДО</span>
+                                <div class="broken-screen">❌ Разбитый экран</div>
+                            </div>
+                            <div class="after-image" style="background: linear-gradient(135deg, #2ecc71, #27ae60);">
+                                <span class="image-label">ПОСЛЕ</span>
+                                <div class="fixed-screen">✅ Как новый!</div>
+                            </div>
+                        </div>
+                        <p class="comparison-description">iPhone 14 Pro - Замена экрана</p>
+                    </div>
+                    
+                    <div class="comparison-item">
+                        <div class="comparison-images">
+                            <div class="before-image" style="background: linear-gradient(135deg, #e67e22, #d35400);">
+                                <span class="image-label">ДО</span>
+                                <div class="broken-screen">🔋 Батарея 45%</div>
+                            </div>
+                            <div class="after-image" style="background: linear-gradient(135deg, #3498db, #2980b9);">
+                                <span class="image-label">ПОСЛЕ</span>
+                                <div class="fixed-screen">⚡ 100% новая!</div>
+                            </div>
+                        </div>
+                        <p class="comparison-description">Samsung S23 - Замена батареи</p>
+                    </div>
+                    
+                    <div class="comparison-item">
+                        <div class="comparison-images">
+                            <div class="before-image" style="background: linear-gradient(135deg, #9b59b6, #8e44ad);">
+                                <span class="image-label">ДО</span>
+                                <div class="broken-screen">💧 Попал в воду</div>
+                            </div>
+                            <div class="after-image" style="background: linear-gradient(135deg, #1abc9c, #16a085);">
+                                <span class="image-label">ПОСЛЕ</span>
+                                <div class="fixed-screen">💚 Работает отлично!</div>
+                            </div>
+                        </div>
+                        <p class="comparison-description">iPhone 13 - Ремонт после воды</p>
+                    </div>
+                </div>
+                
+                <div class="gallery-controls">
+                    <button class="gallery-prev" onclick="moveGallery(-1)">◀</button>
+                    <div class="gallery-dots" id="galleryDots"></div>
+                    <button class="gallery-next" onclick="moveGallery(1)">▶</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURE 5: LIVE PHONE SEARCH -->
+        <section class="search-section" id="search">
+            <h2>🔍 Найдите свою модель</h2>
+            <div class="search-container">
+                <input type="text" id="phoneSearch" placeholder="Введите модель телефона...">
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </section>
+
+        <!-- FEATURE 10: COUNTDOWN TIMER -->
+        <div class="promo-timer" id="promoTimer">
+            <h3>⚡ Специальное предложение заканчивается через:</h3>
+            <div class="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-number" id="days">00</span>
+                    <span class="countdown-label">Дней</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="hours">00</span>
+                    <span class="countdown-label">Часов</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="minutes">00</span>
+                    <span class="countdown-label">Минут</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-number" id="seconds">00</span>
+                    <span class="countdown-label">Секунд</span>
+                </div>
+            </div>
+            <p class="promo-description">🎁 Скидка 25% на все услуги!</p>
+        </div>
+
+        <!-- FEATURE 9: LOYALTY PROGRAM -->
+        <section class="loyalty-section" id="loyalty">
+            <h2>🏆 Программа Лояльности</h2>
+            <div class="loyalty-container">
+                <div class="loyalty-card">
+                    <div class="loyalty-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 40%"></div>
+                        </div>
+                        <p>2 из 5 ремонтов до скидки 10%</p>
+                    </div>
+                    <div class="loyalty-benefits">
+                        <div class="benefit-item unlocked">
+                            <span class="benefit-icon">⭐</span>
+                            <p>1 ремонт = +5% скидка</p>
+                        </div>
+                        <div class="benefit-item unlocked">
+                            <span class="benefit-icon">⭐⭐</span>
+                            <p>5 ремонтов = +10% скидка</p>
+                        </div>
+                        <div class="benefit-item locked">
+                            <span class="benefit-icon">⭐⭐⭐</span>
+                            <p>10 ремонтов = +20% скидка</p>
+                        </div>
+                        <div class="benefit-item locked">
+                            <span class="benefit-icon">👑</span>
+                            <p>VIP статус = Приоритет + подарки</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="referral-box">
+                    <h3>💝 Приведи друга</h3>
+                    <p>Получи 15€ за каждого приведенного друга!</p>
+                    <div class="referral-link">
+                        <input type="text" id="referralLink" value="mourad-repair.fr/ref=M0URAD123" readonly>
+                        <button class="copy-btn" onclick="copyReferralLink()">📋 Копировать</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURE 14: REPAIR PROGRESS TRACKER -->
+        <section class="progress-tracker" id="progress">
+            <h2>🔧 Этапы Ремонта</h2>
+            <div class="progress-steps">
+                <div class="progress-step completed">
+                    <div class="step-icon">✅</div>
+                    <h3>1. Диагностика</h3>
+                    <p>15 минут</p>
+                </div>
+                <div class="progress-step active">
+                    <div class="step-icon">🔧</div>
+                    <h3>2. Ремонт</h3>
+                    <p>30-45 минут</p>
+                </div>
+                <div class="progress-step">
+                    <div class="step-icon">🧪</div>
+                    <h3>3. Тестирование</h3>
+                    <p>10 минут</p>
+                </div>
+                <div class="progress-step">
+                    <div class="step-icon">📦</div>
+                    <h3>4. Готово!</h3>
+                    <p>Заберите телефон</p>
+                </div>
+            </div>
+        </section>
+
         <section class="form-section">
             <h2>Réserver un Rendez-Vous</h2>
+            
+            <!-- FEATURE 7: TIME SLOT PICKER -->
+            <div class="timeslot-picker">
+                <h3>📅 Выберите удобное время</h3>
+                <div class="date-selector">
+                    <button type="button" class="date-nav prev" onclick="scrollDates(-1)">◀</button>
+                    <div class="dates-container" id="datesContainer">
+                        <!-- Dates will be generated by JavaScript -->
+                    </div>
+                    <button type="button" class="date-nav next" onclick="scrollDates(1)">▶</button>
+                </div>
+                
+                <div class="time-slots" id="timeSlots">
+                    <!-- Time slots will be generated by JavaScript -->
+                </div>
+            </div>
+            
             <form id="repairForm">
                 <input type="text" id="nomClient" placeholder="Votre Nom" required aria-label="Votre Nom">
                 <input type="tel" id="telClient" placeholder="Votre Téléphone" required aria-label="Votre Téléphone">
@@ -1227,6 +2840,33 @@
                     <div class="stars">⭐⭐⭐⭐⭐</div>
                     <p>"Rapide, efficace et garantie respectée. Je recommande vivement!"</p>
                     <small>- Amélie R.</small>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURE 13: VIDEO TESTIMONIALS -->
+        <section class="video-testimonials" id="video-testimonials">
+            <h2>🎥 Видео-Отзывы Клиентов</h2>
+            <div class="video-grid">
+                <div class="video-card">
+                    <div class="video-thumbnail">
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" allowfullscreen></iframe>
+                    </div>
+                    <p class="video-caption">⭐⭐⭐⭐⭐ "Супер быстро!" - Jean</p>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumbnail" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                        <span class="play-icon">▶️</span>
+                        <p>Отзыв Marie</p>
+                    </div>
+                    <p class="video-caption">⭐⭐⭐⭐⭐ "Отличный сервис!"</p>
+                </div>
+                <div class="video-card">
+                    <div class="video-thumbnail" style="background: linear-gradient(135deg, #f093fb, #f5576c);">
+                        <span class="play-icon">▶️</span>
+                        <p>Отзыв Pierre</p>
+                    </div>
+                    <p class="video-caption">⭐⭐⭐⭐⭐ "Как новый!"</p>
                 </div>
             </div>
         </section>
@@ -1459,7 +3099,520 @@
             
             const whatsappUrl = `https://wa.me/33784390172?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
+            
+            // Show success toast
+            showToast('Спасибо! Перенаправляем в WhatsApp...', 'success');
         });
+
+        // ============================================
+        // FEATURE 1: PRICE CALCULATOR
+        // ============================================
+        let calculatorState = {
+            basePrice: 0,
+            multiplier: 0,
+            extras: 0,
+            discount: 0,
+            promoApplied: false
+        };
+
+        const promoCodes = {
+            'FIRST10': { type: 'percent', value: 10, description: '10% скидка' },
+            'WELCOME15': { type: 'fixed', value: 15, description: '15€ скидка' },
+            'LOYALTY20': { type: 'percent', value: 20, description: '20% скидка' },
+            'URGENT5': { type: 'fixed', value: 5, description: '5€ скидка' }
+        };
+
+        function updateCalculator() {
+            const phoneModel = document.getElementById('phoneModel');
+            const repairType = document.getElementById('repairType');
+            const urgentRepair = document.getElementById('urgentRepair');
+            const warranty = document.getElementById('warranty');
+
+            if (!phoneModel || !repairType) return;
+
+            const selectedPhone = phoneModel.options[phoneModel.selectedIndex];
+            const selectedRepair = repairType.options[repairType.selectedIndex];
+
+            calculatorState.basePrice = parseFloat(selectedPhone.getAttribute('data-base')) || 0;
+            calculatorState.multiplier = parseFloat(selectedRepair.getAttribute('data-multiplier')) || 0;
+            
+            const servicePrice = calculatorState.basePrice * calculatorState.multiplier;
+            
+            calculatorState.extras = 0;
+            if (urgentRepair && urgentRepair.checked) {
+                calculatorState.extras += parseFloat(urgentRepair.getAttribute('data-extra')) || 0;
+            }
+            if (warranty && warranty.checked) {
+                calculatorState.extras += parseFloat(warranty.getAttribute('data-extra')) || 0;
+            }
+
+            const subtotal = calculatorState.basePrice + servicePrice + calculatorState.extras;
+            let total = subtotal - calculatorState.discount;
+
+            // Update UI with animation
+            animatePrice('basePrice', calculatorState.basePrice);
+            animatePrice('servicePrice', servicePrice);
+            animatePrice('discount', calculatorState.discount);
+            animatePrice('totalPrice', total);
+        }
+
+        function animatePrice(elementId, value) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            
+            element.style.transform = 'scale(1.2)';
+            element.style.color = '#667eea';
+            
+            setTimeout(() => {
+                element.textContent = value.toFixed(0) + '€';
+                element.style.transform = 'scale(1)';
+                element.style.color = '';
+            }, 200);
+        }
+
+        // Apply promo code
+        document.getElementById('applyPromo')?.addEventListener('click', function() {
+            const promoInput = document.getElementById('promoCode');
+            const code = promoInput.value.trim().toUpperCase();
+            
+            if (promoCodes[code]) {
+                const promo = promoCodes[code];
+                const phoneModel = document.getElementById('phoneModel');
+                const repairType = document.getElementById('repairType');
+                const selectedPhone = phoneModel.options[phoneModel.selectedIndex];
+                const selectedRepair = repairType.options[repairType.selectedIndex];
+                
+                const basePrice = parseFloat(selectedPhone.getAttribute('data-base')) || 0;
+                const multiplier = parseFloat(selectedRepair.getAttribute('data-multiplier')) || 0;
+                const servicePrice = basePrice * multiplier;
+                const urgentRepair = document.getElementById('urgentRepair');
+                const warranty = document.getElementById('warranty');
+                let extras = 0;
+                if (urgentRepair?.checked) extras += parseFloat(urgentRepair.getAttribute('data-extra')) || 0;
+                if (warranty?.checked) extras += parseFloat(warranty.getAttribute('data-extra')) || 0;
+                
+                const subtotal = basePrice + servicePrice + extras;
+                
+                if (promo.type === 'percent') {
+                    calculatorState.discount = subtotal * (promo.value / 100);
+                } else {
+                    calculatorState.discount = promo.value;
+                }
+                
+                calculatorState.promoApplied = true;
+                updateCalculator();
+                showToast(`Промокод применен! ${promo.description}`, 'success');
+                promoInput.value = '';
+            } else {
+                showToast('Неверный промокод', 'error');
+            }
+        });
+
+        // Attach calculator event listeners
+        ['phoneModel', 'repairType', 'urgentRepair', 'warranty'].forEach(id => {
+            const element = document.getElementById(id);
+            if (element) {
+                element.addEventListener('change', updateCalculator);
+            }
+        });
+
+        // ============================================
+        // FEATURE 2: DARK MODE THEME SWITCHER
+        // ============================================
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.querySelector('.theme-icon');
+        
+        // Load saved theme
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+        if (savedTheme === 'dark') {
+            themeIcon.textContent = '☀️';
+        }
+
+        themeToggle?.addEventListener('click', function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            themeIcon.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+            showToast(`Тема изменена на ${newTheme === 'dark' ? 'темную' : 'светлую'}`, 'info');
+        });
+
+        // ============================================
+        // FEATURE 3: BEFORE/AFTER GALLERY SLIDER
+        // ============================================
+        let currentGalleryIndex = 0;
+        const galleryItems = document.querySelectorAll('.comparison-item');
+        const galleryDotsContainer = document.getElementById('galleryDots');
+
+        // Create dots
+        if (galleryDotsContainer) {
+            galleryItems.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.className = 'gallery-dot' + (index === 0 ? ' active' : '');
+                dot.onclick = () => goToGallerySlide(index);
+                galleryDotsContainer.appendChild(dot);
+            });
+        }
+
+        function moveGallery(direction) {
+            currentGalleryIndex += direction;
+            if (currentGalleryIndex < 0) currentGalleryIndex = galleryItems.length - 1;
+            if (currentGalleryIndex >= galleryItems.length) currentGalleryIndex = 0;
+            updateGallerySlider();
+        }
+
+        function goToGallerySlide(index) {
+            currentGalleryIndex = index;
+            updateGallerySlider();
+        }
+
+        function updateGallerySlider() {
+            const slider = document.getElementById('comparisonSlider');
+            if (slider) {
+                slider.style.transform = `translateX(-${currentGalleryIndex * 100}%)`;
+            }
+            
+            // Update dots
+            document.querySelectorAll('.gallery-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentGalleryIndex);
+            });
+        }
+
+        // Auto-play gallery
+        setInterval(() => {
+            moveGallery(1);
+        }, 5000);
+
+        // ============================================
+        // FEATURE 4: ANIMATED STATISTICS COUNTERS
+        // ============================================
+        function animateCounter(element, target, duration = 2000) {
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target;
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 16);
+        }
+
+        // Intersection Observer for counters
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counters = entry.target.querySelectorAll('.stat-number');
+                    counters.forEach(counter => {
+                        const target = parseInt(counter.getAttribute('data-target'));
+                        animateCounter(counter, target);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.getElementById('stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+
+        // ============================================
+        // FEATURE 5: LIVE PHONE MODEL SEARCH
+        // ============================================
+        const phoneModels = [
+            { name: 'iPhone 14 Pro Max', price: '99€', icon: '📱', brand: 'Apple' },
+            { name: 'iPhone 14 Pro', price: '89€', icon: '📱', brand: 'Apple' },
+            { name: 'iPhone 14', price: '85€', icon: '📱', brand: 'Apple' },
+            { name: 'iPhone 13 Pro', price: '82€', icon: '📱', brand: 'Apple' },
+            { name: 'iPhone 13', price: '79€', icon: '📱', brand: 'Apple' },
+            { name: 'iPhone 12', price: '75€', icon: '📱', brand: 'Apple' },
+            { name: 'Samsung Galaxy S23 Ultra', price: '79€', icon: '📱', brand: 'Samsung' },
+            { name: 'Samsung Galaxy S23', price: '69€', icon: '📱', brand: 'Samsung' },
+            { name: 'Samsung Galaxy S22', price: '59€', icon: '📱', brand: 'Samsung' },
+            { name: 'Samsung Galaxy S21', price: '55€', icon: '📱', brand: 'Samsung' },
+            { name: 'Samsung Galaxy A54', price: '49€', icon: '📱', brand: 'Samsung' },
+            { name: 'Xiaomi 13 Pro', price: '55€', icon: '📱', brand: 'Xiaomi' },
+            { name: 'Xiaomi 12', price: '49€', icon: '📱', brand: 'Xiaomi' },
+            { name: 'Xiaomi Redmi Note 12', price: '39€', icon: '📱', brand: 'Xiaomi' },
+            { name: 'Google Pixel 7 Pro', price: '69€', icon: '📱', brand: 'Google' },
+            { name: 'Google Pixel 7', price: '65€', icon: '📱', brand: 'Google' },
+            { name: 'Google Pixel 6', price: '59€', icon: '📱', brand: 'Google' },
+            { name: 'OnePlus 11', price: '59€', icon: '📱', brand: 'OnePlus' },
+            { name: 'OnePlus 10 Pro', price: '55€', icon: '📱', brand: 'OnePlus' },
+            { name: 'Huawei P50 Pro', price: '59€', icon: '📱', brand: 'Huawei' },
+            { name: 'Oppo Find X5', price: '55€', icon: '📱', brand: 'Oppo' },
+            { name: 'Sony Xperia 1 IV', price: '69€', icon: '📱', brand: 'Sony' },
+            { name: 'Motorola Edge 40', price: '49€', icon: '📱', brand: 'Motorola' }
+        ];
+
+        const phoneSearch = document.getElementById('phoneSearch');
+        const searchResults = document.getElementById('searchResults');
+
+        phoneSearch?.addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase().trim();
+            
+            if (query.length < 2) {
+                searchResults.classList.remove('active');
+                return;
+            }
+
+            const filtered = phoneModels.filter(phone => 
+                phone.name.toLowerCase().includes(query) || 
+                phone.brand.toLowerCase().includes(query)
+            );
+
+            if (filtered.length > 0) {
+                searchResults.innerHTML = filtered.map(phone => {
+                    const highlightedName = phone.name.replace(
+                        new RegExp(query, 'gi'),
+                        match => `<span class="search-highlight">${match}</span>`
+                    );
+                    return `
+                        <div class="search-result-item">
+                            <span class="search-result-name">${phone.icon} ${highlightedName}</span>
+                            <span class="search-result-price">${phone.price}</span>
+                        </div>
+                    `;
+                }).join('');
+                searchResults.classList.add('active');
+            } else {
+                searchResults.innerHTML = '<div class="search-result-item">Не найдено</div>';
+                searchResults.classList.add('active');
+            }
+        });
+
+        // Close search results when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.search-container')) {
+                searchResults?.classList.remove('active');
+            }
+        });
+
+        // ============================================
+        // FEATURE 6: SCROLL TO TOP BUTTON
+        // ============================================
+        const scrollTopBtn = document.getElementById('scrollTop');
+
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn?.classList.add('visible');
+            } else {
+                scrollTopBtn?.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn?.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // ============================================
+        // FEATURE 7: TIME SLOT PICKER
+        // ============================================
+        let selectedDate = null;
+        let selectedTime = null;
+
+        function initializeTimePicker() {
+            const datesContainer = document.getElementById('datesContainer');
+            const timeSlotsContainer = document.getElementById('timeSlots');
+            
+            if (!datesContainer || !timeSlotsContainer) return;
+
+            // Generate next 7 days
+            const dates = [];
+            const today = new Date();
+            
+            for (let i = 0; i < 7; i++) {
+                const date = new Date(today);
+                date.setDate(today.getDate() + i);
+                dates.push(date);
+            }
+
+            // Render date cards
+            datesContainer.innerHTML = dates.map((date, index) => {
+                const dayNames = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
+                const monthNames = ['ЯНВ', 'ФЕВ', 'МАР', 'АПР', 'МАЙ', 'ИЮН', 'ИЮЛ', 'АВГ', 'СЕН', 'ОКТ', 'НОЯ', 'ДЕК'];
+                
+                const availableSlots = Math.floor(Math.random() * 8) + 1;
+                const status = availableSlots > 5 ? '🟢' : availableSlots > 2 ? '🟡' : '🔴';
+                
+                return `
+                    <div class="date-card ${index === 0 ? 'active' : ''}" onclick="selectDate('${date.toISOString()}', this)">
+                        <span class="day-name">${dayNames[date.getDay()]}</span>
+                        <span class="day-number">${date.getDate()}</span>
+                        <span class="month">${monthNames[date.getMonth()]}</span>
+                        <span class="availability">${status} ${availableSlots} слотов</span>
+                    </div>
+                `;
+            }).join('');
+
+            // Generate time slots
+            generateTimeSlots();
+        }
+
+        function generateTimeSlots() {
+            const timeSlotsContainer = document.getElementById('timeSlots');
+            if (!timeSlotsContainer) return;
+
+            const times = ['09:00', '10:00', '11:00', '12:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'];
+            
+            timeSlotsContainer.innerHTML = times.map(time => {
+                const isBooked = Math.random() > 0.7;
+                return `
+                    <button type="button" class="time-slot ${isBooked ? 'booked' : 'available'}" 
+                            ${isBooked ? 'disabled' : ''} 
+                            onclick="selectTime('${time}', this)">
+                        ${time}
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function selectDate(dateStr, element) {
+            document.querySelectorAll('.date-card').forEach(card => card.classList.remove('active'));
+            element.classList.add('active');
+            selectedDate = dateStr;
+            generateTimeSlots();
+        }
+
+        function selectTime(time, element) {
+            document.querySelectorAll('.time-slot').forEach(slot => slot.classList.remove('selected'));
+            element.classList.add('selected');
+            selectedTime = time;
+            showToast(`Выбрано время: ${time}`, 'success');
+        }
+
+        function scrollDates(direction) {
+            const container = document.getElementById('datesContainer');
+            if (container) {
+                container.scrollBy({ left: direction * 150, behavior: 'smooth' });
+            }
+        }
+
+        // Initialize time picker
+        initializeTimePicker();
+
+        // ============================================
+        // FEATURE 8: CLOSE PROMO BANNER
+        // ============================================
+        function closePromoBanner() {
+            const banner = document.getElementById('promoBanner');
+            if (banner) {
+                banner.style.animation = 'slideOutLeft 0.5s ease';
+                setTimeout(() => banner.style.display = 'none', 500);
+            }
+        }
+
+        // ============================================
+        // FEATURE 9: COPY REFERRAL LINK
+        // ============================================
+        function copyReferralLink() {
+            const input = document.getElementById('referralLink');
+            if (input) {
+                input.select();
+                document.execCommand('copy');
+                showToast('Ссылка скопирована!', 'success');
+            }
+        }
+
+        // ============================================
+        // FEATURE 10: COUNTDOWN TIMER
+        // ============================================
+        function updateCountdown() {
+            const endDate = new Date();
+            endDate.setDate(endDate.getDate() + 2);
+            endDate.setHours(23, 59, 59, 999);
+
+            function update() {
+                const now = new Date();
+                const diff = endDate - now;
+
+                if (diff <= 0) {
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                const daysEl = document.getElementById('days');
+                const hoursEl = document.getElementById('hours');
+                const minutesEl = document.getElementById('minutes');
+                const secondsEl = document.getElementById('seconds');
+
+                if (daysEl) daysEl.textContent = String(days).padStart(2, '0');
+                if (hoursEl) hoursEl.textContent = String(hours).padStart(2, '0');
+                if (minutesEl) minutesEl.textContent = String(minutes).padStart(2, '0');
+                if (secondsEl) secondsEl.textContent = String(seconds).padStart(2, '0');
+            }
+
+            update();
+            setInterval(update, 1000);
+        }
+
+        updateCountdown();
+
+        // ============================================
+        // FEATURE 15: TOAST NOTIFICATIONS
+        // ============================================
+        function showToast(message, type = 'info') {
+            const container = document.getElementById('toastContainer');
+            if (!container) return;
+
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            
+            const icons = {
+                success: '✅',
+                error: '❌',
+                info: 'ℹ️'
+            };
+
+            toast.innerHTML = `
+                <span class="toast-icon">${icons[type] || icons.info}</span>
+                <span class="toast-message">${message}</span>
+                <button class="toast-close" onclick="this.parentElement.remove()">✕</button>
+            `;
+
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Helper function to scroll to form
+        function scrollToForm() {
+            document.querySelector('.form-section')?.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ============================================
+        // ADDITIONAL UI ENHANCEMENTS
+        // ============================================
+        
+        // Add slideOutLeft animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideOutLeft {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(-100%); opacity: 0; }
+            }
+            @keyframes slideOutRight {
+                from { transform: translateX(0); opacity: 1; }
+                to { transform: translateX(400px); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+
     </script>
 </body>
 </html>
