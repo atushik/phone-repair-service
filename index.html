@@ -788,6 +788,17 @@
             color: #333;
         }
 
+        .custom-select.error {
+            border-color: #ff4444 !important;
+            animation: shake 0.3s ease;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
         .custom-select-arrow {
             transition: transform 0.3s ease;
             font-size: 0.8em;
@@ -1312,104 +1323,109 @@
         }
 
         // Custom Select Functionality
-        const customSelectTrigger = document.getElementById('customSelectTrigger');
-        const customSelectDropdown = document.getElementById('customSelectDropdown');
-        const customSelectWrapper = document.querySelector('.custom-select-wrapper');
-        const customSelectText = customSelectTrigger.querySelector('.custom-select-text');
-        const nativeSelect = document.getElementById('serviceType');
-        const customOptions = document.querySelectorAll('.custom-option');
+        document.addEventListener('DOMContentLoaded', function() {
+            const customSelectTrigger = document.getElementById('customSelectTrigger');
+            const customSelectDropdown = document.getElementById('customSelectDropdown');
+            const customSelectWrapper = document.querySelector('.custom-select-wrapper');
+            const customSelectText = customSelectTrigger.querySelector('.custom-select-text');
+            const nativeSelect = document.getElementById('serviceType');
+            const customOptions = document.querySelectorAll('.custom-option');
 
-        // Toggle dropdown
-        function toggleDropdown() {
-            const isActive = customSelectDropdown.classList.contains('active');
-            if (isActive) {
-                closeDropdown();
-            } else {
-                openDropdown();
+            // Toggle dropdown
+            function toggleDropdown() {
+                const isActive = customSelectDropdown.classList.contains('active');
+                if (isActive) {
+                    closeDropdown();
+                } else {
+                    openDropdown();
+                }
             }
-        }
 
-        function openDropdown() {
-            customSelectDropdown.classList.add('active');
-            customSelectTrigger.classList.add('active');
-            customSelectTrigger.setAttribute('aria-expanded', 'true');
-        }
+            function openDropdown() {
+                customSelectDropdown.classList.add('active');
+                customSelectTrigger.classList.add('active');
+                customSelectTrigger.setAttribute('aria-expanded', 'true');
+            }
 
-        function closeDropdown() {
-            customSelectDropdown.classList.remove('active');
-            customSelectTrigger.classList.remove('active');
-            customSelectTrigger.setAttribute('aria-expanded', 'false');
-        }
+            function closeDropdown() {
+                customSelectDropdown.classList.remove('active');
+                customSelectTrigger.classList.remove('active');
+                customSelectTrigger.setAttribute('aria-expanded', 'false');
+            }
 
-        // Handle option selection
-        function selectOption(optionElement) {
-            const value = optionElement.getAttribute('data-value');
-            const emoji = optionElement.querySelector('.custom-option-emoji').textContent;
-            const text = optionElement.querySelector('.custom-option-text').textContent;
-            
-            // Update custom select display
-            customSelectText.textContent = emoji + ' ' + text;
-            customSelectText.classList.add('has-value');
-            
-            // Update native select value
-            nativeSelect.value = value;
-            
-            // Trigger change event for validation
-            nativeSelect.dispatchEvent(new Event('change'));
-            
-            closeDropdown();
-        }
+            // Handle option selection
+            function selectOption(optionElement) {
+                const value = optionElement.getAttribute('data-value');
+                const emoji = optionElement.querySelector('.custom-option-emoji').textContent;
+                const text = optionElement.querySelector('.custom-option-text').textContent;
+                
+                // Update custom select display
+                customSelectText.textContent = emoji + ' ' + text;
+                customSelectText.classList.add('has-value');
+                
+                // Update native select value
+                nativeSelect.value = value;
+                
+                // Trigger change event for validation
+                nativeSelect.dispatchEvent(new Event('change'));
+                
+                closeDropdown();
+            }
 
-        // Click event on trigger
-        customSelectTrigger.addEventListener('click', toggleDropdown);
+            // Click event on trigger
+            customSelectTrigger.addEventListener('click', toggleDropdown);
 
-        // Click event on options
-        customOptions.forEach(option => {
-            option.addEventListener('click', function() {
-                selectOption(this);
+            // Click event on options
+            customOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    selectOption(this);
+                });
             });
-        });
 
-        // Keyboard navigation
-        customSelectTrigger.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                toggleDropdown();
-            } else if (e.key === 'Escape') {
-                closeDropdown();
-            }
-        });
-
-        customOptions.forEach((option, index) => {
-            option.addEventListener('keydown', function(e) {
+            // Keyboard navigation
+            customSelectTrigger.addEventListener('keydown', function(e) {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    selectOption(this);
-                } else if (e.key === 'ArrowDown') {
-                    e.preventDefault();
-                    const nextOption = customOptions[index + 1];
-                    if (nextOption) nextOption.focus();
-                } else if (e.key === 'ArrowUp') {
-                    e.preventDefault();
-                    const prevOption = customOptions[index - 1];
-                    if (prevOption) {
-                        prevOption.focus();
-                    } else {
-                        customSelectTrigger.focus();
-                        closeDropdown();
-                    }
+                    toggleDropdown();
                 } else if (e.key === 'Escape') {
-                    customSelectTrigger.focus();
                     closeDropdown();
                 }
             });
-        });
 
-        // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!customSelectWrapper.contains(e.target)) {
-                closeDropdown();
-            }
+            customOptions.forEach((option, index) => {
+                option.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        selectOption(this);
+                    } else if (e.key === 'ArrowDown') {
+                        e.preventDefault();
+                        const nextOption = customOptions[index + 1];
+                        if (nextOption) nextOption.focus();
+                    } else if (e.key === 'ArrowUp') {
+                        e.preventDefault();
+                        const prevOption = customOptions[index - 1];
+                        if (prevOption) {
+                            prevOption.focus();
+                        } else {
+                            customSelectTrigger.focus();
+                            closeDropdown();
+                        }
+                    } else if (e.key === 'Escape') {
+                        customSelectTrigger.focus();
+                        closeDropdown();
+                    }
+                });
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!customSelectWrapper.contains(e.target)) {
+                    closeDropdown();
+                }
+            });
+
+            // Form submission - make customSelectTrigger available to form handler
+            window.customSelectTrigger = customSelectTrigger;
         });
 
         // Form submission
@@ -1423,12 +1439,15 @@
             
             // Validate that service type is selected
             if (!service) {
-                // Focus the custom select and add visual feedback
-                customSelectTrigger.focus();
-                customSelectTrigger.style.borderColor = '#ff4444';
-                setTimeout(() => {
-                    customSelectTrigger.style.borderColor = '';
-                }, 2000);
+                // Add error class with visual feedback
+                const trigger = window.customSelectTrigger;
+                if (trigger) {
+                    trigger.classList.add('error');
+                    trigger.focus();
+                    setTimeout(() => {
+                        trigger.classList.remove('error');
+                    }, 2000);
+                }
                 return;
             }
             
