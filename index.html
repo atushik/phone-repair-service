@@ -4171,7 +4171,6 @@
         
         // Save to localStorage
         localStorage.setItem('preferredLanguage', lang);
-        localStorage.setItem('language', lang);
     }
 
     // ============================================
@@ -4871,19 +4870,6 @@
     }
 
     // ============================================
-    // LANGUAGE BUTTONS ARIA UPDATE
-    // ============================================
-    const originalSetLanguage = window.setLanguage;
-    window.setLanguage = function(lang) {
-        if (originalSetLanguage) originalSetLanguage(lang);
-        // Update ARIA attributes
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            const isActive = btn.getAttribute('data-lang') === lang;
-            btn.setAttribute('aria-pressed', isActive);
-        });
-    };
-
-    // ============================================
     // SCROLL ANIMATIONS (Intersection Observer)
     // ============================================
     const observerOptions = {
@@ -4908,13 +4894,19 @@
     });
 
     // ============================================
-    // SCROLL PROGRESS BAR
+    // SCROLL PROGRESS BAR (with throttling)
     // ============================================
+    let scrollTimeout;
     window.addEventListener('scroll', () => {
-        const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-        const progressBar = document.getElementById('scrollProgress');
-        if (progressBar) {
-            progressBar.style.width = scrolled + '%';
+        if (!scrollTimeout) {
+            scrollTimeout = setTimeout(() => {
+                const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+                const progressBar = document.getElementById('scrollProgress');
+                if (progressBar) {
+                    progressBar.style.width = scrolled + '%';
+                }
+                scrollTimeout = null;
+            }, 10);
         }
     });
     </script>
