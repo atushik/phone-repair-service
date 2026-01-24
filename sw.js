@@ -1,4 +1,4 @@
-const CACHE_NAME = 'phone-repair-v1';
+const CACHE_NAME = 'phone-repair-v1-2026-01-24';
 const urlsToCache = [
   '/',
   '/index.html',
@@ -11,6 +11,7 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
       .then(cache => cache.addAll(urlsToCache))
+      .then(() => self.skipWaiting())
   );
 });
 
@@ -33,6 +34,6 @@ self.addEventListener('activate', event => {
           }
         })
       );
-    })
+    }).then(() => self.clients.claim())
   );
 });
