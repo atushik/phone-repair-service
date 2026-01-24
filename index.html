@@ -4894,19 +4894,20 @@
     });
 
     // ============================================
-    // SCROLL PROGRESS BAR (with throttling)
+    // SCROLL PROGRESS BAR (with requestAnimationFrame)
     // ============================================
-    let scrollTimeout;
+    let scrollTicking = false;
     window.addEventListener('scroll', () => {
-        if (!scrollTimeout) {
-            scrollTimeout = setTimeout(() => {
+        if (!scrollTicking) {
+            window.requestAnimationFrame(() => {
                 const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
                 const progressBar = document.getElementById('scrollProgress');
                 if (progressBar) {
                     progressBar.style.width = scrolled + '%';
                 }
-                scrollTimeout = null;
-            }, 10);
+                scrollTicking = false;
+            });
+            scrollTicking = true;
         }
     });
     </script>
