@@ -95,6 +95,22 @@
     }
     </script>
     
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Service de Réparation de Téléphones - MOURAD",
+      "priceRange": "30€-150€",
+      "paymentAccepted": ["Cash", "Credit Card", "Debit Card"],
+      "currenciesAccepted": "EUR",
+      "hasMap": "https://maps.google.com/?q=43.1247,5.9246"
+    }
+    </script>
+    
+    <!-- Security Headers -->
+    <meta http-equiv="Content-Security-Policy" 
+          content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:;">
+    
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#667eea">
@@ -2411,21 +2427,214 @@
                 display: none;
             }
         }
+
+        /* Skip Link для accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px 16px;
+            text-decoration: none;
+            z-index: 9999;
+        }
+
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Reviews Section */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .review-card {
+            background: var(--bg-tertiary);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px var(--shadow);
+        }
+
+        .review-stars {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+        }
+
+        .review-text {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .review-author {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        /* Map Section */
+        .map-container {
+            margin: 30px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px var(--shadow);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .contact-info p {
+            background: var(--bg-tertiary);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.05em;
+        }
+
+        .contact-info i {
+            color: var(--primary);
+            margin-right: 8px;
+        }
+
+        .contact-info a {
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--primary);
+        }
+
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0 5px 20px var(--shadow-strong);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px var(--shadow-strong);
+        }
+
+        /* Optimisation pour mobiles */
+        @media (max-width: 768px) {
+            .floating-logos {
+                display: none; /* Экономия ресурсов на мобильных */
+            }
+            
+            .countdown-timer {
+                gap: 10px;
+            }
+            
+            .countdown-item {
+                min-width: 80px;
+                padding: 15px;
+            }
+            
+            .countdown-number {
+                font-size: 2em;
+            }
+            
+            .chat-window {
+                width: 100vw;
+                height: 100vh;
+                border-radius: 0;
+                right: 0;
+                bottom: 0;
+            }
+            
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .services {
+                grid-template-columns: 1fr;
+            }
+            
+            .language-switcher {
+                top: 10px;
+                left: 10px;
+                padding: 6px 10px;
+            }
+            
+            .theme-switcher {
+                top: 10px;
+                right: 10px;
+                padding: 10px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cta-button {
+                padding: 12px 30px;
+                font-size: 1em;
+            }
+            
+            .tracking-input-wrapper {
+                flex-direction: column;
+            }
+            
+            .tracking-input-wrapper input,
+            .tracking-input-wrapper button {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Passer au contenu principal</a>
+    
     <!-- Language Switcher -->
     <div class="language-switcher">
-        <button class="lang-btn active" onclick="setLanguage('fr')" title="Français">🇫🇷</button>
-        <button class="lang-btn" onclick="setLanguage('en')" title="English">🇬🇧</button>
-        <button class="lang-btn" onclick="setLanguage('ar')" title="العربية">🇸🇦</button>
+        <button class="lang-btn active" data-lang="fr" onclick="setLanguage('fr')" title="Français" aria-label="Français" aria-pressed="true">🇫🇷</button>
+        <button class="lang-btn" data-lang="en" onclick="setLanguage('en')" title="English" aria-label="English" aria-pressed="false">🇬🇧</button>
+        <button class="lang-btn" data-lang="ar" onclick="setLanguage('ar')" title="العربية" aria-label="العربية" aria-pressed="false">🇸🇦</button>
     </div>
 
     <!-- Theme Switcher -->
-    <div class="theme-switcher" onclick="toggleTheme()" title="Changer le thème">
-        <span class="theme-switcher-icon">🌓</span>
+    <button class="theme-switcher" 
+            onclick="toggleTheme()" 
+            aria-label="Changer le thème" 
+            role="button"
+            aria-pressed="false">
+        <span class="theme-switcher-icon" aria-hidden="true">🌓</span>
         <span data-i18n="theme">Thème</span>
-    </div>
+    </button>
 
     <!-- Sticky Mobile Buttons -->
     <div class="sticky-mobile-buttons">
@@ -2492,7 +2701,7 @@
         </a>
     </div>
 
-    <div class="container">
+    <div class="container" id="main-content">
         <!-- Header -->
         <header>
             <h1 data-i18n="main-title">Service de Réparation de Téléphones</h1>
@@ -2605,6 +2814,28 @@
                 <div class="stat-item">
                     <span class="stat-number" data-target="6">0</span>
                     <div class="stat-label" data-i18n="stat-warranty">Mois de Garantie</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section class="section-base reviews-section" id="reviews">
+            <h2>💬 Avis de nos clients</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Service rapide et professionnel. Mon iPhone fonctionne comme neuf!"</p>
+                    <p class="review-author">- Sarah M.</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Prix honnêtes, travail de qualité. Je recommande vivement!"</p>
+                    <p class="review-author">- Ahmed K.</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Réparation en 40 minutes, excellent service client."</p>
+                    <p class="review-author">- Marie L.</p>
                 </div>
             </div>
         </section>
@@ -3116,6 +3347,27 @@
                     loading="lazy"
                     referrerpolicy="no-referrer-when-downgrade">
                 </iframe>
+            </div>
+        </section>
+
+        <!-- Location Map -->
+        <section class="section-base map-section" id="location">
+            <h2>📍 Notre Localisation</h2>
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46284.92681477952!2d5.8968!3d43.1247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c91b56c05e6537%3A0x40819a5fd970d10!2sToulon%2C%20France!5e0!3m2!1sen!2s!4v1234567890"
+                    width="100%" 
+                    height="400" 
+                    style="border:0; border-radius: 15px;" 
+                    allowfullscreen="" 
+                    loading="lazy"
+                    title="Localisation MOURAD Réparation Téléphones">
+                </iframe>
+            </div>
+            <div class="contact-info">
+                <p><i class="fas fa-map-marker-alt"></i> 123 Rue de la Réparation, 83000 Toulon</p>
+                <p><i class="fas fa-phone"></i> <a href="tel:+33784390172">+33 7 84 39 01 72</a></p>
+                <p><i class="fas fa-envelope"></i> <a href="mailto:lyabendehbi@gmail.com">lyabendehbi@gmail.com</a></p>
             </div>
         </section>
 
@@ -4267,6 +4519,81 @@
             navigator.serviceWorker.register('/sw.js').catch(() => {});
         });
     }
+
+    // ============================================
+    // SCROLL TO TOP BUTTON
+    // ============================================
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollToTopBtn.classList.add('visible');
+        } else {
+            scrollToTopBtn.classList.remove('visible');
+        }
+    });
+
+    scrollToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // ============================================
+    // UPDATE THEME SWITCHER ARIA
+    // ============================================
+    const themeSwitcher = document.querySelector('.theme-switcher');
+    if (themeSwitcher) {
+        const originalToggle = window.toggleTheme;
+        window.toggleTheme = function() {
+            if (originalToggle) originalToggle();
+            const pressed = themeSwitcher.getAttribute('aria-pressed') === 'true';
+            themeSwitcher.setAttribute('aria-pressed', !pressed);
+        };
+    }
+
+    // ============================================
+    // LANGUAGE BUTTONS ARIA UPDATE
+    // ============================================
+    const originalSetLanguage = window.setLanguage;
+    window.setLanguage = function(lang) {
+        if (originalSetLanguage) originalSetLanguage(lang);
+        // Update ARIA attributes
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            const isActive = btn.getAttribute('data-lang') === lang;
+            btn.setAttribute('aria-pressed', isActive);
+        });
+    };
+
+    // ============================================
+    // SCROLL ANIMATIONS (Intersection Observer)
+    // ============================================
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.service-card, .review-card, .stat-item').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.6s ease';
+        observer.observe(el);
+    });
     </script>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 </body>
 </html> 

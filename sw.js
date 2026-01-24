@@ -1,6 +1,12 @@
-const CACHE_NAME = 'repairation-v2-2026-01-11';
-const urlsToCache = ['/', '/index.html'];
+const CACHE_NAME = 'phone-repair-v1-2026-01-24';
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/logo.jpg',
+  '/manifest.json'
+];
 
+// Install
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -9,6 +15,15 @@ self.addEventListener('install', event => {
   );
 });
 
+// Fetch
+self.addEventListener('fetch', event => {
+  event.respondWith(
+    caches.match(event.request)
+      .then(response => response || fetch(event.request))
+  );
+});
+
+// Activate
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
@@ -20,12 +35,5 @@ self.addEventListener('activate', event => {
         })
       );
     }).then(() => self.clients.claim())
-  );
-});
-
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request)
-      .then(response => response || fetch(event.request))
   );
 });
