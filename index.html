@@ -4428,7 +4428,7 @@
     // AMÉLIORATIONS ARIA ET INTERFACE UTILISATEUR
     // ============================================
     document.addEventListener('DOMContentLoaded', function() {
-        // Кнопка "Наверх"
+        // Bouton retour en haut
         const scrollBtn = document.createElement('button');
         scrollBtn.innerHTML = '↑';
         scrollBtn.className = 'scroll-to-top';
@@ -4464,7 +4464,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
         
-        // Intersection Observer для анимаций
+        // Intersection Observer pour les animations
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
