@@ -582,7 +582,9 @@
         }
 
         .chat-toggle::before {
-            content: '💬';
+            content: '';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
             font-size: 1.2em;
             animation: emoji-bounce 2s ease-in-out infinite;
         }
@@ -1916,7 +1918,9 @@
         }
 
         .gallery-section h2::before {
-            content: '📸 ';
+            content: '\f030 ';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
         }
 
         .gallery-container {
@@ -2935,7 +2939,7 @@
             </div>
             <div class="service-card">
                 <i class="fas fa-camera"></i>
-                <h3 data-i18n="service-camera">📸 Réparation Caméra</h3>
+                <h3 data-i18n="service-camera">Réparation Caméra</h3>
                 <p data-i18n="service-camera-desc">Remplacement et réparation de caméras avant et arrière</p>
                 <span class="price-badge" data-i18n="from">À partir de 55€</span>
             </div>
@@ -3016,7 +3020,7 @@
 
         <!-- Reviews Section -->
         <section class="section-base reviews-section" id="reviews">
-            <h2>💬 Avis de nos clients</h2>
+            <h2><i class="fas fa-comments"></i> Avis de nos clients</h2>
             <div class="reviews-grid">
                 <div class="review-card">
                     <div class="review-stars">⭐⭐⭐⭐⭐</div>
@@ -3232,7 +3236,7 @@
 
         <!-- Gallery Section -->
         <section class="gallery-section section-base">
-            <h2 data-i18n="gallery-title">📸 Avant / Après</h2>
+            <h2 data-i18n="gallery-title">Avant / Après</h2>
             <p style="text-align: center; color: var(--text-secondary); margin-bottom: 25px;" data-i18n="gallery-desc">Découvrez nos réparations</p>
             
             <div class="gallery-container">
@@ -3264,11 +3268,11 @@
                     <div class="gallery-item">
                         <div class="gallery-comparison">
                             <div class="gallery-image">
-                                <div class="gallery-image-placeholder">📸🚫</div>
+                                <div class="gallery-image-placeholder"><i class="fas fa-camera"></i><i class="fas fa-times"></i></div>
                                 <h4 data-i18n="before">Avant</h4>
                             </div>
                             <div class="gallery-image">
-                                <div class="gallery-image-placeholder">📸👍</div>
+                                <div class="gallery-image-placeholder"><i class="fas fa-camera"></i><i class="fas fa-check"></i></div>
                                 <h4 data-i18n="after">Après</h4>
                             </div>
                         </div>
@@ -3329,7 +3333,7 @@
                                 <span data-i18n="service-audio">Problèmes Audio</span>
                             </div>
                             <div class="custom-option" data-value="Réparation Caméra">
-                                <span class="custom-option-emoji">📸</span>
+                                <span class="custom-option-emoji"><i class="fas fa-camera"></i></span>
                                 <span data-i18n="service-camera">Réparation Caméra</span>
                             </div>
                             <div class="custom-option" data-value="Problèmes de Charge">
@@ -3503,21 +3507,21 @@
 
         <!-- Address Section -->
         <section class="section-base" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white;">
-            <h2 style="color: white;" data-i18n="address-title">📍 Notre Adresse</h2>
+            <h2 style="color: white;" data-i18n="address-title"><i class="fas fa-map-marker-alt"></i> Notre Adresse</h2>
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 30px;">
                 <div style="text-align: center;">
-                    <div style="font-size: 1.2em; margin-bottom: 15px;">🏢</div>
+                    <div style="font-size: 1.2em; margin-bottom: 15px;"><i class="fas fa-building"></i></div>
                     <h3 style="margin-bottom: 10px;" data-i18n="address-label">Adresse</h3>
                     <p>123 Rue de la Réparation<br>83000 Toulon, France</p>
                 </div>
                 <div style="text-align: center;">
-                    <div style="font-size: 1.2em; margin-bottom: 15px;">📞</div>
+                    <div style="font-size: 1.2em; margin-bottom: 15px;"><i class="fas fa-phone"></i></div>
                     <h3 style="margin-bottom: 10px;" data-i18n="phone-label">Téléphone</h3>
                     <a href="tel:+33784390172" style="color: white; text-decoration: none; font-size: 1.2em; font-weight: 600;">07 84 39 01 72</a>
                 </div>
                 <div style="text-align: center;">
-                    <div style="font-size: 1.2em; margin-bottom: 15px;">📧</div>
+                    <div style="font-size: 1.2em; margin-bottom: 15px;"><i class="fas fa-envelope"></i></div>
                     <h3 style="margin-bottom: 10px;">Email</h3>
                     <a href="mailto:lyabendehbi@gmail.com" style="color: white; text-decoration: none;">lyabendehbi@gmail.com</a>
                 </div>
@@ -3532,7 +3536,7 @@
 
         <!-- Map Section -->
         <section class="section-base">
-            <h2 data-i18n="map-title">🗺️ Où Nous Trouver</h2>
+            <h2 data-i18n="map-title"><i class="fas fa-map"></i> Où Nous Trouver</h2>
             <div style="border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px var(--shadow); margin-top: 25px;">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2903.8377777!2d5.9246!3d43.1247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDA3JzI5LjAiTiA1wrA1NSczMC42IkU!5e0!3m2!1sfr!2sfr!4v1234567890" 
@@ -3548,7 +3552,7 @@
 
         <!-- Location Map -->
         <section class="section-base map-section" id="location">
-            <h2>📍 Notre Localisation</h2>
+            <h2><i class="fas fa-map-marker-alt"></i> Notre Localisation</h2>
             <div class="map-container">
                 <iframe 
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d46284.92681477952!2d5.8968!3d43.1247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c91b56c05e6537%3A0x40819a5fd970d10!2sToulon%2C%20France!5e0!3m2!1sen!2s!4v1234567890"
@@ -3569,10 +3573,10 @@
 
         <!-- PWA Install -->
         <section class="section-base" style="text-align: center; background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);" id="pwaInstallSection">
-            <h2 data-i18n="pwa-title">📲 Installez Notre Application</h2>
+            <h2 data-i18n="pwa-title"><i class="fas fa-mobile-alt"></i> Installez Notre Application</h2>
             <p style="color: var(--text-secondary); margin-bottom: 25px;" data-i18n="pwa-desc">Accédez rapidement à nos services depuis votre écran d'accueil</p>
             <button id="installBtn" onclick="installPWA()" style="background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color: white; border: none; padding: 20px 50px; border-radius: 50px; font-size: 1.2em; font-weight: 700; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);">
-                <span style="margin-right: 10px;">📱</span>
+                <i class="fas fa-mobile-alt" style="margin-right: 10px;"></i>
                 <span data-i18n="pwa-install-btn">Installer l'Application</span>
             </button>
         </section>
@@ -3720,7 +3724,7 @@
             'status-desc': 'Votre téléphone sera prêt dans environ 15 minutes',
             
             // Gallery
-            'gallery-title': '📸 Avant / Après',
+            'gallery-title': 'Avant / Après',
             'gallery-desc': 'Découvrez nos réparations',
             'before': 'Avant',
             'after': 'Après',
@@ -3772,13 +3776,13 @@
             'hours-weekdays': 'Lundi - Dimanche: 9h00 - 20h00',
             'hours-everyday': '7 jours sur 7',
             'currently-open': 'Actuellement ouvert',
-            'address-title': '📍 Notre Adresse',
+            'address-title': 'Notre Adresse',
             'address-label': 'Adresse',
             'phone-label': 'Téléphone',
-            'map-title': '🗺️ Où Nous Trouver',
+            'map-title': 'Où Nous Trouver',
             
             // PWA
-            'pwa-title': '📲 Installez Notre Application',
+            'pwa-title': 'Installez Notre Application',
             'pwa-desc': 'Accédez rapidement à nos services depuis votre écran d\'accueil',
             'pwa-install-btn': 'Installer l\'Application',
             
@@ -3895,7 +3899,7 @@
             'step-ready': 'Ready',
             'current-status': 'Current status: Testing in progress',
             'status-desc': 'Your phone will be ready in about 15 minutes',
-            'gallery-title': '📸 Before / After',
+            'gallery-title': 'Before / After',
             'gallery-desc': 'Discover our repairs',
             'before': 'Before',
             'after': 'After',
@@ -3939,11 +3943,11 @@
             'hours-weekdays': 'Monday - Sunday: 9:00 AM - 8:00 PM',
             'hours-everyday': '7 days a week',
             'currently-open': 'Currently open',
-            'address-title': '📍 Our Address',
+            'address-title': 'Our Address',
             'address-label': 'Address',
             'phone-label': 'Phone',
-            'map-title': '🗺️ Where to Find Us',
-            'pwa-title': '📲 Install Our App',
+            'map-title': 'Where to Find Us',
+            'pwa-title': 'Install Our App',
             'pwa-desc': 'Quick access to our services from your home screen',
             'pwa-install-btn': 'Install App',
             'footer-desc': 'Phone repair expert in Toulon',
@@ -4056,7 +4060,7 @@
             'step-ready': 'جاهز',
             'current-status': 'الحالة الحالية: الاختبارات جارية',
             'status-desc': 'سيكون هاتفك جاهزاً خلال حوالي 15 دقيقة',
-            'gallery-title': '📸 قبل / بعد',
+            'gallery-title': 'قبل / بعد',
             'gallery-desc': 'اكتشف إصلاحاتنا',
             'before': 'قبل',
             'after': 'بعد',
@@ -4100,11 +4104,11 @@
             'hours-weekdays': 'الإثنين - الأحد: 9:00 صباحاً - 8:00 مساءً',
             'hours-everyday': '7 أيام في الأسبوع',
             'currently-open': 'مفتوح حالياً',
-            'address-title': '📍 عنواننا',
+            'address-title': 'عنواننا',
             'address-label': 'العنوان',
             'phone-label': 'الهاتف',
-            'map-title': '🗺️ أين تجدنا',
-            'pwa-title': '📲 حمل تطبيقنا',
+            'map-title': 'أين تجدنا',
+            'pwa-title': 'حمل تطبيقنا',
             'pwa-desc': 'وصول سريع إلى خدماتنا من شاشتك الرئيسية',
             'pwa-install-btn': 'تثبيت التطبيق',
             'footer-desc': 'خبير إصلاح الهواتف في تولون',
