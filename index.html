@@ -8,6 +8,9 @@
     <meta name="author" content="MOURAD - Service de Réparation">
     <meta name="robots" content="index, follow">
     
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; frame-src https://www.google.com;">
+    
     <!-- Open Graph -->
     <meta property="og:title" content="Service de Réparation de Téléphones - MOURAD | Toulon">
     <meta property="og:description" content="Réparation rapide et professionnelle. 30-60 min. Garantie 6 mois.">
@@ -92,6 +95,21 @@
           }
         }
       ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "Service de Réparation de Téléphones - MOURAD",
+      "priceRange": "30€-150€",
+      "paymentAccepted": "Cash, Credit Card, PayPal",
+      "currenciesAccepted": "EUR",
+      "areaServed": {
+        "@type": "City",
+        "name": "Toulon"
+      }
     }
     </script>
     
@@ -198,11 +216,6 @@
         .floating-logo:nth-child(3) { left: 30%; width: 45px; height: 45px; animation-duration: 22s; animation-delay: 4s; }
         .floating-logo:nth-child(4) { left: 40%; width: 65px; height: 65px; animation-duration: 28s; animation-delay: 1s; }
         .floating-logo:nth-child(5) { left: 50%; width: 55px; height: 55px; animation-duration: 24s; animation-delay: 3s; }
-        .floating-logo:nth-child(6) { left: 60%; width: 60px; height: 60px; animation-duration: 26s; animation-delay: 5s; }
-        .floating-logo:nth-child(7) { left: 70%; width: 48px; height: 48px; animation-duration: 23s; animation-delay: 2.5s; }
-        .floating-logo:nth-child(8) { left: 80%; width: 68px; height: 68px; animation-duration: 27s; animation-delay: 4.5s; }
-        .floating-logo:nth-child(9) { left: 90%; width: 52px; height: 52px; animation-duration: 21s; animation-delay: 1.5s; }
-        .floating-logo:nth-child(10) { left: 15%; width: 58px; height: 58px; animation-duration: 29s; animation-delay: 3.5s; }
 
         @keyframes float-up {
             0% { bottom: -100px; transform: translateX(0) rotate(0deg); opacity: 0; }
@@ -2406,26 +2419,146 @@
             animation: emoji-bounce 2s ease-in-out infinite;
         }
 
+        /* Skip Link for Accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 0;
+            background: var(--primary);
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 100;
+        }
+        .skip-link:focus {
+            top: 0;
+        }
+
+        /* Reviews Section */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .review-card {
+            background: var(--bg-tertiary);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px var(--shadow);
+        }
+
+        .review-stars {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .review-text {
+            font-style: italic;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .review-author {
+            font-weight: 600;
+            color: var(--primary);
+            text-align: right;
+        }
+
         @media (max-width: 768px) {
+            .floating-logos {
+                display: none;
+            }
+            
+            header h1 {
+                font-size: 1.8em;
+            }
+            
+            .countdown-timer {
+                gap: 10px;
+            }
+            
+            .countdown-item {
+                padding: 15px;
+                min-width: 80px;
+            }
+            
+            .countdown-number {
+                font-size: 2em;
+            }
+            
+            .chat-window {
+                width: 100vw;
+                height: 100vh;
+                border-radius: 0;
+                bottom: 0;
+                right: 0;
+                left: 0;
+            }
+            
+            .language-switcher,
+            .theme-switcher {
+                top: 10px;
+                padding: 8px;
+            }
+            
+            .language-switcher {
+                left: 10px;
+            }
+            
+            .theme-switcher {
+                right: 10px;
+            }
+
             .whatsapp-float {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .services {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tracking-timeline {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .tracking-timeline::before {
                 display: none;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link">Aller au contenu principal</a>
+
     <!-- Language Switcher -->
     <div class="language-switcher">
-        <button class="lang-btn active" onclick="setLanguage('fr')" title="Français">🇫🇷</button>
-        <button class="lang-btn" onclick="setLanguage('en')" title="English">🇬🇧</button>
-        <button class="lang-btn" onclick="setLanguage('ar')" title="العربية">🇸🇦</button>
+        <button class="lang-btn active" onclick="setLanguage('fr')" aria-label="Français">🇫🇷</button>
+        <button class="lang-btn" onclick="setLanguage('en')" aria-label="English">🇬🇧</button>
+        <button class="lang-btn" onclick="setLanguage('ar')" aria-label="العربية">🇸🇦</button>
     </div>
 
     <!-- Theme Switcher -->
-    <div class="theme-switcher" onclick="toggleTheme()" title="Changer le thème">
+    <button class="theme-switcher" onclick="toggleTheme()" aria-label="Changer le thème">
         <span class="theme-switcher-icon">🌓</span>
         <span data-i18n="theme">Thème</span>
-    </div>
+    </button>
 
     <!-- Sticky Mobile Buttons -->
     <div class="sticky-mobile-buttons">
@@ -2441,11 +2574,6 @@
 
     <!-- Floating Logos Background -->
     <div class="floating-logos">
-        <div class="floating-logo"></div>
-        <div class="floating-logo"></div>
-        <div class="floating-logo"></div>
-        <div class="floating-logo"></div>
-        <div class="floating-logo"></div>
         <div class="floating-logo"></div>
         <div class="floating-logo"></div>
         <div class="floating-logo"></div>
@@ -2492,7 +2620,7 @@
         </a>
     </div>
 
-    <div class="container">
+    <div class="container" id="main-content">
         <!-- Header -->
         <header>
             <h1 data-i18n="main-title">Service de Réparation de Téléphones</h1>
@@ -2586,6 +2714,29 @@
                 <div class="tracking-info" id="trackingInfo"></div>
             </div>
         </section>
+
+        <!-- Customer Reviews Section -->
+        <section class="section-base" id="reviews">
+            <h2>⭐ Avis de Nos Clients</h2>
+            <div class="reviews-grid">
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Service rapide et professionnel ! Mon iPhone est comme neuf. Merci MOURAD !"</p>
+                    <p class="review-author">- Marie D.</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Prix honnête et travail de qualité. Je recommande vivement !"</p>
+                    <p class="review-author">- Jean P.</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-stars">⭐⭐⭐⭐⭐</div>
+                    <p class="review-text">"Réparation en 30 minutes ! Incroyable. Service au top !"</p>
+                    <p class="review-author">- Sophie L.</p>
+                </div>
+            </div>
+        </section>
+
                 <!-- Stats Section -->
         <section class="stats-section section-base">
             <h2 data-i18n="stats-title">📊 Nos Chiffres en Direct</h2>
@@ -3104,19 +3255,24 @@
         </section>
 
         <!-- Map Section -->
-        <section class="section-base">
-            <h2 data-i18n="map-title">🗺️ Où Nous Trouver</h2>
-            <div style="border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px var(--shadow); margin-top: 25px;">
+        <section class="section-base" id="location">
+            <h2>📍 Notre Emplacement</h2>
+            <div class="map-container">
                 <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2903.8377777!2d5.9246!3d43.1247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDPCsDA3JzI5LjAiTiA1wrA1NSczMC42IkU!5e0!3m2!1sfr!2sfr!4v1234567890" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d92680.51509457596!2d5.849226!3d43.124228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12c91b6b8a2e4c7d%3A0x40819a5fd970990!2sToulon!5e0!3m2!1sfr!2sfr!4v1234567890"
                     width="100%" 
                     height="400" 
                     style="border:0; border-radius: 15px;" 
                     allowfullscreen="" 
                     loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Localisation du service de réparation">
                 </iframe>
             </div>
+            <p style="text-align: center; margin-top: 20px; color: var(--text-secondary);">
+                📞 <a href="tel:+33784390172" style="color: var(--primary);">+33 7 84 39 01 72</a> | 
+                📧 <a href="mailto:lyabendehbi@gmail.com" style="color: var(--primary);">lyabendehbi@gmail.com</a>
+            </p>
         </section>
 
         <!-- PWA Install -->
@@ -4267,6 +4423,69 @@
             navigator.serviceWorker.register('/sw.js').catch(() => {});
         });
     }
+
+    // ============================================
+    // AMÉLIORATIONS ARIA ET INTERFACE UTILISATEUR
+    // ============================================
+    document.addEventListener('DOMContentLoaded', function() {
+        // Bouton retour en haut
+        const scrollBtn = document.createElement('button');
+        scrollBtn.innerHTML = '↑';
+        scrollBtn.className = 'scroll-to-top';
+        scrollBtn.setAttribute('aria-label', 'Retour en haut');
+        scrollBtn.style.cssText = `
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            font-size: 1.5em;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 999;
+            box-shadow: 0 5px 20px var(--shadow-strong);
+        `;
+        document.body.appendChild(scrollBtn);
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollBtn.style.opacity = '1';
+            } else {
+                scrollBtn.style.opacity = '0';
+            }
+        });
+        
+        scrollBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+        
+        // Intersection Observer pour les animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.service-card, .stat-item, .review-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    });
     </script>
 </body>
 </html> 

@@ -1,5 +1,11 @@
-const CACHE_NAME = 'repairation-v2-2026-01-11';
-const urlsToCache = ['/', '/index.html'];
+const CACHE_NAME = 'repair-toulon-v1';
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/logo.jpg',
+  'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css',
+  'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap'
+];
 
 self.addEventListener('install', event => {
   event.waitUntil(
