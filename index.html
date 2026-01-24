@@ -4559,14 +4559,10 @@
     const originalSetLanguage = window.setLanguage;
     window.setLanguage = function(lang) {
         if (originalSetLanguage) originalSetLanguage(lang);
+        // Update ARIA attributes
         document.querySelectorAll('.lang-btn').forEach(btn => {
             const isActive = btn.getAttribute('data-lang') === lang;
             btn.setAttribute('aria-pressed', isActive);
-            if (isActive) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
         });
     };
 
