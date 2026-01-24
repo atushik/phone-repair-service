@@ -2613,9 +2613,205 @@
                 width: 100%;
             }
         }
+
+        /* ============================================ */
+        /* EMOJI SIZE REDUCTIONS */
+        /* ============================================ */
+        
+        /* Service cards emojis - reduce from 3em to 1.5em */
+        .service-card i {
+            font-size: 1.5em !important;
+        }
+        
+        .service-card h3::before {
+            font-size: 1.5em !important;
+            margin-right: 10px;
+        }
+        
+        /* Address section - MOST IMPORTANT - reduce from 3em to 1.2em */
+        .contact-info i,
+        .contact-info .emoji {
+            font-size: 1.2em !important;
+        }
+        
+        /* Stats section emojis */
+        .stat-item .emoji {
+            font-size: 1.4em !important;
+        }
+        
+        /* FAQ emojis */
+        .faq-item summary::before {
+            font-size: 1.2em !important;
+        }
+        
+        /* Reviews section stars - reduce from 1.2em to 1em */
+        .review-stars {
+            font-size: 1em !important;
+        }
+        
+        /* All other emojis - general rule */
+        body .emoji,
+        body i.emoji-large {
+            font-size: 1.2em !important;
+        }
+        
+        /* ============================================ */
+        /* MODERN 2024 DESIGN ELEMENTS */
+        /* ============================================ */
+        
+        /* Scroll Progress Bar */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
+            width: 0%;
+            z-index: 10000;
+            transition: width 0.1s ease;
+        }
+        
+        /* Glassmorphism for cards */
+        .service-card,
+        .review-card,
+        .stat-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 16px 48px rgba(102, 126, 234, 0.2);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        
+        /* Modern gradient for header */
+        header {
+            background: linear-gradient(135deg, 
+                #667eea 0%, 
+                #764ba2 50%, 
+                #f093fb 100%);
+            position: relative;
+            overflow: hidden;
+            color: white;
+        }
+        
+        header h1,
+        header p {
+            color: white;
+        }
+        
+        /* Animated gradient overlay for header */
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent, 
+                rgba(255, 255, 255, 0.1), 
+                transparent);
+            animation: shimmer 3s infinite;
+            z-index: 1;
+        }
+        
+        header h1,
+        header p,
+        header .cta-button {
+            position: relative;
+            z-index: 2;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        /* Ripple effect on buttons */
+        .cta-button {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+        
+        .cta-button:active::after {
+            width: 300px;
+            height: 300px;
+        }
+        
+        /* Better Typography */
+        h1 {
+            font-size: 3em;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+        
+        h2 {
+            font-size: 2.2em;
+            font-weight: 700;
+            margin-bottom: 1.5em;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Preserve white color for h2 in colored sections */
+        section[style*="background: linear-gradient"] h2 {
+            background: none;
+            -webkit-background-clip: unset;
+            -webkit-text-fill-color: unset;
+            color: white;
+        }
+        
+        p {
+            line-height: 1.8;
+            font-size: 1.1em;
+        }
+        
+        /* RTL Support Improvements */
+        [dir="rtl"] .service-card,
+        [dir="rtl"] .review-card {
+            text-align: right;
+        }
+        
+        [dir="rtl"] .language-switcher {
+            left: auto;
+            right: 10px;
+        }
+        
+        [dir="rtl"] .theme-switcher {
+            right: auto;
+            left: 10px;
+        }
+        
+        [dir="rtl"] .services {
+            direction: rtl;
+        }
     </style>
 </head>
 <body>
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+    
     <!-- Skip Link for Accessibility -->
     <a href="#main-content" class="skip-link">Passer au contenu principal</a>
     
@@ -3311,26 +3507,26 @@
             
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 30px;">
                 <div style="text-align: center;">
-                    <div style="font-size: 3em; margin-bottom: 15px;">🏢</div>
+                    <div style="font-size: 1.2em; margin-bottom: 15px;">🏢</div>
                     <h3 style="margin-bottom: 10px;" data-i18n="address-label">Adresse</h3>
                     <p>123 Rue de la Réparation<br>83000 Toulon, France</p>
                 </div>
                 <div style="text-align: center;">
-                    <div style="font-size: 3em; margin-bottom: 15px;">📞</div>
+                    <div style="font-size: 1.2em; margin-bottom: 15px;">📞</div>
                     <h3 style="margin-bottom: 10px;" data-i18n="phone-label">Téléphone</h3>
                     <a href="tel:+33784390172" style="color: white; text-decoration: none; font-size: 1.2em; font-weight: 600;">07 84 39 01 72</a>
                 </div>
                 <div style="text-align: center;">
-                    <div style="font-size: 3em; margin-bottom: 15px;">📧</div>
+                    <div style="font-size: 1.2em; margin-bottom: 15px;">📧</div>
                     <h3 style="margin-bottom: 10px;">Email</h3>
                     <a href="mailto:lyabendehbi@gmail.com" style="color: white; text-decoration: none;">lyabendehbi@gmail.com</a>
                 </div>
             </div>
             
             <div style="display: flex; justify-content: center; gap: 20px; margin-top: 40px; flex-wrap: wrap;">
-                <a href="https://instagram.com/" style="width: 60px; height: 60px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8em; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.2) rotate(10deg)'" onmouseout="this.style.transform='scale(1)'">📸</a>
-                <a href="https://facebook.com/" style="width: 60px; height: 60px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8em; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.2) rotate(10deg)'" onmouseout="this.style.transform='scale(1)'">👍</a>
-                <a href="https://wa.me/33784390172" style="width: 60px; height: 60px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.8em; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.2) rotate(10deg)'" onmouseout="this.style.transform='scale(1)'">💬</a>
+                <a href="https://instagram.com/" style="width: 60px; height: 60px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3em; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.2) rotate(10deg)'" onmouseout="this.style.transform='scale(1)'">📸</a>
+                <a href="https://facebook.com/" style="width: 60px; height: 60px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3em; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.2) rotate(10deg)'" onmouseout="this.style.transform='scale(1)'">👍</a>
+                <a href="https://wa.me/33784390172" style="width: 60px; height: 60px; background: rgba(255,255,255,0.9); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.3em; text-decoration: none; transition: all 0.3s ease;" onmouseover="this.style.transform='scale(1.2) rotate(10deg)'" onmouseout="this.style.transform='scale(1)'">💬</a>
             </div>
         </section>
 
@@ -3788,29 +3984,137 @@
             'seconds': 'ثواني',
             'track-title': '📦 تتبع إصلاحي',
             'track-desc': 'أدخل رقم طلبك لمعرفة حالة الإصلاح',
+            'tracking-placeholder': 'REP-2025-XXXX',
             'track-btn': 'تتبع',
+            'track-received': 'تم الاستلام',
+            'track-diagnostic': 'التشخيص',
+            'track-repair': 'الإصلاح',
+            'track-ready': 'جاهز',
+            'track-not-found': 'رقم الطلب غير موجود. يرجى التحقق والمحاولة مرة أخرى.',
             'stats-title': '📊 أرقامنا المباشرة',
             'stat-repairs': 'إصلاحات منجزة',
             'stat-satisfaction': '% عملاء راضون',
             'stat-time': 'دقيقة في المتوسط',
             'stat-warranty': 'أشهر ضمان',
             'calc-title': '💰 حاسبة الأسعار',
+            'calc-desc': 'احصل على تقدير فوري لتكلفة الإصلاح',
+            'calc-brand': 'ماركة الهاتف',
+            'calc-model': 'الموديل',
+            'calc-service': 'نوع الإصلاح',
+            'select-brand': 'اختر الماركة',
+            'select-model': 'اختر الموديل',
+            'select-service': 'نوع الإصلاح',
+            'other': 'أخرى',
             'calc-btn': 'احسب السعر',
+            'estimated-price': 'السعر المقدر:',
+            'price-note': '* سعر تقريبي، عرض السعر النهائي بعد التشخيص',
+            'book-now': 'احجز الآن',
+            'fill-all-fields': '⚠️ يرجى ملء جميع الحقول',
             'search-title': '🔍 ابحث عن موديلك',
+            'search-placeholder': 'ابحث بالماركة أو الموديل...',
             'promo-code-title': '🎟️ رمز الخصم',
+            'promo-code-desc': 'أدخل رمز الخصم للحصول على تخفيض',
+            'promo-placeholder': 'رمز الخصم',
             'apply': 'تطبيق',
+            'available-codes': 'الرموز المتاحة:',
+            'code1-desc': 'خصم 10% للعملاء الجدد',
+            'code2-desc': 'خصم 20% للعملاء الدائمين',
+            'code3-desc': 'خصم 30% على الإصلاحات العاجلة',
+            'code4-desc': 'خصم 15% للطلاب',
+            'promo-success': '✅ تم تطبيق الرمز! خصم',
+            'promo-error': '❌ رمز خصم غير صالح',
             'loyalty-title': '🎁 برنامج الولاء',
+            'your-loyalty-card': 'بطاقة الولاء الخاصة بك',
+            'points-to-next': '250 / 500 نقطة للمكافأة التالية',
+            'available-rewards': 'المكافآت المتاحة',
+            'reward1-title': 'خصم 10€',
+            'reward2-title': 'خصم 25€',
+            'reward3-title': 'إصلاح مجاني',
+            'reward4-title': 'خدمة VIP',
+            'unlocked': 'مفتوح',
+            'almost-there': 'اقتربت!',
+            'to-unlock': 'لفتح',
             'calendar-title': '📅 احجز موعد',
+            'calendar-desc': 'اختر تاريخ ووقت موعدك',
+            'prev-month': 'السابق',
+            'next-month': 'التالي',
+            'mon': 'الإثنين',
+            'tue': 'الثلاثاء',
+            'wed': 'الأربعاء',
+            'thu': 'الخميس',
+            'fri': 'الجمعة',
+            'sat': 'السبت',
+            'sun': 'الأحد',
+            'available-slots': 'المواعيد المتاحة',
+            'booking-confirmed': '✅ تم حجز الموعد في',
+            'at': 'في',
+            'progress-title': '🔧 تتبع إصلاحك',
+            'progress-desc': 'شاهد تقدم إصلاحك في الوقت الفعلي',
+            'step-diagnostic': 'التشخيص',
+            'step-repair': 'الإصلاح',
+            'step-tests': 'الاختبارات',
+            'step-ready': 'جاهز',
+            'current-status': 'الحالة الحالية: الاختبارات جارية',
+            'status-desc': 'سيكون هاتفك جاهزاً خلال حوالي 15 دقيقة',
+            'gallery-title': '📸 قبل / بعد',
+            'gallery-desc': 'اكتشف إصلاحاتنا',
+            'before': 'قبل',
+            'after': 'بعد',
+            'form-title': '📝 احجز موعد',
+            'form-name': 'اسمك *',
+            'form-phone': 'هاتفك *',
+            'form-email': 'بريدك الإلكتروني',
+            'form-service': 'نوع الإصلاح *',
+            'form-photo': 'صورة المشكلة (اختياري)',
+            'form-description': 'وصف المشكلة',
+            'form-submit': 'إرسال الطلب',
+            'name-placeholder': 'محمد أحمد',
+            'phone-placeholder': '06 12 34 56 78',
+            'email-placeholder': 'mohammed@example.com',
+            'description-placeholder': 'صف مشكلتك...',
+            'select-repair-type': 'نوع الإصلاح',
+            'upload-photo': '📷 انقر لإضافة صورة',
+            'error-name': 'يرجى إدخال اسمك',
+            'error-phone': 'يرجى إدخال رقم صالح',
+            'error-email': 'يرجى إدخال بريد إلكتروني صالح',
             'faq-title': '❓ الأسئلة الشائعة',
+            'faq1-q': '⏰ كم من الوقت يستغرق الإصلاح؟',
+            'faq1-a': 'معظم الإصلاحات (مثل استبدال الشاشة أو البطارية) تتم في 30 إلى 60 دقيقة.',
+            'faq2-q': '✅ ما هو الضمان؟',
+            'faq2-a': 'نقدم ضماناً لمدة 6 أشهر على جميع إصلاحاتنا والقطع المستبدلة.',
+            'faq3-q': '💳 ما هي طرق الدفع المقبولة؟',
+            'faq3-a': 'نقبل النقد وبطاقات الائتمان والدفع عبر الهاتف المحمول وPayPal.',
+            'faq4-q': '📱 هل تعملون على جميع الماركات؟',
+            'faq4-a': 'نعم! نصلح Apple وSamsung وHuawei وXiaomi وOppo وOnePlus وجميع الماركات الرئيسية.',
+            'faq5-q': '🚗 هل تقدمون خدمة منزلية؟',
+            'faq5-a': 'نعم، نقدم خدمة إصلاح منزلية في تولون والمناطق المحيطة.',
             'reviews-title': '⭐ آراء العملاء',
+            'review1-text': '"خدمة ممتازة! تم إصلاح شاشتي في 30 دقيقة. احترافي جداً!"',
+            'review2-text': '"قيمة ممتازة مقابل المال. هاتفي يعمل كالجديد!"',
+            'review3-text': '"سريع وفعال والضمان محترم. أوصي به بشدة!"',
+            'review4-text': '"مراد محترف حقيقي! تم تغيير البطارية في 20 دقيقة."',
+            'review-count': '(أكثر من 150 تقييم)',
+            'leave-review': 'اترك تقييماً',
             'brands-title': '📱 نصلح جميع الماركات',
             'hours-title': '⏰ ساعات العمل',
+            'hours-weekdays': 'الإثنين - الأحد: 9:00 صباحاً - 8:00 مساءً',
+            'hours-everyday': '7 أيام في الأسبوع',
+            'currently-open': 'مفتوح حالياً',
             'address-title': '📍 عنواننا',
+            'address-label': 'العنوان',
+            'phone-label': 'الهاتف',
             'map-title': '🗺️ أين تجدنا',
             'pwa-title': '📲 حمل تطبيقنا',
+            'pwa-desc': 'وصول سريع إلى خدماتنا من شاشتك الرئيسية',
+            'pwa-install-btn': 'تثبيت التطبيق',
+            'footer-desc': 'خبير إصلاح الهواتف في تولون',
+            'all-rights': 'جميع الحقوق محفوظة.',
             'chat-with-us': 'تحدث معنا',
             'online': 'متصل',
-            'send': 'إرسال'
+            'chat-welcome': 'مرحباً! 👋 كيف يمكنني مساعدتك اليوم؟',
+            'your-message': 'رسالتك...',
+            'send': 'إرسال',
+            'contact-whatsapp': 'اتصل بنا'
         }
     };
 
@@ -3823,11 +4127,28 @@
         currentLanguage = lang;
         
         // Update active button
-        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-        event.target.classList.add('active');
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.remove('active');
+            const btnLang = btn.getAttribute('data-lang');
+            if (btnLang === lang) {
+                btn.classList.add('active');
+                btn.setAttribute('aria-pressed', 'true');
+            } else {
+                btn.setAttribute('aria-pressed', 'false');
+            }
+        });
         
         // Set RTL for Arabic
-        document.body.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+        if (lang === 'ar') {
+            document.documentElement.setAttribute('dir', 'rtl');
+            document.body.style.direction = 'rtl';
+            document.body.style.textAlign = 'right';
+        } else {
+            document.documentElement.setAttribute('dir', 'ltr');
+            document.body.style.direction = 'ltr';
+            document.body.style.textAlign = 'left';
+        }
+        
         document.documentElement.lang = lang;
         
         // Apply translations
@@ -3848,6 +4169,8 @@
             });
         }
         
+        // Save to localStorage
+        localStorage.setItem('preferredLanguage', lang);
         localStorage.setItem('language', lang);
     }
 
@@ -3866,14 +4189,8 @@
     // ============================================
     document.addEventListener('DOMContentLoaded', function() {
         // Load saved preferences
-        const savedLang = localStorage.getItem('language');
-        if (savedLang) {
-            currentLanguage = savedLang;
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.toggle('active', btn.textContent.includes(savedLang === 'fr' ? '🇫🇷' : savedLang === 'en' ? '🇬🇧' : '🇸🇦'));
-            });
-            setLanguage(savedLang);
-        }
+        const savedLang = localStorage.getItem('preferredLanguage') || localStorage.getItem('language') || 'fr';
+        setLanguage(savedLang);
         
         const savedTheme = localStorage.getItem('theme');
         if (savedTheme) {
@@ -4588,6 +4905,17 @@
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'all 0.6s ease';
         observer.observe(el);
+    });
+
+    // ============================================
+    // SCROLL PROGRESS BAR
+    // ============================================
+    window.addEventListener('scroll', () => {
+        const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+        const progressBar = document.getElementById('scrollProgress');
+        if (progressBar) {
+            progressBar.style.width = scrolled + '%';
+        }
     });
     </script>
 
