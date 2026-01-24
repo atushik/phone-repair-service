@@ -3685,7 +3685,7 @@
             'estimated-price': 'Prix estimé:',
             'price-note': '* Prix indicatif, devis final après diagnostic',
             'book-now': 'Réserver maintenant',
-            'fill-all-fields': '⚠️ Veuillez remplir tous les champs',
+            'fill-all-fields': 'Veuillez remplir tous les champs',
             
             // Search
             'search-title': 'Rechercher Votre Modèle',
@@ -3872,7 +3872,7 @@
             'estimated-price': 'Estimated price:',
             'price-note': '* Indicative price, final quote after diagnostic',
             'book-now': 'Book now',
-            'fill-all-fields': '⚠️ Please fill in all fields',
+            'fill-all-fields': 'Please fill in all fields',
             'search-title': 'Search Your Model',
             'search-placeholder': 'Search by brand or model...',
             'promo-code-title': '🎟️ Promo Code',
@@ -4033,7 +4033,7 @@
             'estimated-price': 'السعر المقدر:',
             'price-note': '* سعر تقريبي، عرض السعر النهائي بعد التشخيص',
             'book-now': 'احجز الآن',
-            'fill-all-fields': '⚠️ يرجى ملء جميع الحقول',
+            'fill-all-fields': 'يرجى ملء جميع الحقول',
             'search-title': 'ابحث عن موديلك',
             'search-placeholder': 'ابحث بالماركة أو الموديل...',
             'promo-code-title': '🎟️ رمز الخصم',
@@ -4404,7 +4404,7 @@
         const priceAmount = document.getElementById('priceAmount');
         
         if (!brand || !model || !service) {
-            priceAmount.textContent = translations[currentLanguage]?.['fill-all-fields'] || '⚠️ Remplissez tous les champs';
+            priceAmount.textContent = translations[currentLanguage]?.['fill-all-fields'] || 'Remplissez tous les champs';
             resultDiv.classList.add('show');
             return;
         }
@@ -4484,11 +4484,11 @@
         message.className = 'promo-message';
         
         if (promoCodes[code]) {
-            message.textContent = `${translations[currentLanguage]?.['promo-success'] || '✅ Code appliqué!'} ${promoCodes[code]}%`;
+            message.textContent = `${translations[currentLanguage]?.['promo-success'] || 'Code appliqué!'} ${promoCodes[code]}%`;
             message.classList.add('success');
             createConfetti();
         } else {
-            message.textContent = translations[currentLanguage]?.['promo-error'] || '❌ Code invalide';
+            message.textContent = translations[currentLanguage]?.['promo-error'] || 'Code invalide';
             message.classList.add('error');
         }
     }
@@ -4582,7 +4582,7 @@
         element.classList.add('selected');
         
         const dateStr = selectedDate.toLocaleDateString(currentLanguage === 'en' ? 'en-GB' : currentLanguage === 'ar' ? 'ar-SA' : 'fr-FR');
-        const msg = `${translations[currentLanguage]?.['booking-confirmed'] || '✅ Réservé pour le'} ${dateStr} ${translations[currentLanguage]?.['at'] || 'à'} ${time}`;
+        const msg = `${translations[currentLanguage]?.['booking-confirmed'] || 'Réservé pour le'} ${dateStr} ${translations[currentLanguage]?.['at'] || 'à'} ${time}`;
         
         alert(msg);
         createConfetti();
@@ -4786,14 +4786,14 @@
         // Success
         createConfetti();
         
-        const message = `📱 Nouvelle Demande de Réparation
+        const message = `Nouvelle Demande de Réparation
 
-👤 Nom: ${nom}
-📞 Téléphone: ${tel}
-🔧 Service: ${service}
-📝 Description: ${description}
+Nom: ${nom}
+Téléphone: ${tel}
+Service: ${service}
+Description: ${description}
 
-📅 Date: ${new Date().toLocaleString('fr-FR')}`;
+Date: ${new Date().toLocaleString('fr-FR')}`;
         
         const whatsappUrl = `https://wa.me/33784390172?text=${encodeURIComponent(message)}`;
         window.open(whatsappUrl, '_blank');
