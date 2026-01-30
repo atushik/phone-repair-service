@@ -2854,7 +2854,7 @@
             aria-label="Changer le thème" 
             role="button"
             aria-pressed="false">
-        <span class="theme-switcher-icon" aria-hidden="true"><i class="fas fa-adjust"></i></span>
+        <span class="theme-switcher-icon" aria-hidden="true">🌓</span>
         <span data-i18n="theme">Thème</span>
     </button>
 
@@ -3237,11 +3237,11 @@
                     <div class="progress-step-label" data-i18n="step-diagnostic">Diagnostic</div>
                 </div>
                 <div class="progress-step completed">
-                    <div class="progress-step-icon"><i class="fas fa-wrench"></i></div>
+                    <div class="progress-step-icon">🔧</div>
                     <div class="progress-step-label" data-i18n="step-repair">Réparation</div>
                 </div>
                 <div class="progress-step active">
-                    <div class="progress-step-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="progress-step-icon">✅</div>
                     <div class="progress-step-label" data-i18n="step-tests">Tests</div>
                 </div>
                 <div class="progress-step">
@@ -3363,7 +3363,7 @@
                                 <span data-i18n="service-charging">Problèmes de Charge</span>
                             </div>
                             <div class="custom-option" data-value="Autre">
-                                <span class="custom-option-emoji"><i class="fas fa-wrench"></i></span>
+                                <span class="custom-option-emoji">🔧</span>
                                 <span data-i18n="other">Autre</span>
                             </div>
                         </div>
@@ -3606,7 +3606,7 @@
         <!-- Footer -->
         <footer style="text-align: center; padding: 40px 30px; background: var(--bg-secondary); border-radius: 20px; margin-top: 40px;">
             <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px;">
-                <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 15px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5em;"><i class="fas fa-wrench"></i></div>
+                <div style="width: 50px; height: 50px; background: linear-gradient(135deg, var(--primary), var(--primary-dark)); border-radius: 15px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5em;">🔧</div>
                 <span style="font-size: 1.5em; font-weight: 700; color: var(--text-primary);">MOURAD</span>
             </div>
             <p style="color: var(--text-secondary); margin-bottom: 15px;" data-i18n="footer-desc">Expert en réparation de téléphones à Toulon</p>
@@ -3656,7 +3656,7 @@
             'seconds': 'Secondes',
             
             // Tracking
-            'track-title': '<i class="fas fa-box"></i> Suivre Ma Réparation',
+            'track-title': '📦 Suivre Ma Réparation',
             'track-desc': 'Entrez votre numéro de commande pour voir le statut de votre réparation',
             'tracking-placeholder': 'REP-2025-XXXX',
             'track-btn': 'Suivre',
@@ -3667,7 +3667,7 @@
             'track-not-found': 'Numéro de commande non trouvé. Vérifiez et réessayez.',
             
             // Stats
-            'stats-title': '<i class="fas fa-chart-bar"></i> Nos Chiffres en Direct',
+            'stats-title': '📊 Nos Chiffres en Direct',
             'stat-repairs': 'Réparations Effectuées',
             'stat-satisfaction': '% Clients Satisfaits',
             'stat-time': 'Minutes en Moyenne',
@@ -3847,7 +3847,7 @@
             'hours': 'Hours',
             'minutes': 'Minutes',
             'seconds': 'Seconds',
-            'track-title': '<i class="fas fa-box"></i> Track My Repair',
+            'track-title': '📦 Track My Repair',
             'track-desc': 'Enter your order number to see your repair status',
             'tracking-placeholder': 'REP-2025-XXXX',
             'track-btn': 'Track',
@@ -3856,7 +3856,7 @@
             'track-repair': 'Repair',
             'track-ready': 'Ready',
             'track-not-found': 'Order number not found. Please check and try again.',
-            'stats-title': '<i class="fas fa-chart-bar"></i> Our Live Numbers',
+            'stats-title': '📊 Our Live Numbers',
             'stat-repairs': 'Repairs Completed',
             'stat-satisfaction': '% Satisfied Customers',
             'stat-time': 'Average Minutes',
@@ -4008,7 +4008,7 @@
             'hours': 'ساعات',
             'minutes': 'دقائق',
             'seconds': 'ثواني',
-            'track-title': '<i class="fas fa-box"></i> تتبع إصلاحي',
+            'track-title': '📦 تتبع إصلاحي',
             'track-desc': 'أدخل رقم طلبك لمعرفة حالة الإصلاح',
             'tracking-placeholder': 'REP-2025-XXXX',
             'track-btn': 'تتبع',
@@ -4017,7 +4017,7 @@
             'track-repair': 'الإصلاح',
             'track-ready': 'جاهز',
             'track-not-found': 'رقم الطلب غير موجود. يرجى التحقق والمحاولة مرة أخرى.',
-            'stats-title': '<i class="fas fa-chart-bar"></i> أرقامنا المباشرة',
+            'stats-title': '📊 أرقامنا المباشرة',
             'stat-repairs': 'إصلاحات منجزة',
             'stat-satisfaction': '% عملاء راضون',
             'stat-time': 'دقيقة في المتوسط',
@@ -4336,10 +4336,10 @@
         
         if (order) {
             const steps = [
-                { icon: '<i class="fas fa-inbox"></i>', label: translations[currentLanguage]?.['track-received'] || 'Reçu' },
-                { icon: '<i class="fas fa-search"></i>', label: translations[currentLanguage]?.['track-diagnostic'] || 'Diagnostic' },
-                { icon: '<i class="fas fa-wrench"></i>', label: translations[currentLanguage]?.['track-repair'] || 'Réparation' },
-                { icon: '<i class="fas fa-check-circle"></i>', label: translations[currentLanguage]?.['track-ready'] || 'Prêt' }
+                { icon: '📥', label: translations[currentLanguage]?.['track-received'] || 'Reçu' },
+                { icon: '🔍', label: translations[currentLanguage]?.['track-diagnostic'] || 'Diagnostic' },
+                { icon: '🔧', label: translations[currentLanguage]?.['track-repair'] || 'Réparation' },
+                { icon: '✅', label: translations[currentLanguage]?.['track-ready'] || 'Prêt' }
             ];
             
             timeline.innerHTML = steps.map((step, i) => `
